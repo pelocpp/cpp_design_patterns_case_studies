@@ -16,12 +16,17 @@
 
 #include "ExplorationStrategy.h"
 #include "FileTypeStrategy.h"
-// #include "FolderStrategy.h"
 
 // ===========================================================================
 
 void FileTypeStrategy::explore(const std::string& path)
 {
+    exploreHelper(path);
+    onFinish();
+}
+
+void FileTypeStrategy::exploreHelper(const std::string& path) {
+
     std::filesystem::path p(path);
     std::filesystem::directory_iterator start(p);
     std::filesystem::directory_iterator end;
@@ -70,7 +75,7 @@ void FileTypeStrategy::explore(const std::string& path)
                 return;
             }
 
-            explore(s);
+            exploreHelper(s);
         }
     };
 
@@ -87,35 +92,6 @@ void FileTypeStrategy::printResults() {
         }
     );
 }
-
-// ===========================================================================
-//
-//inline bool endsWith(std::string const& value, std::string const& ending)
-//{
-//    if (ending.size() > value.size()) return false;
-//    return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
-//}
-//
-//uintmax_t getFolderSize(std::string path)
-//{
-//    uintmax_t r = 0;
-//    try {
-//        if (!std::filesystem::is_directory(path))
-//        {
-//            r += std::filesystem::file_size(path);
-//        }
-//        else
-//        {
-//            for (auto entry : std::filesystem::directory_iterator(path))
-//                r += getFolderSize(entry.path().string());
-//        }
-//    }
-//    catch (std::filesystem::filesystem_error& e)
-//    {
-//        std::cout << e.what() << '\n';
-//    }
-//    return r;
-//}
 
 // ===========================================================================
 // End-of-File

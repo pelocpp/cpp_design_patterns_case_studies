@@ -12,6 +12,9 @@ public:
 
     void explore(const std::string& path) override;
     void printResults() override;
+
+private:
+    void exploreHelper(const std::string& path);
 };
 
 // ===========================================================================

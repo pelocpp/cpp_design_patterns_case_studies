@@ -25,11 +25,56 @@ static uintmax_t getFolderSize(std::string path);
 
 // ===========================================================================
 
-/* This class retrieves folders size under a given path;
- * then sizes are placed in a hashtable containing folder names
- * and the size of the folders
- */
+///* This class retrieves folders size under a given path;
+// * then sizes are placed in a hashtable containing folder names
+// * and the size of the folders
+// */
+//void FolderStrategy::explore(const std::string& path)
+//{
+//    std::filesystem::path p(path);
+//    std::filesystem::directory_iterator start(p);
+//    std::filesystem::directory_iterator end;
+//
+//    auto entriesLambda = [this](const std::filesystem::directory_entry& entry) mutable {
+//
+//        if (std::filesystem::is_directory(entry)) {
+//
+//            // skip - at least for the moment - .git and .vs sub directories
+//            // const std::filesystem::path ext = entry.path().extension();
+//            std::string s = entry.path().string();
+//            if (endsWith(s, ".git") or endsWith(s, ".vs")) {
+//                return;
+//            }
+//
+//            // retrieve size of bytes of this folder
+//            uintmax_t size = 0;
+//            try
+//            {
+//                size = getFolderSize(entry.path().string());
+//            }
+//            catch (std::filesystem::filesystem_error& e) {
+//                std::cout << e.what() << '\n';
+//            }
+//
+//            // add size to the map
+//            m_explorationResult[s] = size;
+//
+//            explore(s);
+//        }
+//    };
+//
+//    std::for_each(start, end, entriesLambda);
+//
+//    onFinish();
+//}
+
 void FolderStrategy::explore(const std::string& path)
+{
+    exploreHelper(path);
+    onFinish();
+}
+
+void FolderStrategy::exploreHelper(const std::string& path)
 {
     std::filesystem::path p(path);
     std::filesystem::directory_iterator start(p);
@@ -50,7 +95,6 @@ void FolderStrategy::explore(const std::string& path)
             uintmax_t size = 0;
             try
             {
-                // size = file_size(entry);  // FALSCHER WERT ?????????????????
                 size = getFolderSize(entry.path().string());
             }
             catch (std::filesystem::filesystem_error& e) {
@@ -60,7 +104,7 @@ void FolderStrategy::explore(const std::string& path)
             // add size to the map
             m_explorationResult[s] = size;
 
-            explore(s);
+            exploreHelper(s);
         }
     };
 

@@ -33,6 +33,7 @@ void testStategyPattern() {
     // initialization section: setup observer
     std::shared_ptr<IExplorationObserver> concreteObserver = std::make_shared<ConcreteExplorationObserver>();
     folderStrategy->attach(concreteObserver);
+    fileTypeStrategy->attach(concreteObserver);
 
     // choose strategy
     int input = 1;
@@ -56,7 +57,7 @@ void testStategyPattern() {
         R"(C:\Development\GitRepositoryCPlusPlus\Cpp_DesignPatterns)";
 
     explorer->explore(path);
-    explorer->printResults();
+   // explorer->printResults();
 }
 
 
