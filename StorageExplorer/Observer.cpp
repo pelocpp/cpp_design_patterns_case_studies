@@ -5,16 +5,21 @@
 #include <iostream>
 #include <string>
 #include <map>
-//#include <iterator>
-//#include <filesystem>
+#include <list>
 #include <memory>
 
-#include "ExplorationObserver.h"
+#include "IExplorationObserver.h"
+#include "IExplorationStrategy.h"
+#include "ConcreteExplorationObserver.h"
+
 #include "ExplorationStrategy.h"
+#include "FileTypeStrategy.h"
+#include "FolderStrategy.h"
 
 // ===========================================================================
 
-void ConcreteExplorationObserver::onFinish(const std::string&) { }
+void ConcreteExplorationObserver::onFinish(const std::string&) {
+}
 
 // ===========================================================================
 // End-of-File

@@ -143,14 +143,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ExplorationStrategy.cpp" />
+    <ClCompile Include="FileTypeStrategy.cpp" />
+    <ClCompile Include="FolderStrategy.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="TestOpenFileDialog.cpp" />
-    <ClInclude Include="ExplorationObserver.h" />
+    <ClInclude Include="ConcreteExplorationObserver.h" />
     <ClInclude Include="ExplorationStrategy.h">
       <FileType>CppCode</FileType>
     </ClInclude>
     <ClCompile Include="Strategy.cpp" />
+    <ClInclude Include="FileTypeStrategy.h" />
+    <ClInclude Include="FolderStrategy.h" />
+    <ClInclude Include="IExplorationObserver.h" />
+    <ClInclude Include="IExplorationStrategy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

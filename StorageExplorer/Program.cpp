@@ -2,16 +2,24 @@
 // Program.cpp
 // ===========================================================================
 
+// TODO: Hmm, verwenden wir da shared oder unique ptr ?!?!?!?
+
+// ===========================================================================
+
 #include <iostream>
 #include <string>
 #include <map>
+#include <list>
 #include <iterator>
 #include <filesystem>
 
-#include "ExplorationObserver.h"
-#include "ExplorationStrategy.h"
+#include "IExplorationObserver.h"
+#include "IExplorationStrategy.h"
+#include "ConcreteExplorationObserver.h"
 
-// TODO: Hmm, verwenden wir da shared oder unique ptr ?!?!?!?
+#include "ExplorationStrategy.h"
+#include "FileTypeStrategy.h"
+#include "FolderStrategy.h"
 
 // ===========================================================================
 
@@ -22,14 +30,12 @@ void testStategyPattern() {
     std::unique_ptr<IExplorationStrategy> folderStrategy = std::make_unique<FolderStrategy>();
     std::unique_ptr<IExplorationStrategy> fileTypeStrategy = std::make_unique<FileTypeStrategy>();
 
-
     // initialization section: setup observer
     std::shared_ptr<IExplorationObserver> concreteObserver = std::make_shared<ConcreteExplorationObserver>();
-
     folderStrategy->attach(concreteObserver);
 
     // choose strategy
-    int input = 0;
+    int input = 1;
     switch (input)
     {
     case 0:
@@ -56,8 +62,8 @@ void testStategyPattern() {
 
 int main() {
     std::cout << "Cpp Design Patterns Case Studies: Storage Explorer" << std::endl;
-
     testStategyPattern();
+    std::cout << "Done." << std::endl;
     return 0; 
 }
 

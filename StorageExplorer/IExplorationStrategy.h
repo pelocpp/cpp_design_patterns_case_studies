@@ -1,16 +1,17 @@
 // ===========================================================================
-// ExplorationStrategy.h
+// IExplorationStrategy.h
 // ===========================================================================
 
-class IExplorationObserver {
-public:
-    virtual ~IExplorationObserver() {};
-    virtual void onFinish(const std::string&) = 0;
-};
+#pragma once
 
-class ConcreteExplorationObserver : public IExplorationObserver {
+class IExplorationStrategy {
 public:
-    void onFinish(const std::string&) override;
+    virtual void explore(const std::string& path) = 0;
+    virtual void printResults() = 0;
+
+    virtual void attach(std::shared_ptr<IExplorationObserver>) = 0;
+    virtual void detach(std::shared_ptr<IExplorationObserver>) = 0;
+    virtual void onFinish() = 0;
 };
 
 // ===========================================================================
