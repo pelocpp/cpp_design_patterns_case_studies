@@ -20,8 +20,6 @@ public:
     ExplorationStrategy() = default;
     ~ExplorationStrategy() = default;
 
-//    void explore(const std::string& path) override;
-
     /**
     * observer management methods
     */

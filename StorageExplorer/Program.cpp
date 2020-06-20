@@ -2,7 +2,8 @@
 // Program.cpp
 // ===========================================================================
 
-// TODO: Hmm, verwenden wir da shared oder unique ptr ?!?!?!?
+// 1.) TODO: Hmm, verwenden wir da shared oder unique ptr ?!?!?!?
+// 2.) Das Traversieren der Verzeichnisstruktur in einen Thread auslagern ....
 
 // ===========================================================================
 
@@ -36,7 +37,7 @@ void testStategyPattern() {
     fileTypeStrategy->attach(concreteObserver);
 
     // choose strategy
-    int input = 1;
+    int input = 0;
     switch (input)
     {
     case 0:
@@ -57,9 +58,8 @@ void testStategyPattern() {
         R"(C:\Development\GitRepositoryCPlusPlus\Cpp_DesignPatterns)";
 
     explorer->explore(path);
-   // explorer->printResults();
+    explorer->printResults();
 }
-
 
 int main() {
     std::cout << "Cpp Design Patterns Case Studies: Storage Explorer" << std::endl;

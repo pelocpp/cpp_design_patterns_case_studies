@@ -2,8 +2,6 @@
 // FolderStrategy.h
 // ===========================================================================
 
-#pragma once
-
 class FolderStrategy : public ExplorationStrategy
 {
 public:

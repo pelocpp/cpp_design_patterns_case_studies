@@ -2,8 +2,6 @@
 // IExplorationStrategy.h
 // ===========================================================================
 
-#pragma once
-
 class IExplorationStrategy {
 public:
     // exploration methods

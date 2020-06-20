@@ -1,11 +1,25 @@
 // ===========================================================================
-// IExplorationObserver.h
+// ListView.h
 // ===========================================================================
 
-class IExplorationObserver {
+/* 
+ * Simple console based ListView control
+ */
+class ListView
+{
+private:
+    int m_cols;
+    std::vector<std::string> m_titles;
+
 public:
-    virtual ~IExplorationObserver() {};
-    virtual void onFinish(const std::string&) = 0;
+    // c'tor
+    ListView();
+
+    void setColumns(int);
+    void setColumnHeader(int, std::string);
+    void setData();
+
+    void show();
 };
 
 // ===========================================================================
