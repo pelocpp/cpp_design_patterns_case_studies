@@ -82,7 +82,8 @@ void FileTypeStrategy::exploreHelper(const std::string& path) {
     std::for_each(start, end, entriesLambda);
 }
 
-void FileTypeStrategy::printResults() {
+void FileTypeStrategy::printResults()
+{
 
     std::for_each(
         std::begin(m_explorationResult),

@@ -5,6 +5,12 @@
 // 1.) TODO: Hmm, verwenden wir da shared oder unique ptr ?!?!?!?
 // 2.) Das Traversieren der Verzeichnisstruktur in einen Thread auslagern ....
 
+
+// 3. Zweite Console
+//https://codereview.stackexchange.com/questions/195157/using-multiple-console-windows-for-output
+//https://www.codeproject.com/Articles/13368/Multiple-consoles-for-a-single-application
+//https://stackoverflow.com/questions/20847474/multiple-consoles-for-a-single-application-c
+
 // ===========================================================================
 
 #include <iostream>
@@ -21,31 +27,46 @@
 #include "ExplorationStrategy.h"
 #include "FileTypeStrategy.h"
 #include "FolderStrategy.h"
+#include "ASyncTestStrategy.h"
+
+#include "ListView.h"
+#include "ListViewAdapter.h"
 
 // ===========================================================================
 
 void testStategyPattern() {
 
     // initialization section: setup strategy
-    std::unique_ptr<IExplorationStrategy> explorer;
-    std::unique_ptr<IExplorationStrategy> folderStrategy = std::make_unique<FolderStrategy>();
-    std::unique_ptr<IExplorationStrategy> fileTypeStrategy = std::make_unique<FileTypeStrategy>();
+    std::shared_ptr<IExplorationStrategy> explorer;
+    std::shared_ptr<IExplorationStrategy> folderStrategy = std::make_shared<FolderStrategy>();
+    std::shared_ptr<IExplorationStrategy> fileTypeStrategy = std::make_shared<FileTypeStrategy>();
+    std::shared_ptr<IExplorationStrategy> asyncTestStrategy = std::make_shared<ASyncTestStrategy>();
 
     // initialization section: setup observer
     std::shared_ptr<IExplorationObserver> concreteObserver = std::make_shared<ConcreteExplorationObserver>();
     folderStrategy->attach(concreteObserver);
     fileTypeStrategy->attach(concreteObserver);
 
+    // initialization section: setup listview
+    ListView view;
+    view.setColumns(3);
+    view.setColumnHeader({"AAA", "BBB", "CCC"});
+    view.show();
+
     // choose strategy
-    int input = 0;
+    int input = 2;
     switch (input)
     {
     case 0:
-        explorer = std::move(folderStrategy);
+        explorer = folderStrategy;
         break;
 
     case 1:
-        explorer = std::move(fileTypeStrategy);
+        explorer = fileTypeStrategy;
+        break;
+
+    case 2:
+        explorer = asyncTestStrategy;
         break;
 
     default:
@@ -58,7 +79,11 @@ void testStategyPattern() {
         R"(C:\Development\GitRepositoryCPlusPlus\Cpp_DesignPatterns)";
 
     explorer->explore(path);
-    explorer->printResults();
+    // explorer->printResults();
+
+    // block main thread
+    char ch;
+    std::cin >> ch;
 }
 
 int main() {
