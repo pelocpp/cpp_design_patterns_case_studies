@@ -5,7 +5,7 @@
 class IExplorationObserver {
 public:
     virtual ~IExplorationObserver() {};
-    virtual void update(const std::string&) = 0;
+    virtual void update(std::map<std::string, long>) = 0;
 };
 
 // ===========================================================================

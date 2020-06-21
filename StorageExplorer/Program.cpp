@@ -2,11 +2,10 @@
 // Program.cpp
 // ===========================================================================
 
-// 1.) TODO: Hmm, verwenden wir da shared oder unique ptr ?!?!?!?
-// 2.) Das Traversieren der Verzeichnisstruktur in einen Thread auslagern ....
+// 1.) Das Traversieren der Verzeichnisstruktur in einen Thread auslagern ....
 
 
-// 3. Zweite Console
+// 2.) Zweite Console
 //https://codereview.stackexchange.com/questions/195157/using-multiple-console-windows-for-output
 //https://www.codeproject.com/Articles/13368/Multiple-consoles-for-a-single-application
 //https://stackoverflow.com/questions/20847474/multiple-consoles-for-a-single-application-c
@@ -46,21 +45,18 @@ void testStategyPattern() {
     std::shared_ptr<IExplorationObserver> concreteObserver = std::make_shared<ExplorationObserver>();
     folderStrategy->attach(concreteObserver);
     fileTypeStrategy->attach(concreteObserver);
- //   asyncTestStrategy->attach(concreteObserver);
-
-    // initialization section: setup listview
-    //ListView view;
-    //view.setColumns(3);
-    //view.setColumnHeader({"AAA", "BBB", "CCC"});
-    //view.show();
+    asyncTestStrategy->attach(concreteObserver);
 
     // initialization section: setup listviewadapter
     std::shared_ptr<ListViewAdapter> adapter = std::make_shared<ListViewAdapter>();
-    adapter->update("");
+    std::map<std::string, long> empty;
+    adapter->update(empty);
+    folderStrategy->attach(adapter);
+    fileTypeStrategy->attach(adapter);
     asyncTestStrategy->attach(adapter);
 
     // choose strategy
-    int input = 2;
+    int input = 1;
     switch (input)
     {
     case 0:

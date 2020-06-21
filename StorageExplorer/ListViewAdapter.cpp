@@ -21,21 +21,22 @@
 
 // ===========================================================================
 
-// function prototypes
-
-// ===========================================================================
-
 ListViewAdapter::ListViewAdapter() 
 {
+    // initialization section: setup listview
     m_listView = std::make_shared<ListView>();
+    m_listView->setColumns(3);
+    m_listView->setColumnHeader({"AAA", "BBB", "CCC"});
+    m_listView->show();
 }
 
 ListViewAdapter::~ListViewAdapter()
 {
 }
 
-void ListViewAdapter::update(const std::string&)
+void ListViewAdapter::update(std::map<std::string, long> result)
 {
+    // TODO HIer result adden ....
     std::cout << "Yeahhhhhhhhhhhhhhhh" << std::endl;
 }
 

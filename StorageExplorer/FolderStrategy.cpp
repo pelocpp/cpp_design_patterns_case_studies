@@ -21,7 +21,7 @@
 
 // function prototypes
 static inline bool endsWith(std::string const& value, std::string const& ending);
-static uintmax_t getFolderSize(std::string path);
+static long getFolderSize(std::string path);
 
 // ===========================================================================
 
@@ -63,7 +63,7 @@ void FolderStrategy::exploreHelper(const std::string& path)
             }
 
             // add size to the map
-            m_explorationResult[s] = size;
+            m_explorationResult[s] = static_cast<long>(size);
 
             exploreHelper(s);
         }
@@ -89,7 +89,7 @@ inline bool endsWith(std::string const& value, std::string const& ending)
     return std::equal(ending.rbegin(), ending.rend(), value.rbegin());
 }
 
-uintmax_t getFolderSize(std::string path)
+long getFolderSize(std::string path)
 {
     uintmax_t r = 0;
     try {
@@ -107,7 +107,8 @@ uintmax_t getFolderSize(std::string path)
     {
         std::cout << e.what() << '\n';
     }
-    return r;
+
+    return static_cast<long>(r);
 }
 
 // ===========================================================================

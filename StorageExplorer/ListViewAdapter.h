@@ -11,7 +11,7 @@ public:
     ListViewAdapter();
     ~ListViewAdapter();
 
-    void update(const std::string&) override;
+    void update(std::map<std::string, long>) override;
 
 private:
 };

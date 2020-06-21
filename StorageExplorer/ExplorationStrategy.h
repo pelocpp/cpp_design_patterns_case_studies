@@ -12,9 +12,10 @@ private:
     std::list<std::shared_ptr<IExplorationObserver>> m_list_observers;
 
 protected:
-    // For holding the exploration result. The key-value pair 
-    // can contain information: FolderName-Size or FileType-Size
-    std::map<std::string, uintmax_t> m_explorationResult;
+    // For holding the exploration result.
+    // The key-value pair contain the following information:
+    // FolderName : Size or FileType : Size
+    std::map<std::string, long> m_explorationResult;
 
 public:
     ExplorationStrategy() = default;

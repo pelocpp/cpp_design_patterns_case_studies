@@ -29,12 +29,16 @@ void ASyncTestStrategy::explore(const std::string& path)
     t.detach();
 }
 
+void ASyncTestStrategy::exploreHelper(const std::string& path) {
+
+}
+
 void ASyncTestStrategy::printResults() {
 
     //std::for_each(
     //    std::begin(m_explorationResult),
     //    std::end(m_explorationResult),
-    //    [](const std::pair<std::string, uintmax_t>& entry) {
+    //    [](const std::pair<std::string, long>& entry) {
     //        std::cout << "Ext: " << entry.first << " - Total Sizes: " << entry.second << '\n';
     //    }
     //);

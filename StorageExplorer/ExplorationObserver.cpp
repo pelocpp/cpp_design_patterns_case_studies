@@ -18,8 +18,8 @@
 
 // ===========================================================================
 
-void ExplorationObserver::update(const std::string&) {
-    std::cout << "DoneDoneDone." << std::endl;
+void ExplorationObserver::update(std::map<std::string, long> result) {
+    std::cout << "Done: received " << result.size() << " results!" << std::endl;
 }
 
 // ===========================================================================

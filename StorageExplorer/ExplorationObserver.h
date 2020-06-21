@@ -4,7 +4,7 @@
 
 class ExplorationObserver : public IExplorationObserver {
 public:
-    void update(const std::string&) override;
+    void update(std::map<std::string, long>) override;
 };
 
 // ===========================================================================

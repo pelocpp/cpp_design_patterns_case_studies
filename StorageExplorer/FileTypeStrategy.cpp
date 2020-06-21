@@ -57,10 +57,10 @@ void FileTypeStrategy::exploreHelper(const std::string& path) {
             }
 
             if (m_explorationResult.count(ext) > 0) {
-                m_explorationResult[ext] = m_explorationResult[ext] + size;
+                m_explorationResult[ext] = static_cast<long>(m_explorationResult[ext] + size);
             }
             else {
-                m_explorationResult[ext] = size;
+                m_explorationResult[ext] = static_cast<long>(size);;
             }
         }
         else if (std::filesystem::is_directory(entry)) {

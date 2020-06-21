@@ -31,7 +31,7 @@ void ExplorationStrategy::onFinish() {
 
     while (iterator != m_list_observers.end()) {
         std::shared_ptr<IExplorationObserver> ptr = *iterator;
-        ptr->update("On Finished");
+        ptr->update(m_explorationResult);
         ++iterator;
     }
 }
