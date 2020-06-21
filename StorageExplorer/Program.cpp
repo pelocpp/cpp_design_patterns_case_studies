@@ -22,7 +22,7 @@
 
 #include "IExplorationObserver.h"
 #include "IExplorationStrategy.h"
-#include "ConcreteExplorationObserver.h"
+#include "ExplorationObserver.h"
 
 #include "ExplorationStrategy.h"
 #include "FileTypeStrategy.h"
@@ -43,15 +43,21 @@ void testStategyPattern() {
     std::shared_ptr<IExplorationStrategy> asyncTestStrategy = std::make_shared<ASyncTestStrategy>();
 
     // initialization section: setup observer
-    std::shared_ptr<IExplorationObserver> concreteObserver = std::make_shared<ConcreteExplorationObserver>();
+    std::shared_ptr<IExplorationObserver> concreteObserver = std::make_shared<ExplorationObserver>();
     folderStrategy->attach(concreteObserver);
     fileTypeStrategy->attach(concreteObserver);
+ //   asyncTestStrategy->attach(concreteObserver);
 
     // initialization section: setup listview
-    ListView view;
-    view.setColumns(3);
-    view.setColumnHeader({"AAA", "BBB", "CCC"});
-    view.show();
+    //ListView view;
+    //view.setColumns(3);
+    //view.setColumnHeader({"AAA", "BBB", "CCC"});
+    //view.show();
+
+    // initialization section: setup listviewadapter
+    std::shared_ptr<ListViewAdapter> adapter = std::make_shared<ListViewAdapter>();
+    adapter->update("");
+    asyncTestStrategy->attach(adapter);
 
     // choose strategy
     int input = 2;

@@ -12,7 +12,7 @@
 
 #include "IExplorationObserver.h"
 #include "IExplorationStrategy.h"
-#include "ConcreteExplorationObserver.h"
+#include "ExplorationObserver.h"
 
 #include "ExplorationStrategy.h"
 #include "FileTypeStrategy.h"

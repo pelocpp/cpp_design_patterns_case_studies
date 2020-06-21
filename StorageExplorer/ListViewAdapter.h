@@ -2,7 +2,7 @@
 // ListViewAdapter.h
 // ===========================================================================
 
-class ListViewAdapter : public ExplorationStrategy
+class ListViewAdapter : public IExplorationObserver
 {
 private:
     std::shared_ptr<ListView> m_listView;
@@ -11,11 +11,9 @@ public:
     ListViewAdapter();
     ~ListViewAdapter();
 
-    void explore(const std::string& path) override;
-    void printResults() override;
+    void update(const std::string&) override;
 
 private:
-
 };
 
 // ===========================================================================

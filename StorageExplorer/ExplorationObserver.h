@@ -1,10 +1,10 @@
 // ===========================================================================
-// ConcreteExplorationObserver.h
+// ExplorationObserver.h
 // ===========================================================================
 
-class ConcreteExplorationObserver : public IExplorationObserver {
+class ExplorationObserver : public IExplorationObserver {
 public:
-    void onFinish(const std::string&) override;
+    void update(const std::string&) override;
 };
 
 // ===========================================================================

@@ -17,7 +17,6 @@ void ListView::setColumns(int cols) {
     m_cols = cols;
 }
 
-
 void ListView::setColumnHeader(std::initializer_list<std::string> titles) {
 
     if (titles.size() != m_cols) {

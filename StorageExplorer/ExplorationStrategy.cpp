@@ -10,7 +10,7 @@
 
 #include "IExplorationObserver.h"
 #include "IExplorationStrategy.h"
-#include "ConcreteExplorationObserver.h"
+#include "ExplorationObserver.h"
 
 #include "ExplorationStrategy.h"
 
@@ -31,7 +31,7 @@ void ExplorationStrategy::onFinish() {
 
     while (iterator != m_list_observers.end()) {
         std::shared_ptr<IExplorationObserver> ptr = *iterator;
-        ptr->onFinish("On Finished");
+        ptr->update("On Finished");
         ++iterator;
     }
 }

@@ -1,5 +1,5 @@
 // ===========================================================================
-// ConcreteExplorationObserver.cpp
+// ExplorationObserver.cpp
 // ===========================================================================
 
 #include <iostream>
@@ -10,7 +10,7 @@
 
 #include "IExplorationObserver.h"
 #include "IExplorationStrategy.h"
-#include "ConcreteExplorationObserver.h"
+#include "ExplorationObserver.h"
 
 #include "ExplorationStrategy.h"
 #include "FileTypeStrategy.h"
@@ -18,7 +18,7 @@
 
 // ===========================================================================
 
-void ConcreteExplorationObserver::onFinish(const std::string&) {
+void ExplorationObserver::update(const std::string&) {
     std::cout << "DoneDoneDone." << std::endl;
 }
 

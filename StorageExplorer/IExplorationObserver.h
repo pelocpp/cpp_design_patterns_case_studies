@@ -5,7 +5,7 @@
 class IExplorationObserver {
 public:
     virtual ~IExplorationObserver() {};
-    virtual void onFinish(const std::string&) = 0;
+    virtual void update(const std::string&) = 0;
 };
 
 // ===========================================================================

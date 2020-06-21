@@ -12,7 +12,7 @@
 
 #include "IExplorationObserver.h"
 #include "IExplorationStrategy.h"
-#include "ConcreteExplorationObserver.h"
+#include "ExplorationObserver.h"
 
 #include "ExplorationStrategy.h"
 
@@ -34,15 +34,9 @@ ListViewAdapter::~ListViewAdapter()
 {
 }
 
-
-void ListViewAdapter::explore(const std::string& path)
+void ListViewAdapter::update(const std::string&)
 {
-
-}
-
-void ListViewAdapter::printResults()
-{
-
+    std::cout << "Yeahhhhhhhhhhhhhhhh" << std::endl;
 }
 
 // ===========================================================================

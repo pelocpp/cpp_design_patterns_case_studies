@@ -147,13 +147,13 @@
     <ClCompile Include="ExplorationStrategy.cpp" />
     <ClCompile Include="FileTypeStrategy.cpp" />
     <ClCompile Include="FolderStrategy.cpp" />
-    <ClCompile Include="ConcreteExplorationObserver.cpp" />
+    <ClCompile Include="ExplorationObserver.cpp" />
     <ClCompile Include="ListView.cpp" />
     <ClCompile Include="ListViewAdapter.cpp" />
     <ClCompile Include="Program.cpp" />
     <ClCompile Include="TestOpenFileDialog.cpp" />
     <ClInclude Include="ASyncTestStrategy.h" />
-    <ClInclude Include="ConcreteExplorationObserver.h" />
+    <ClInclude Include="ExplorationObserver.h" />
     <ClInclude Include="ExplorationStrategy.h">
       <FileType>CppCode</FileType>
     </ClInclude>
