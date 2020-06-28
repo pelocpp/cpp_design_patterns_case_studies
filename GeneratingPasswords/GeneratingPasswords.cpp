@@ -6,13 +6,12 @@
 #include <string>
 #include <array>
 #include <random>
-#include <cassert>
 
 class PasswordGenerator
 {
 public:
-    virtual std::string generate() = 0;
-    virtual std::string allowed_chars() const = 0;
+    virtual std::string generate(std::default_random_engine&) = 0;
+    virtual std::string allowedChars() const = 0;
     virtual size_t length() const = 0;
     virtual void add(std::unique_ptr<PasswordGenerator>) = 0;
     virtual void clear() = 0;
@@ -28,16 +27,25 @@ public:
     explicit BasicPasswordGenerator(size_t const len) noexcept : len(len)
     {}
 
-    virtual std::string generate() override
+    virtual std::string generate(std::default_random_engine& engine) override
     {
-        throw std::runtime_error("not implemented");
+        std::string chars = allowedChars();
+        std::uniform_int_distribution<> ud(0, static_cast<int>(chars.length() - 1));
+
+        std::string password;
+        for (size_t i = 0; i < length(); ++i)
+            password += chars[ud(engine)];
+
+        return password;
     }
 
+    // role as 'composite' not supported
     virtual void add(std::unique_ptr<PasswordGenerator>) override
     {
         throw std::runtime_error("not implemented");
     }
 
+    // role as 'composite' not supported
     virtual void clear() override
     {
         throw std::runtime_error("not implemented");
@@ -55,7 +63,7 @@ public:
     explicit DigitGenerator(size_t const len) noexcept
         : BasicPasswordGenerator(len) {}
 
-    virtual std::string allowed_chars() const override
+    virtual std::string allowedChars() const override
     {
         return std::string("0123456789");
     }
@@ -67,7 +75,7 @@ public:
     explicit SymbolGenerator(size_t const len) noexcept
         : BasicPasswordGenerator(len) {}
 
-    virtual std::string allowed_chars() const override
+    virtual std::string allowedChars() const override
     {
         return std::string("!@#$%^&*(){}[]?<>");
     }
@@ -79,7 +87,7 @@ public:
     explicit UpperLetterGenerator(size_t const len) noexcept
         : BasicPasswordGenerator(len) {}
 
-    virtual std::string allowed_chars() const override
+    virtual std::string allowedChars() const override
     {
         return std::string("ABCDEFGHIJKLMNOPQRSTUVXYWZ");
     }
@@ -90,7 +98,8 @@ class LowerLetterGenerator : public BasicPasswordGenerator
 public:
     explicit LowerLetterGenerator(size_t const len) noexcept
         : BasicPasswordGenerator(len) {}
-    virtual std::string allowed_chars() const override
+
+    virtual std::string allowedChars() const override
     {
         return std::string("abcdefghijklmnopqrstuvxywz");
     }
@@ -99,41 +108,29 @@ public:
 class CompositePasswordGenerator : public PasswordGenerator
 {
 private:
-    std::random_device rd;
-    std::mt19937 eng;
     std::vector<std::unique_ptr<PasswordGenerator>> generators;
 
 private:
-    virtual std::string allowed_chars() const override
+    virtual std::string allowedChars() const override
     {
         throw std::runtime_error("not implemented");
     };
+
     virtual size_t length() const override
     {
         throw std::runtime_error("not implemented");
     };
 
 public:
-    CompositePasswordGenerator()
-    {
-        auto seed_data = std::array<int, std::mt19937::state_size> {};
-        std::generate(std::begin(seed_data), std::end(seed_data), std::ref(rd));
-        std::seed_seq seq(std::begin(seed_data), std::end(seed_data));
-        eng.seed(seq);
-    }
+    CompositePasswordGenerator() {}
 
-    virtual std::string generate() override
+    virtual std::string generate(std::default_random_engine& engine) override
     {
         std::string password;
-        for (auto& generator : generators)
-        {
-            std::string chars = generator->allowed_chars();
-            std::uniform_int_distribution<> ud(0, static_cast<int>(chars.length() - 1));
-
-            for (size_t i = 0; i < generator->length(); ++i)
-                password += chars[ud(eng)];
+        for (auto& generator : generators) {
+            password += generator->generate(engine);
         }
-        std::shuffle(std::begin(password), std::end(password), eng);
+        std::shuffle(std::begin(password), std::end(password), engine);
         return password;
     }
 
@@ -149,21 +146,51 @@ public:
 };
 
 void generating_passwords() {
+    std::random_device rd;
+    std::mt19937 engine;
+    std::string password;
 
-    CompositePasswordGenerator generator;
-    generator.add(std::make_unique<UpperLetterGenerator>(8));
-    //generator.add(std::make_unique<LowerLetterGenerator>(4));
-    std::string  password = generator.generate();
-    generator.clear();
-    std::cout << "Generated: " << password << std::endl;
+    // in case of using 'seed'
+    // auto seed_data = std::array<int, std::mt19937::state_size> {};
+    // std::generate(std::begin(seed_data), std::end(seed_data), std::ref(rd));
+    // std::seed_seq seq(std::begin(seed_data), std::end(seed_data));
+    // engine.seed(seq);
 
-    generator.add(std::make_unique<SymbolGenerator>(2));
-    generator.add(std::make_unique<DigitGenerator>(2));
-    generator.add(std::make_unique<UpperLetterGenerator>(2));
-    generator.add(std::make_unique<LowerLetterGenerator>(4));
+    // using 'leaf' components directly
+    std::unique_ptr<PasswordGenerator> digiGen = std::make_unique<DigitGenerator>(4);
+    password = digiGen->generate(engine);
+    std::cout << "DigitGenerator:       " << password << std::endl;
 
-    password = generator.generate();
-    std::cout << "Generated: " << password << std::endl;
+    std::unique_ptr<PasswordGenerator> symbolGen = std::make_unique<SymbolGenerator>(6);
+    password = symbolGen->generate(engine);
+    std::cout << "SymbolGenerator:      " << password << std::endl;
+
+    std::unique_ptr<PasswordGenerator> upperLetterGen = std::make_unique<UpperLetterGenerator>(8);
+    password = upperLetterGen->generate(engine);
+    std::cout << "UpperLetterGenerator: " << password << std::endl;
+
+    std::unique_ptr<PasswordGenerator> lowerLetterGen = std::make_unique<LowerLetterGenerator>(10);
+    password = lowerLetterGen->generate(engine);
+    std::cout << "LowerLetterGenerator: " << password << std::endl << std::endl;
+
+    // using 'composite' component
+    // here: using some of the available 'leaf' components
+    CompositePasswordGenerator compositeGenerator;
+    compositeGenerator.add(std::make_unique<UpperLetterGenerator>(8));
+    compositeGenerator.add(std::make_unique<LowerLetterGenerator>(8));
+    password = compositeGenerator.generate(engine);
+    compositeGenerator.clear();
+    std::cout << "CompositeGenerator:   " << password << std::endl;
+
+    // using 'composite' component
+    // here: using all of the available 'leaf' components
+    compositeGenerator.add(std::make_unique<SymbolGenerator>(4));
+    compositeGenerator.add(std::make_unique<DigitGenerator>(4));
+    compositeGenerator.add(std::make_unique<UpperLetterGenerator>(4));
+    compositeGenerator.add(std::make_unique<LowerLetterGenerator>(4));
+
+    password = compositeGenerator.generate(engine);
+    std::cout << "CompositeGenerator:   " << password << std::endl;
 }
 
 // ===========================================================================

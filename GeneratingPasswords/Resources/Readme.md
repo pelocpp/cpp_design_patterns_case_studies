@@ -3,13 +3,13 @@
 #### Aufgabe
 
 Schreiben Sie ein Programm,
-das zufällige Passwörter an Hand einiger vordefinierter Regeln generieren kann.
+das zufällige Passwörter an Hand von vordefinierten Regeln generieren kann.
 
-Jedes Passwort muss eine konfigurierbare Mindestlänge haben.
-Darüber hinaus sollte es möglich sein,
-zusätzliche Regeln wie das Vorhandensein von mindestens einer Ziffer, einem Symbol
-oder die Verwendung von Klein- oder Großbuchstaben und so weiter in die Generierung
-mit einzubeziehen.
+Regeln für den Aufbau könnten sein "nur Ziffern", "nur Sonderzeichen",
+"nur Großbuchstaben", "nur Kleinbuchstaben" oder beliebige Kombinationen dieser Regeln.
+
+Jede Implementierung einer Regel besitzt eine Längenangabe,
+die die Länge der zu erzeugenden Passworts festlegt.
 
 Schreiben Sie eine Testfunktion, die ein oder mehrere Regeln anwendet.
 
