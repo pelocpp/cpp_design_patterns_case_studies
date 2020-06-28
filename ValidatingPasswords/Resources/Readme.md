@@ -16,7 +16,7 @@ Schreiben Sie eine Testfunktion, die ein oder mehrere Regeln anwendet.
 
 ###### Zusatzaufgabe
 
-Ergänzen Sie die vorhandene Lösung um eine Klasse `PinPasswordValidator`.
+Ergänzen Sie die vorhandene Lösung um eine Klasse `PinValidator`.
 Unter einer Pin verstehen wir ein Passwort der Länge 4, das ausschließlich
 aus den Ziffern 1 bis 6 besteht.
 
