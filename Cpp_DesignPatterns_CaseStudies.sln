@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ValidatingPasswords", "Vali
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeneratingPasswords", "GeneratingPasswords\GeneratingPasswords.vcxproj", "{D207243E-4834-41A2-AEBC-7A2E1383E10B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ApprovalSystem", "ApprovalSystem\ApprovalSystem.vcxproj", "{352CC64B-AA8B-469D-8DCB-9CB7283955FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{D207243E-4834-41A2-AEBC-7A2E1383E10B}.Release|x64.Build.0 = Release|x64
 		{D207243E-4834-41A2-AEBC-7A2E1383E10B}.Release|x86.ActiveCfg = Release|Win32
 		{D207243E-4834-41A2-AEBC-7A2E1383E10B}.Release|x86.Build.0 = Release|Win32
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Debug|x64.ActiveCfg = Debug|x64
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Debug|x64.Build.0 = Debug|x64
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Debug|x86.ActiveCfg = Debug|Win32
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Debug|x86.Build.0 = Debug|Win32
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Release|x64.ActiveCfg = Release|x64
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Release|x64.Build.0 = Release|x64
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Release|x86.ActiveCfg = Release|Win32
+		{352CC64B-AA8B-469D-8DCB-9CB7283955FF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
