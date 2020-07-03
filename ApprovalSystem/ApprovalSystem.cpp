@@ -16,7 +16,7 @@ public:
 class EmployeeRole : public Role
 {
 public:
-    virtual double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const noexcept override
     {
         return 1000;
     }
@@ -25,7 +25,7 @@ public:
 class TeamManagerRole : public Role
 {
 public:
-    virtual double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const noexcept override
     {
         return 10000;
     }
@@ -34,16 +34,16 @@ public:
 class DepartmentManagerRole : public Role
 {
 public:
-    virtual double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const noexcept override
     {
         return 100000;
     }
 };
 
-class PresidentRole : public Role
+class CEORole : public Role
 {
 public:
-    virtual double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const noexcept override
     {
         return std::numeric_limits<double>::max();
     }
@@ -94,26 +94,30 @@ public:
 
 void approval_system() 
 {
-    auto john = std::make_shared<Employee>("john smith",
-        std::make_unique<EmployeeRole>());
+    std::unique_ptr<Role> role1 = std::make_unique<EmployeeRole>();
+    std::shared_ptr<Employee> cliff = 
+        std::make_shared<Employee>("Cliff Booth", std::move(role1));
 
-    auto robert = std::make_shared<Employee>("robert booth",
-        std::make_unique<TeamManagerRole>());
+    std::unique_ptr<Role> role2 = std::make_unique<TeamManagerRole>();
+    std::shared_ptr<Employee> rick = 
+        std::make_shared<Employee>("Rick Dalton", std::move(role2));
 
-    auto david = std::make_shared<Employee>("david jones",
-        std::make_unique<DepartmentManagerRole>());
+    std::unique_ptr<Role> role3 = std::make_unique<DepartmentManagerRole>();
+    std::shared_ptr<Employee> randy =
+        std::make_shared<Employee>("Randy Miller", std::move(role3));
 
-    auto cecil = std::make_shared<Employee>("cecil williamson",
-        std::make_unique<PresidentRole>());
+    std::unique_ptr<Role> role4 = std::make_unique<CEORole>();
+    std::shared_ptr<Employee> marvin = 
+        std::make_shared<Employee>("Marvin Shwarz", std::move(role4));
 
-    john->setDirectManager(robert);
-    robert->setDirectManager(david);
-    david->setDirectManager(cecil);
+    cliff->setDirectManager(rick);
+    rick->setDirectManager(randy);
+    randy->setDirectManager(marvin);
 
-    john->approve(Expense{ 500, "magazins" });
-    john->approve(Expense{ 5000, "hotel accomodation" });
-    john->approve(Expense{ 50000, "conference costs" });
-    john->approve(Expense{ 200000, "new lorry" });
+    cliff->approve(Expense{ 500, "Magazins" });
+    rick->approve(Expense{ 5000, "Hotel Accomodation" });
+    randy->approve(Expense{ 50000, "Conference costs" });
+    marvin->approve(Expense{ 200000, "New Truck" });
 }
 
 // ===========================================================================

@@ -2,63 +2,75 @@
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall für das *Composite Pattern* Entwurfsmuster.
+Das hier beschriebene Problem ist ein typischer Anwendungsfall des *Chain of Responsibility* Entwurfsmusters.
 
-Dieses Entwurfsmuster setzt Objekte in Baumhierarchien zusammen und ermöglicht
-auf diese Weise die Behandlung von Gruppen (oder Bäumen) von Objekten auf die gleiche Weise wie einzelne Objekte des gleichen Typs.
-Das folgende Klassendiagramm
-zeigt eine Hierarchie von Klassen, die zum Generieren von Passwörtern verwendet werden könnten:
+Die Aufgabenstellung könnte man in einer Kaskade von `if… else if… else… endif` Bedingungsanweisungen umsetzen.
+Eine objektorientierte Version dieser Anweisungsfolge ist das *Chain of Responsibility* Entwurfsmuster.
+Dieses Muster definiert eine Kette von Empfängerobjekten, die die Verantwortung haben,
+eine Anfrage zu bearbeiten oder an den nächsten Empfänger in der Kette weiterzuleiten, falls einer vorhanden ist.
+Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmuster für dieses Problem:
 
-<img src="dp_password_generator.png" width="800">
+<img src="dp_chain_of_responsibility_pattern.png" width="800">
 
-Abbildung 1: Schematische Darstellung des *Composite* Patterns im Anwendungsfall *PasswortGenerator*.
+Abbildung 1: Schematische Darstellung des *Chain of Responsibility* Patterns im Anwendungsfall *Approval System*.
 
-`PasswordGenerator` ist die Basisklasse und verfügt über mehrere virtuelle Methoden:
-`generate` gibt eine zufällig generierte Zeichenfolge zurück, `length` die Länge
-der Zeichenfolge.
-`allowedChars` gibt eine Zeichenfolge mit allen Zeichen zurück,
-die zum Generieren verwendet werden dürfen. Also zum Beispiel `"0123456789"` im Falle
-der Klasse `DigitGenerator`.
-`BasicPasswordGenerator` wird von dieser Basisklasse abgeleitet
-und definiert einen Generator mit einer Mindestlänge.
-`DigitGenerator`, `SymbolGenerator`, `UpperLetterGenerator`
-und `LowerLetterGenerator` werden von `BasicPasswordGenerator` abgeleitet und
-überschreiben allesamt `allowedChars`, um die jeweiligen Teilmengen von Zeichen zu definieren,
-die zum Generieren von zufälligen Texten verwendet werden dürfen.
-Natürlich besitzen sie auch eine Methode `generate`, um an Hand dieser Vorgaben
-ein Passwort zu generieren.
+
+`Employee` ist eine Klasse, die einen Mitarbeiter im Unternehmen repräsentiert.
+Ein Mitarbeiter kann einen direkten Vorgesetzten haben,
+der mit einem Aufruf der Methode `setDirectManager` festgelegt wird.
+Jeder Mitarbeiter hat einen Namen und eine Rolle, die seine Verantwortlichkeiten und Berechtigungen definieren.
+`Role` ist eine abstrakte Basisklasse für mögliche Rollen und hat eine rein virtuelle (*pure virtual*)
+Methode `getApprovalLimit`, die Klassen wie `EmployeeRole`,
+`TeamManagerRole`, `DepartmentManagerRole` und `CEORole` überschreiben, um auf diese Weise
+zum Ausdruck zu bringen, bis zu welchen Betrag ein Mitarbeiter Ausgaben genehmigen darf.
+Die `approve`-Methode aus der Klasse `Employee` dient dem Zweck, einen Mitarbeiter eine Ausgabe genehmigen zu lassen.
+Wenn die Rolle des Mitarbeiters dies ihm ermöglicht, gibt er die Ausgabe frei.
+Andernfalls wird die Anforderung an den direkten Manager weitergeleitet, sofern dieser vorhanden ist.
+
 
 *Beispiel*:
 
 ```cpp
-std::unique_ptr<DigitGenerator> digiGen = std::make_unique<DigitGenerator>(4);
-password = digiGen->generate(engine);
-std::cout << "DigitGenerator:       " << password << std::endl;
+std::unique_ptr<Role> role1 = std::make_unique<EmployeeRole>();
+std::shared_ptr<Employee> cliff = 
+    std::make_shared<Employee>("Cliff Booth", std::move(role1));
+
+std::unique_ptr<Role> role2 = std::make_unique<TeamManagerRole>();
+std::shared_ptr<Employee> rick = 
+    std::make_shared<Employee>("Rick Dalton", std::move(role2));
+
+std::unique_ptr<Role> role3 = std::make_unique<DepartmentManagerRole>();
+std::shared_ptr<Employee> randy =
+    std::make_shared<Employee>("Randy Miller", std::move(role3));
+
+std::unique_ptr<Role> role4 = std::make_unique<CEORole>();
+std::shared_ptr<Employee> marvin = 
+    std::make_shared<Employee>("Marvin Shwarz", std::move(role4));
+
+cliff->setDirectManager(rick);
+rick->setDirectManager(randy);
+randy->setDirectManager(marvin);
+
+cliff->approve(Expense{ 500, "Magazins" });
+rick->approve(Expense{ 5000, "Hotel Accomodation" });
+randy->approve(Expense{ 50000, "Conference costs" });
+marvin->approve(Expense{ 200000, "New Truck" });
 ```
 
-Neben den einzelnen Spezialklassen für die Generierung eines Passworts
-an Hand einer bestimmten Regel gibt es auch einen *zusammengesetzten* Generator:
-Klasse `CompositePasswordGenerator`. Diese Klasse
-repräsentiert gewissermaßen ein Kompositum von einer oder mehrerer
-untergeordneter Spezialklassen.
-`add` fügt einem zusammengesetzten Generator eine untergeordnete Komponente hinzu.
-Die Klasse `CompositePasswordGenerator` besitzt ebenfalls eine Methode `generate`,
-diese nimmt die Hilfe der unterlagerten Spezialklassen in Anspruch.
 
-*Beispiel*:
+*Ausgabe*:
 
 ```cpp
-CompositePasswordGenerator compositeGenerator;
-compositeGenerator.add(std::make_unique<UpperLetterGenerator>(8));
-compositeGenerator.add(std::make_unique<LowerLetterGenerator>(8));
-password = compositeGenerator.generate(engine);
-std::cout << "CompositeGenerator:   " << password << std::endl;
+Cliff Booth approved expense 'Magazins', cost=500
+Rick Dalton approved expense 'Hotel Accomodation', cost=5000
+Randy Miller approved expense 'Conference costs', cost=50000
+Marvin Shwarz approved expense 'New Truck', cost=200000
 ```
 
 
 #### Quellcode
 
-[Siehe hier](../GeneratingPasswords.cpp)
+[Siehe hier](../ApprovalSystem.cpp)
 
 ---
 
