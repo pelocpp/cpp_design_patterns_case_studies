@@ -2,24 +2,24 @@
 #include <string>
 #include <memory>
 
-#include "ITrafficLight.h"
+#include "ITrafficLightState.h"
 #include "TrafficLight.h"
 
 namespace TrafficLight03
 {
-    void TrafficLight::setState(std::shared_ptr<ITrafficLight> state)
+    void TrafficLight::setState(std::shared_ptr<ITrafficLightState> state)
     {
         m_state = state; 
     }
 
-    std::shared_ptr<ITrafficLight> TrafficLight::getState()
+    std::shared_ptr<ITrafficLightState> TrafficLight::getState()
     {
         return m_state; 
     }
 
     void TrafficLight::change()
     {
-        m_state->change(*this);
+        m_state->changeState(*this);
     }
 
     void TrafficLight::show()

@@ -77,9 +77,6 @@
     <ClInclude Include="TrafficLight01\GreenLight.h">
       <Filter>Source Files\TrafficLight01</Filter>
     </ClInclude>
-    <ClInclude Include="TrafficLight01\ITrafficLight.h">
-      <Filter>Source Files\TrafficLight01</Filter>
-    </ClInclude>
     <ClInclude Include="TrafficLight01\RedLight.h">
       <Filter>Source Files\TrafficLight01</Filter>
     </ClInclude>
@@ -90,9 +87,6 @@
       <Filter>Source Files\TrafficLight01</Filter>
     </ClInclude>
     <ClInclude Include="TrafficLight02\GreenLight.h">
-      <Filter>Source Files\TrafficLight02</Filter>
-    </ClInclude>
-    <ClInclude Include="TrafficLight02\ITrafficLight.h">
       <Filter>Source Files\TrafficLight02</Filter>
     </ClInclude>
     <ClInclude Include="TrafficLight02\RedLight.h">
@@ -107,9 +101,6 @@
     <ClInclude Include="TrafficLight03\GreenLight.h">
       <Filter>Source Files\TrafficLight03</Filter>
     </ClInclude>
-    <ClInclude Include="TrafficLight03\ITrafficLight.h">
-      <Filter>Source Files\TrafficLight03</Filter>
-    </ClInclude>
     <ClInclude Include="TrafficLight03\RedLight.h">
       <Filter>Source Files\TrafficLight03</Filter>
     </ClInclude>
@@ -117,6 +108,15 @@
       <Filter>Source Files\TrafficLight03</Filter>
     </ClInclude>
     <ClInclude Include="TrafficLight03\YellowLight.h">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight01\ITrafficLightState.h">
+      <Filter>Source Files\TrafficLight01</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight02\ITrafficLightState.h">
+      <Filter>Source Files\TrafficLight02</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight03\ITrafficLightState.h">
       <Filter>Source Files\TrafficLight03</Filter>
     </ClInclude>
   </ItemGroup>
@@ -127,5 +127,10 @@
     <None Include="Resources\Solution.md">
       <Filter>Resource Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\dp_traffic_light.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

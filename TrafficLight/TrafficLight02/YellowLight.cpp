@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 
-#include "ITrafficLight.h"
+#include "ITrafficLightState.h"
 #include "TrafficLight.h"
 
 #include "RedLight.h"
@@ -9,7 +9,7 @@
 
 namespace TrafficLight02
 {
-    void YellowLight::change(TrafficLight& light)
+    void YellowLight::changeState(TrafficLight& light)
     {
         light.setState(std::make_shared<RedLight>());
     }

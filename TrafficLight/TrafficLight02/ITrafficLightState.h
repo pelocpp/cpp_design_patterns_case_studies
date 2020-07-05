@@ -2,10 +2,10 @@
 {
     class TrafficLight;
 
-    class ITrafficLight
+    class ITrafficLightState
     {
     public:
-        virtual void change(TrafficLight& light) = 0;
+        virtual void changeState(TrafficLight& light) = 0;
         virtual void reportState() const = 0;
     };
 }

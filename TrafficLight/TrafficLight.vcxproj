@@ -283,17 +283,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrafficLight01\GreenLight.h" />
-    <ClInclude Include="TrafficLight01\ITrafficLight.h" />
+    <ClInclude Include="TrafficLight01\ITrafficLightState.h" />
     <ClInclude Include="TrafficLight01\RedLight.h" />
     <ClInclude Include="TrafficLight01\TrafficLight.h" />
     <ClInclude Include="TrafficLight01\YellowLight.h" />
     <ClInclude Include="TrafficLight02\GreenLight.h" />
-    <ClInclude Include="TrafficLight02\ITrafficLight.h" />
+    <ClInclude Include="TrafficLight02\ITrafficLightState.h" />
     <ClInclude Include="TrafficLight02\RedLight.h" />
     <ClInclude Include="TrafficLight02\TrafficLight.h" />
     <ClInclude Include="TrafficLight02\YellowLight.h" />
     <ClInclude Include="TrafficLight03\GreenLight.h" />
-    <ClInclude Include="TrafficLight03\ITrafficLight.h" />
+    <ClInclude Include="TrafficLight03\ITrafficLightState.h" />
     <ClInclude Include="TrafficLight03\RedLight.h" />
     <ClInclude Include="TrafficLight03\TrafficLight.h" />
     <ClInclude Include="TrafficLight03\YellowLight.h" />
@@ -301,6 +301,9 @@
   <ItemGroup>
     <None Include="Resources\Readme.md" />
     <None Include="Resources\Solution.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\dp_traffic_light.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

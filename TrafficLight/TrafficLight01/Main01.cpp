@@ -3,7 +3,7 @@
 #include <thread> 
 #include <chrono>
 
-#include "ITrafficLight.h"
+#include "ITrafficLightState.h"
 #include "TrafficLight.h"
 
 #include "RedLight.h"

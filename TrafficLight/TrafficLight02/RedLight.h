@@ -1,9 +1,9 @@
 ﻿namespace TrafficLight02
 {
-    class RedLight : public ITrafficLight
+    class RedLight : public ITrafficLightState
     {
     public:
-        void change(TrafficLight& light) override;
+        void changeState(TrafficLight& light) override;
         void reportState() const override;
     };
 }

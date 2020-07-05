@@ -1,24 +1,24 @@
 ﻿#include <iostream>
 #include <string>
 
-#include "ITrafficLight.h"
+#include "ITrafficLightState.h"
 #include "TrafficLight.h"
 
 namespace TrafficLight01
 {
-    void TrafficLight::setState(ITrafficLight* state)
+    void TrafficLight::setState(ITrafficLightState* state)
     {
         m_state = state; 
     }
 
-    ITrafficLight* TrafficLight::getState()
+    ITrafficLightState* TrafficLight::getState()
     {
         return m_state; 
     }
 
     void TrafficLight::change()
     {
-        m_state->change(this);
+        m_state->changeState(this);
     }
 
     void TrafficLight::show() const

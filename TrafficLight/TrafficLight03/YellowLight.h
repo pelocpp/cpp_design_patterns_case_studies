@@ -1,6 +1,6 @@
 ﻿namespace TrafficLight03
 {
-    class YellowLight : public ITrafficLight
+    class YellowLight : public ITrafficLightState
     {
     private:
         YellowLight() noexcept {};
@@ -11,7 +11,7 @@
         static std::shared_ptr<YellowLight> getInstance();
 
     public:
-        void change(TrafficLight& light) override;
+        void changeState(TrafficLight& light) override;
         void reportState() const override;
     };
 }

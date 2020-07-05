@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 #include <string>
 
-#include "ITrafficLight.h"
+#include "ITrafficLightState.h"
 #include "TrafficLight.h"
 
 #include "GreenLight.h"
@@ -19,7 +19,7 @@ namespace TrafficLight03
         return m_instance;
     }
 
-    void RedLight::change(TrafficLight& light)
+    void RedLight::changeState(TrafficLight& light)
     {
         light.setState(GreenLight::getInstance());
     }

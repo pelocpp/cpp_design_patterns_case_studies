@@ -3,11 +3,11 @@
     class TrafficLight
     {
     private:
-        ITrafficLight* m_state;
+        ITrafficLightState* m_state;
 
     public:
-        void setState(ITrafficLight* state);
-        ITrafficLight* getState();
+        void setState(ITrafficLightState* state);
+        ITrafficLightState* getState();
 
         void change();
         void show() const;
