@@ -21,7 +21,7 @@ namespace TrafficLight01
         m_state->change(this);
     }
 
-    void TrafficLight::reportState() const
+    void TrafficLight::show() const
     {
         m_state->reportState();
     }

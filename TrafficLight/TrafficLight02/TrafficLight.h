@@ -10,6 +10,6 @@
         std::shared_ptr<ITrafficLight> getState();
 
         void change();
-        void reportState();
+        void show();
     };
 }

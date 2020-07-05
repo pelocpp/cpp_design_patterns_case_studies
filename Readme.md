@@ -8,3 +8,9 @@ Themenbereich "C++ Design Patterns".
 ## [Password Generator](GeneratingPasswords/Resources/Readme.md)
 
 ## [Genehmigungssystem](ApprovalSystem/Resources/Readme.md)
+
+## [Simulation einer Verkehrsampel (*TrafficLight*)](TrafficLight/Resources/Readme.md)
+
+
+
+

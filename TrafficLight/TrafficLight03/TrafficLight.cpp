@@ -22,7 +22,7 @@ namespace TrafficLight03
         m_state->change(*this);
     }
 
-    void TrafficLight::reportState()
+    void TrafficLight::show()
     {
         m_state->reportState();
     }

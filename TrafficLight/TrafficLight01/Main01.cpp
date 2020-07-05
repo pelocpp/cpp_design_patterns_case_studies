@@ -16,13 +16,13 @@ void test_trafficlight_01()
 
     TrafficLight trafficLight;
     trafficLight.setState(new RedLight());
-    trafficLight.reportState();
+    trafficLight.show();
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     while (true)
     {
         trafficLight.change();
-        trafficLight.reportState();
+        trafficLight.show();
         std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 }

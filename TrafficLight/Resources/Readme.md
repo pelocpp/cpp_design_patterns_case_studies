@@ -2,18 +2,33 @@
 
 #### Aufgabe
 
-Schreiben Sie ein C++-Programm für die Einkaufsabteilung eines Unternehmens,
-das es den Mitarbeitern ermöglicht, Neueinkäufe (oder Ausgaben) zu genehmigen.
-Je nach Position des Mitarbeiters
-darf dieser nur Ausgaben bis zu einem vordefinierten Maximalbetrag genehmigen.
-Zum Beispiel können Sachbearbieter Ausgaben bis zu 1.000€ genehmigen,
-Teamleiter bis zu 10.000€ und ein Abteilungsleiter bis zu 100.000€.
-Jeder noch höhere Betrag muss explizit
-von der Firmenleitung bewilligt werden.
+Schreiben Sie ein C++-Programm, dass die drei Phasen eine Verkehrsampel (Rot, Grün, Gelb)
+in einer Konsolen-Anwendung simuliert. Nach jedem Phasenwechsel soll in der Konsole
+eine entsprechende Ausgabe erscheinen:
+
+*Ausgabe*:
+
+```cpp
+TrafficLight: Variant 01 (Raw-Pointer)
+Red Light
+Green Light
+Yellow Light
+Red Light
+Green Light
+... 
+... 
+... 
+```
 
 Welches klassische Entwurfsmuster bietet sich zur Realisierung an?
 
-Schreiben Sie eine Testfunktion, die alle in Frage kommenden Beträge verifiziert.
+###### Zusatzaufgabe
+
+Zusätzlich zum eigentlich zu wählenden Entwurfsmuster bietet sich in der 
+Realisierung ein zweites Entwurfsmuster an: Das *Singleton* Muster.
+
+Erstellen Sie eine zweite Realisierung, die den erste Implentierung
+um die Integration des *Singleton* Musters ergänzt.
 
 #### Lösung
 

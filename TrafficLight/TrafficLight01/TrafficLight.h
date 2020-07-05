@@ -10,6 +10,6 @@
         ITrafficLight* getState();
 
         void change();
-        void reportState() const;
+        void show() const;
     };
 }

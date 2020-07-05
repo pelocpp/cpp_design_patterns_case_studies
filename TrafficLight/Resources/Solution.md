@@ -2,7 +2,7 @@
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall des *Chain of Responsibility* Entwurfsmusters.
+Das hier beschriebene Problem ist ein typischer Anwendungsfall des *State* Entwurfsmusters.
 
 Die Aufgabenstellung könnte man in einer Kaskade von `if… else if… else… endif` Bedingungsanweisungen umsetzen.
 Eine objektorientierte Version dieser Anweisungsfolge ist das *Chain of Responsibility* Entwurfsmuster.
