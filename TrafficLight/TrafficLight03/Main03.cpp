@@ -9,14 +9,14 @@
 
 #include "RedLight.h"
 
-void test_trafficlight_02()
+void test_trafficlight_03()
 {
-    using namespace TrafficLight02;
+    using namespace TrafficLight03;
 
-    std::cout << "TrafficLight: Variant 02 (Shared-Pointer)" << std::endl;
+    std::cout << "TrafficLight: Variant 02 (Shared-Pointer & Singleton)" << std::endl;
 
     TrafficLight trafficLight;
-    trafficLight.setState(std::make_shared<RedLight>());
+    trafficLight.setState(RedLight::getInstance());
     trafficLight.reportState();
     std::this_thread::sleep_for(std::chrono::seconds(1));
 

@@ -19,6 +19,9 @@
     <Filter Include="Source Files\TrafficLight02">
       <UniqueIdentifier>{af3da6ac-260b-486b-bee5-c8d6b64e9e0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\TrafficLight03">
+      <UniqueIdentifier>{5de3ee6a-d1f7-4ec8-aeb2-6faa334d745e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Program.cpp">
@@ -54,6 +57,21 @@
     <ClCompile Include="TrafficLight02\Main02.cpp">
       <Filter>Source Files\TrafficLight02</Filter>
     </ClCompile>
+    <ClCompile Include="TrafficLight03\GreenLight.cpp">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\Main03.cpp">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\RedLight.cpp">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\TrafficLight.cpp">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\YellowLight.cpp">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrafficLight01\GreenLight.h">
@@ -85,6 +103,21 @@
     </ClInclude>
     <ClInclude Include="TrafficLight02\YellowLight.h">
       <Filter>Source Files\TrafficLight02</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight03\GreenLight.h">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight03\ITrafficLight.h">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight03\RedLight.h">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight03\TrafficLight.h">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClInclude>
+    <ClInclude Include="TrafficLight03\YellowLight.h">
+      <Filter>Source Files\TrafficLight03</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

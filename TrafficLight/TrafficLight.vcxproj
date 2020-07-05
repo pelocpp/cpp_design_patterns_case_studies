@@ -240,6 +240,46 @@
       <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </XMLDocumentationFileName>
     </ClCompile>
+    <ClCompile Include="TrafficLight03\GreenLight.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\Main03.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\RedLight.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\TrafficLight.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </XMLDocumentationFileName>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\YellowLight.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+      </XMLDocumentationFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\TrafficLight03\</ObjectFileName>
+      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+      </XMLDocumentationFileName>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TrafficLight01\GreenLight.h" />
@@ -252,6 +292,11 @@
     <ClInclude Include="TrafficLight02\RedLight.h" />
     <ClInclude Include="TrafficLight02\TrafficLight.h" />
     <ClInclude Include="TrafficLight02\YellowLight.h" />
+    <ClInclude Include="TrafficLight03\GreenLight.h" />
+    <ClInclude Include="TrafficLight03\ITrafficLight.h" />
+    <ClInclude Include="TrafficLight03\RedLight.h" />
+    <ClInclude Include="TrafficLight03\TrafficLight.h" />
+    <ClInclude Include="TrafficLight03\YellowLight.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Readme.md" />
