@@ -1,12 +1,12 @@
 // ===========================================================================
-// Program.cpp // Validating Passwords
+// Program.cpp // Observable Vector Container
 // ===========================================================================
 
 // function prototypes
-void validating_passwords();
+void observableVectorContainer();
 
 int main() {
-    validating_passwords();
+    observableVectorContainer();
     return 0;
 }
 

@@ -2,46 +2,32 @@
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall für das *Decorator Pattern* Entwurfsmuster.
-Dieses Entwurfsmuster ermöglicht das Hinzufügen von Verhalten zu einem Objekt, ohne andere Objekte desselben Typs zu beeinflussen.
-Das wird erreicht durch das Einhüllen eines Objekts in ein anderes Objekt.
-Mehrere dieser so genannten *Decorator* Objekte lassen sich miteinander verknüpfen
-(aufeinander stapeln), wobei jedes Mal eine neue Funkionalität hinzugefügt wird.
-In unserem  Beispiel besteht die Funktionalität darin,
-dass ein bestimmtes Passwort eine oder mehrere bestimmte Anforderung(en) erfüllt.
+Wir haben es offensichtlich mit einem Anwendungsfall des  *Observer* Patterns zu tun.
+Dieses Muster beschreibt ein Objekt, in der Regel als *Subject* bezeichnet,
+das eine Liste abhängiger Objekte verwaltet, die als *Observer* bezeichnet werden,
+und benachrichtigt diese über jegliche Zustandsänderung,
+indem eine ihrer Methoden aufgerufen wird. Das folgende Klassendiagramm beschreibt eine mögliche
+Musterimplementierung für das vorgeschlagene Problem:
 
-Das folgende Klassendiagramm beschreibt das *Decorator Pattern* Entwurfsmuster
-zum Überprüfen von Kennwörtern:
+<img src="dp_xxx.svg" width="700">
 
-<img src="dp_password_validator.svg" width="700">
+Abbildung 1: Schematische Darstellung des *Observer* Patterns im Anwendungsfall *Observable Vector Container*.
 
-Abbildung 1: Schematische Darstellung des *Decorator* Patterns im Anwendungsfall *Passwortcheck*.
 
-`PasswordValidator` ist eine Basisklasse und verfügt über eine 
-virtuelle Methode namens `validate` mit einem `std::string`-Parameter,
-der ein zu überprüfendes Passwort entgegennimmt.
-`LengthValidator` wird abgeleitet von `PasswordValidator`.
-Diese Klasse implementiert die obligatorische Passwortanforderung bezüglich der Mindestlänge.
-`PasswordValidatorDecorator` wird auch von `PasswordValidator` abgeleitet,
-besitzt als Instanzvariable aber nur eine `PasswordValidator`-Referenz.
-Die `validate`-Implementierung dieser Klasse delegiert den Aufruf einfach an `validate`-Methode
-des referenzierten `PasswordValidator`-Objekts weiter.
-Die anderen Klassen
-`DigitPasswordValidator`, `SymbolPasswordValidator` und
-`CasePasswordValidator` werden ebenfalls von der Klasse `PasswordValidatorDecorator` abgeleitet
-und implementieren zusätzliche Anforderungen an die Passwortstärke.
+`Observable_vector` ist eine Klasse, die ein `std::vector`-Objekt umschließt und die geforderten Operationen
+zur Verfügung stellt. Die Klasse enthält auch eine Liste von Zeigern auf `collection_observer`-Objekte.
+Dies ist ein Basisklasse für Objekte, die über Statusänderungen eines `Observable_vector`-Objekts informiert werden möchten.
+Die Klasse hat eine virtuelle Methode namens `collection_changed` mit einem
+Argument des Typs `collection_changed_notification`, das nähere Informationen zu einer Zustandsänderung enthält.
+Ändert sich der interne Status eines `Observable_vector`-Objekts, wird diese Methode 
+bei allen registrierten Beobachtern aufgerufen.
+Beobachter können dem `Observable_vector`-Objekt mit `add_observer` hinzugefügt werden
+oder durch `remove_observer` von diesem wieder entfernt werden.
 
-Auf diese Weise können Sie ein `LengthValidator`-Objekt (Minimalanforderung)
-wie folgt "*dekorieren*":
+
 
 ```cpp
-std::unique_ptr<SymbolPasswordValidator> validator =
-    std::make_unique<SymbolPasswordValidator>(
-        std::make_unique<CasePasswordValidator>(
-            std::make_unique<DigitPasswordValidator>(
-                std::make_unique<LengthValidator>(8))));
-
-boolvalid = validator->validate("IchBinEinPasswort");
+To be done
 ```
 
 

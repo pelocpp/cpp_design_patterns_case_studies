@@ -4,123 +4,216 @@
 
 #include <iostream>
 #include <string>
+
+#include <vector>
+
 #include <cassert>
 
-// resembles 'Component'
-class PasswordValidator
+enum class CollectionAction
 {
-public:
-    virtual bool validate(std::string password) const = 0;
-    virtual ~PasswordValidator() {}
+    add,
+    remove,
+    clear,
+    assign
 };
 
-// resembles 'ConcreteComponent'
-class LengthValidator final : public PasswordValidator
+std::string to_string(CollectionAction const action)
 {
-private:
-    unsigned int m_length; 
-
-public:
-    LengthValidator(unsigned int minLength) : m_length(minLength) {}
-
-    bool validate(std::string password) const override {
-        return password.length() >= m_length;
+    switch (action)
+    {
+    case CollectionAction::add: return "add";
+    case CollectionAction::remove: return "remove";
+    case CollectionAction::clear: return "clear";
+    case CollectionAction::assign: return "assign";
+    default:
+        return "";
     }
-};
+}
 
-// resembles 'DecoratorBase'
-class PasswordValidatorDecorator : public PasswordValidator
-{
-private:
-    std::unique_ptr<PasswordValidator> m_inner;
-
-public:
-    explicit PasswordValidatorDecorator(std::unique_ptr<PasswordValidator> validator)
-        : m_inner(std::move(validator)) {}
-
-    bool validate(std::string password) const override {
-        return m_inner->validate(password);
-    }
-};
-
-// resembles 'ConcreteDecorator'
-class DigitPasswordValidator final : public PasswordValidatorDecorator
+class CollectionChangeNotification
 {
 public:
-    explicit DigitPasswordValidator(std::unique_ptr<PasswordValidator> validator) 
-        : PasswordValidatorDecorator(std::move(validator)) {}
-
-    bool validate(std::string password) const override {
-        if (!PasswordValidatorDecorator::validate(password))
-            return false;
-
-        return password.find_first_of("0123456789") != std::string::npos;
-    }
+    CollectionAction m_action;
+    std::vector<size_t> m_indexes;
 };
 
-// resembles 'ConcreteDecorator'
-class CasePasswordValidator final : public PasswordValidatorDecorator
-{
+class CollectionObserver {
 public:
-    explicit CasePasswordValidator(std::unique_ptr<PasswordValidator> validator)
-        : PasswordValidatorDecorator(std::move(validator)) {}
+    virtual void collectionChanged(CollectionChangeNotification notification) = 0;
+    virtual ~CollectionObserver() {}
+};
 
-    bool validate(std::string password) const override {
-        if (!PasswordValidatorDecorator::validate(password))
-            return false;
+template <typename T, class Allocator = std::allocator<T>>
+class ObservableVector final
+{
+    typedef typename std::vector<T, Allocator>::size_type size_type;
 
-        bool haslower = false;
-        bool hasupper = false;
-        for (size_t i = 0; i < password.length() && !(hasupper && haslower);
-            ++i)
+public:
+    ObservableVector() noexcept(noexcept(Allocator()))
+        : ObservableVector(Allocator()) {}
+
+    explicit ObservableVector(const Allocator& alloc) noexcept
+        : m_data(alloc) {}
+
+    ObservableVector(size_type count, const T& value, const Allocator& alloc = Allocator())
+        : m_data(count, value, alloc) {}
+
+    explicit ObservableVector(size_type count, const Allocator& alloc = Allocator())
+        : m_data(count, alloc) {}
+
+    ObservableVector(ObservableVector&& other) noexcept
+        : m_data(other.data) {}
+
+    ObservableVector(ObservableVector&& other, const Allocator& alloc)
+        : m_data(other.data, alloc) {}
+
+    ObservableVector(std::initializer_list<T> init, const Allocator& alloc = Allocator())
+        : m_data(init, alloc) {}
+
+    template<class InputIt>
+    ObservableVector(InputIt first, InputIt last, const Allocator& alloc = Allocator())
+        : m_data(first, last, alloc) {}
+
+    ObservableVector& operator=(ObservableVector const& other)
+    {
+        if (this != &other)
         {
-            if (islower(password[i])) haslower = true;
-            else if (isupper(password[i])) hasupper = true;
+            m_data = other.m_data;
+            for (auto o : observers) {
+                if (o != nullptr) {
+                    o->collectionChanged({
+                        CollectionAction::assign,
+                        std::vector<size_t> {}
+                        });
+                }
+            }
         }
-        return haslower && hasupper;
+        return *this;
     }
+
+    ObservableVector& operator=(ObservableVector&& other) noexcept
+    {
+        if (this != &other)
+        {
+            m_data = std::move(other.m_data);
+            for (auto o : observers)
+            {
+                if (o != nullptr)
+                {
+                    o->collectionChanged({
+                        CollectionAction::assign,
+                        std::vector<size_t> {}
+                        });
+                }
+            }
+        }
+        return *this;
+    }
+
+    void push_back(T&& value)
+    {
+        m_data.push_back(value);
+        for (auto o : observers)
+        {
+            if (o != nullptr)
+            {
+                o->collectionChanged({
+                    CollectionAction::add,
+                    std::vector<size_t> {m_data.size() - 1}
+                    });
+            }
+        }
+    }
+
+    void pop_back()
+    {
+        m_data.pop_back();
+        for (auto o : observers)
+        {
+            if (o != nullptr)
+            {
+                o->collectionChanged({
+                    CollectionAction::remove,
+                    std::vector<size_t> {m_data.size() + 1}
+                    });
+            }
+        }
+    }
+
+    void clear() noexcept
+    {
+        m_data.clear();
+        for (auto o : observers)
+        {
+            if (o != nullptr)
+            {
+                o->collectionChanged({
+                    CollectionAction::clear, 
+                    std::vector<size_t> {}
+                    });
+            }
+        }
+    }
+
+    size_type size() const noexcept
+    {
+        return m_data.size();
+    }
+
+    bool empty() const noexcept
+    {
+        return m_data.empty();
+    }
+
+    void add_observer(CollectionObserver* const o)
+    {
+        observers.push_back(o);
+    }
+
+    void remove_observer(CollectionObserver const* const o)
+    {
+        observers.erase(
+            std::remove(std::begin(observers),
+            std::end(observers), o),
+            std::end(observers)
+        );
+    }
+
+private:
+    std::vector<T, Allocator> m_data;
+    std::vector<CollectionObserver*> observers;
 };
 
-// resembles 'ConcreteDecorator'
-class SymbolPasswordValidator final : public PasswordValidatorDecorator
+class observer : public CollectionObserver
 {
 public:
-    explicit SymbolPasswordValidator(std::unique_ptr<PasswordValidator> validator)
-        : PasswordValidatorDecorator(std::move(validator)) {}
-
-    bool validate(std::string password) const override {
-        if (!PasswordValidatorDecorator::validate(password))
-            return false;
-
-        return password.find_first_of("!@#$%^&*(){}[]?<>") != std::string::npos;
+    virtual void collectionChanged(CollectionChangeNotification notification) override
+    {
+        std::cout << "action: " << to_string(notification.m_action);
+        if (!notification.m_indexes.empty()) {
+            std::cout << ", indexes: ";
+            for (auto i : notification.m_indexes)
+                std::cout << i << ' ';
+        }
+        std::cout << std::endl;
     }
 };
 
-void validating_passwords() {
-
-    std::unique_ptr<DigitPasswordValidator> validator1 =
-        std::make_unique<DigitPasswordValidator>(
-            std::make_unique<LengthValidator>(8));
-
-    bool valid = validator1->validate("abc123!@#");
-    assert(valid == true);
-
-    valid = validator1->validate("abcde!@#");
-    assert(valid == false);
-
-    std::unique_ptr<SymbolPasswordValidator> validator2 =
-        std::make_unique<SymbolPasswordValidator>(
-            std::make_unique<CasePasswordValidator>(
-                std::make_unique<DigitPasswordValidator>(
-                    std::make_unique<LengthValidator>(8))));
-
-    valid = validator2->validate("Abc123!@#");
-    assert(valid == true);
-
-    valid = validator2->validate("Abc123567");
-    assert(valid == false);
-
-    std::cout << "Done." << std::endl;
+void observableVectorContainer() {
+    ObservableVector<int> v;
+    observer o;
+    v.add_observer(&o);
+    v.push_back(1);
+    v.push_back(2);
+    v.pop_back();
+    v.clear();
+    v.remove_observer(&o);
+    v.push_back(3);
+    v.push_back(4);
+    v.add_observer(&o);
+    ObservableVector<int> v2{ 1,2,3 };
+    v = v2;
+    v = ObservableVector<int>{ 7,8,9 };
 }
 
 // ===========================================================================
