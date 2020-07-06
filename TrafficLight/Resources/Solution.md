@@ -14,6 +14,10 @@ Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmus
 
 Abbildung 1: Schematische Darstellung des *Chain of Responsibility* Patterns im Anwendungsfall *Approval System*.
 
+<img src="dp_traffic_light.svg" width="800">
+
+Abbildung 1: Schematische Darstellung des *Chain of Responsibility* Patterns im Anwendungsfall *Approval System*.
+
 
 `Employee` ist eine Klasse, die einen Mitarbeiter im Unternehmen repräsentiert.
 Ein Mitarbeiter kann einen direkten Vorgesetzten haben,
