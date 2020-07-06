@@ -14,15 +14,15 @@ Musterimplementierung für das vorgeschlagene Problem:
 Abbildung 1: Schematische Darstellung des *Observer* Patterns im Anwendungsfall *Observable Vector Container*.
 
 
-`Observable_vector` ist eine Klasse, die ein `std::vector`-Objekt umschließt und die geforderten Operationen
-zur Verfügung stellt. Die Klasse enthält auch eine Liste von Zeigern auf `collection_observer`-Objekte.
-Dies ist ein Basisklasse für Objekte, die über Statusänderungen eines `Observable_vector`-Objekts informiert werden möchten.
-Die Klasse hat eine virtuelle Methode namens `collection_changed` mit einem
-Argument des Typs `collection_changed_notification`, das nähere Informationen zu einer Zustandsänderung enthält.
-Ändert sich der interne Status eines `Observable_vector`-Objekts, wird diese Methode 
+`ObservableVector` ist eine Klasse, die ein `std::vector`-Objekt umschließt und die geforderten Operationen
+zur Verfügung stellt. Die Klasse enthält auch eine Liste von Zeigern auf `CollectionObserver`-Objekte.
+Dies ist ein Basisklasse für Objekte, die über Statusänderungen eines `ObservableVector`-Objekts informiert werden möchten.
+Die Klasse hat eine virtuelle Methode namens `collectionChanged` mit einem
+Argument des Typs `CollectionChangeNotification`, das nähere Informationen zu einer Zustandsänderung enthält.
+Ändert sich der interne Status eines `ObservableVector`-Objekts, wird diese Methode 
 bei allen registrierten Beobachtern aufgerufen.
-Beobachter können dem `Observable_vector`-Objekt mit `add_observer` hinzugefügt werden
-oder durch `remove_observer` von diesem wieder entfernt werden.
+Beobachter können dem `ObservableVector`-Objekt mit `addObserver` hinzugefügt werden
+oder durch `removeObserver` von diesem wieder entfernt werden.
 
 
 

@@ -11,20 +11,20 @@
 
 enum class CollectionAction
 {
-    add,
-    remove,
-    clear,
-    assign
+    Add,
+    Remove,
+    Clear,
+    Assign
 };
 
 std::string to_string(CollectionAction const action)
 {
     switch (action)
     {
-    case CollectionAction::add: return "add";
-    case CollectionAction::remove: return "remove";
-    case CollectionAction::clear: return "clear";
-    case CollectionAction::assign: return "assign";
+    case CollectionAction::Add: return "add";
+    case CollectionAction::Remove: return "remove";
+    case CollectionAction::Clear: return "clear";
+    case CollectionAction::Assign: return "assign";
     default:
         return "";
     }
@@ -37,10 +37,10 @@ public:
     std::vector<size_t> m_indexes;
 };
 
-class CollectionObserver {
+class ICollectionObserver {
 public:
     virtual void collectionChanged(CollectionChangeNotification notification) = 0;
-    virtual ~CollectionObserver() {}
+    virtual ~ICollectionObserver() {};  // TODO WIEDER ENTFERNEN
 };
 
 template <typename T, class Allocator = std::allocator<T>>
@@ -74,15 +74,15 @@ public:
     ObservableVector(InputIt first, InputIt last, const Allocator& alloc = Allocator())
         : m_data(first, last, alloc) {}
 
-    ObservableVector& operator=(ObservableVector const& other)
+    ObservableVector& operator=(const ObservableVector& other)
     {
         if (this != &other)
         {
             m_data = other.m_data;
-            for (auto o : observers) {
+            for (auto o : m_observers) {
                 if (o != nullptr) {
                     o->collectionChanged({
-                        CollectionAction::assign,
+                        CollectionAction::Assign,
                         std::vector<size_t> {}
                         });
                 }
@@ -96,12 +96,12 @@ public:
         if (this != &other)
         {
             m_data = std::move(other.m_data);
-            for (auto o : observers)
+            for (auto o : m_observers)
             {
                 if (o != nullptr)
                 {
                     o->collectionChanged({
-                        CollectionAction::assign,
+                        CollectionAction::Assign,
                         std::vector<size_t> {}
                         });
                 }
@@ -113,12 +113,12 @@ public:
     void push_back(T&& value)
     {
         m_data.push_back(value);
-        for (auto o : observers)
+        for (auto o : m_observers)
         {
             if (o != nullptr)
             {
                 o->collectionChanged({
-                    CollectionAction::add,
+                    CollectionAction::Add,
                     std::vector<size_t> {m_data.size() - 1}
                     });
             }
@@ -128,12 +128,12 @@ public:
     void pop_back()
     {
         m_data.pop_back();
-        for (auto o : observers)
+        for (auto o : m_observers)
         {
             if (o != nullptr)
             {
                 o->collectionChanged({
-                    CollectionAction::remove,
+                    CollectionAction::Remove,
                     std::vector<size_t> {m_data.size() + 1}
                     });
             }
@@ -143,12 +143,12 @@ public:
     void clear() noexcept
     {
         m_data.clear();
-        for (auto o : observers)
+        for (auto o : m_observers)
         {
             if (o != nullptr)
             {
                 o->collectionChanged({
-                    CollectionAction::clear, 
+                    CollectionAction::Clear, 
                     std::vector<size_t> {}
                     });
             }
@@ -165,26 +165,26 @@ public:
         return m_data.empty();
     }
 
-    void add_observer(CollectionObserver* const o)
+    void addObserver(ICollectionObserver*  o) 
     {
-        observers.push_back(o);
+        m_observers.push_back(o);
     }
 
-    void remove_observer(CollectionObserver const* const o)
+    void removeObserver(ICollectionObserver const* const o)  // TODO : Wie ist das zu lesen ??? 
     {
-        observers.erase(
-            std::remove(std::begin(observers),
-            std::end(observers), o),
-            std::end(observers)
+        m_observers.erase(
+            std::remove(std::begin(m_observers),
+            std::end(m_observers), o),
+            std::end(m_observers)
         );
     }
 
 private:
     std::vector<T, Allocator> m_data;
-    std::vector<CollectionObserver*> observers;
+    std::vector<ICollectionObserver*> m_observers;
 };
 
-class observer : public CollectionObserver
+class Observer : public ICollectionObserver
 {
 public:
     virtual void collectionChanged(CollectionChangeNotification notification) override
@@ -201,16 +201,16 @@ public:
 
 void observableVectorContainer() {
     ObservableVector<int> v;
-    observer o;
-    v.add_observer(&o);
+    Observer o;
+    v.addObserver(&o);
     v.push_back(1);
     v.push_back(2);
     v.pop_back();
     v.clear();
-    v.remove_observer(&o);
+   // v.removeObserver(&o);
     v.push_back(3);
     v.push_back(4);
-    v.add_observer(&o);
+    v.addObserver(&o);
     ObservableVector<int> v2{ 1,2,3 };
     v = v2;
     v = ObservableVector<int>{ 7,8,9 };
