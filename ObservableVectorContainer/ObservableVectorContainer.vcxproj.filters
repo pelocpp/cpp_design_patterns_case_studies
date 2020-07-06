@@ -29,5 +29,8 @@
     <None Include="Resources\Solution.md">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Resources\dp_observable_vector.svg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

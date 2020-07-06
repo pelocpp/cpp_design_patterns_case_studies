@@ -143,6 +143,7 @@
     <ClCompile Include="Program.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\dp_observable_vector.svg" />
     <None Include="Resources\Readme.md" />
     <None Include="Resources\Solution.md" />
   </ItemGroup>

@@ -9,7 +9,7 @@ und benachrichtigt diese über jegliche Zustandsänderung,
 indem eine ihrer Methoden aufgerufen wird. Das folgende Klassendiagramm beschreibt eine mögliche
 Musterimplementierung für das vorgeschlagene Problem:
 
-<img src="dp_xxx.svg" width="700">
+<img src="dp_observable_vector.svg" width="800">
 
 Abbildung 1: Schematische Darstellung des *Observer* Patterns im Anwendungsfall *Observable Vector Container*.
 
@@ -25,9 +25,32 @@ Beobachter können dem `ObservableVector`-Objekt mit `addObserver` hinzugefügt we
 oder durch `removeObserver` von diesem wieder entfernt werden.
 
 
+```cpp
+ObservableVector<int> v;
+Observer o;
+v.addObserver(&o);
+v.push_back(1);
+v.push_back(2);
+v.pop_back();
+v.clear();
+v.removeObserver(&o);
+v.push_back(3);
+v.push_back(4);
+v.addObserver(&o);
+ObservableVector<int> v2{ 1,2,3 };
+v = v2;
+v = ObservableVector<int>{ 7,8,9 };
+```
+
+*Ausgabe*: 
 
 ```cpp
-To be done
+action: add, indexes: 0
+action: add, indexes: 1
+action: remove, indexes: 2
+action: clear
+action: assign
+action: assign
 ```
 
 

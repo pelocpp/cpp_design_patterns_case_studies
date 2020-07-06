@@ -4,10 +4,7 @@
 
 #include <iostream>
 #include <string>
-
 #include <vector>
-
-#include <cassert>
 
 enum class CollectionAction
 {
@@ -21,10 +18,14 @@ std::string to_string(CollectionAction const action)
 {
     switch (action)
     {
-    case CollectionAction::Add: return "add";
-    case CollectionAction::Remove: return "remove";
-    case CollectionAction::Clear: return "clear";
-    case CollectionAction::Assign: return "assign";
+    case CollectionAction::Add: 
+        return "add";
+    case CollectionAction::Remove:
+        return "remove";
+    case CollectionAction::Clear: 
+        return "clear";
+    case CollectionAction::Assign:
+        return "assign";
     default:
         return "";
     }
@@ -40,7 +41,6 @@ public:
 class ICollectionObserver {
 public:
     virtual void collectionChanged(CollectionChangeNotification notification) = 0;
-    virtual ~ICollectionObserver() {};  // TODO WIEDER ENTFERNEN
 };
 
 template <typename T, class Allocator = std::allocator<T>>
@@ -207,7 +207,7 @@ void observableVectorContainer() {
     v.push_back(2);
     v.pop_back();
     v.clear();
-   // v.removeObserver(&o);
+    v.removeObserver(&o);
     v.push_back(3);
     v.push_back(4);
     v.addObserver(&o);
