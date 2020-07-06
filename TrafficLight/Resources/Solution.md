@@ -37,7 +37,7 @@ public:
 
 <img src="dp_traffic_light.svg" width="800">
 
-Abbildung 1: Schematische Darstellung des *Chain of Responsibility* Patterns im Anwendungsfall *Approval System*.
+Abbildung 1: Schematische Darstellung des *State* Patterns im Anwendungsfall *Traffic Light*.
 
 
 Damit erhalten wir nun die Simulation einer Verkehrsampel auf Basis des *State*-Patterns
