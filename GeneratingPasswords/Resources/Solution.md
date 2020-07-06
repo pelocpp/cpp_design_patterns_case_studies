@@ -9,7 +9,7 @@ auf diese Weise die Behandlung von Gruppen (oder Bäumen) von Objekten auf die gl
 Das folgende Klassendiagramm
 zeigt eine Hierarchie von Klassen, die zum Generieren von Passwörtern verwendet werden könnten:
 
-<img src="dp_password_generator.png" width="800">
+<img src="dp_password_generator.svg" width="800">
 
 Abbildung 1: Schematische Darstellung des *Composite* Patterns im Anwendungsfall *PasswortGenerator*.
 

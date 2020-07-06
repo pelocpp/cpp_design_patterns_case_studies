@@ -29,5 +29,8 @@
     <None Include="Resources\Solution.md">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Resources\dp_chain_of_responsibility_pattern.svg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

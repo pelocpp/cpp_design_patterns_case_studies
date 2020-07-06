@@ -10,7 +10,7 @@ Dieses Muster definiert eine Kette von Empfängerobjekten, die die Verantwortung 
 eine Anfrage zu bearbeiten oder an den nächsten Empfänger in der Kette weiterzuleiten, falls einer vorhanden ist.
 Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmuster für dieses Problem:
 
-<img src="dp_chain_of_responsibility_pattern.png" width="800">
+<img src="dp_chain_of_responsibility_pattern.svg" width="800">
 
 Abbildung 1: Schematische Darstellung des *Chain of Responsibility* Patterns im Anwendungsfall *Approval System*.
 

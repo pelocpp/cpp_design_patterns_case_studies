@@ -13,7 +13,7 @@ dass ein bestimmtes Passwort eine oder mehrere bestimmte Anforderung(en) erfüllt
 Das folgende Klassendiagramm beschreibt das *Decorator Pattern* Entwurfsmuster
 zum Überprüfen von Kennwörtern:
 
-<img src="dp_password_validator.png" width="700">
+<img src="dp_password_validator.svg" width="700">
 
 Abbildung 1: Schematische Darstellung des *Decorator* Patterns im Anwendungsfall *Passwortcheck*.
 
