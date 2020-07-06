@@ -9,7 +9,7 @@ eine entsprechende Ausgabe erscheinen:
 *Ausgabe*:
 
 ```cpp
-TrafficLight: Variant 01 (Raw-Pointer)
+TrafficLight: Variant 01
 Red Light
 Green Light
 Yellow Light
@@ -27,7 +27,7 @@ Welches klassische Entwurfsmuster bietet sich zur Realisierung an?
 Zusätzlich zum eigentlich zu wählenden Entwurfsmuster bietet sich in der 
 Realisierung ein zweites Entwurfsmuster an: Das *Singleton* Muster.
 
-Erstellen Sie eine zweite Realisierung, die den erste Implentierung
+Erstellen Sie eine zweite Realisierung, die die erste Implementierung
 um die Integration des *Singleton* Musters ergänzt.
 
 #### Lösung

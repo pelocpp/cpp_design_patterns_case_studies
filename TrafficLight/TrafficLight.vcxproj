@@ -299,11 +299,9 @@
     <ClInclude Include="TrafficLight03\YellowLight.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\dp_traffic_light.svg" />
     <None Include="Resources\Readme.md" />
     <None Include="Resources\Solution.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Resources\dp_traffic_light.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
