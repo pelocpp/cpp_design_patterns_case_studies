@@ -22,7 +22,15 @@ Green Light
 
 Welches klassische Entwurfsmuster bietet sich zur Realisierung an?
 
-###### Zusatzaufgabe
+###### Zusatzaufgabe 1
+
+Vielleicht ist es Ihnen schon aufgefallen:
+Die meisten Menschen in Deutschland denken, dass eine Ampel nur drei verschiedene Schaltphasen hat, nämlich grün, gelb und rot!
+Das ist aber verkehrt, nach rot wird die Ampel nicht wieder gelb sondern **rot-gelb**!
+
+Erweitern Sie die vorliegende Lösung so, dass sie vier Ampelphasen besitzt.
+
+###### Zusatzaufgabe 2
 
 Zusätzlich zum eigentlich zu wählenden Entwurfsmuster bietet sich in der 
 Realisierung ein zweites Entwurfsmuster an: Das *Singleton* Muster.
