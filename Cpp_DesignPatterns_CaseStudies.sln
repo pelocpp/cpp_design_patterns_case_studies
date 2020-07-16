@@ -20,6 +20,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TrafficLight", "TrafficLigh
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObservableVectorContainer", "ObservableVectorContainer\ObservableVectorContainer.vcxproj", "{8225E500-1860-462A-8844-33006394D0AE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pimpl", "Pimpl\Pimpl.vcxproj", "{8D948E51-5CFF-4647-8FD8-CDCD32197E51}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -76,6 +78,14 @@ Global
 		{8225E500-1860-462A-8844-33006394D0AE}.Release|x64.Build.0 = Release|x64
 		{8225E500-1860-462A-8844-33006394D0AE}.Release|x86.ActiveCfg = Release|Win32
 		{8225E500-1860-462A-8844-33006394D0AE}.Release|x86.Build.0 = Release|Win32
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Debug|x64.ActiveCfg = Debug|x64
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Debug|x64.Build.0 = Debug|x64
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Debug|x86.ActiveCfg = Debug|Win32
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Debug|x86.Build.0 = Debug|Win32
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Release|x64.ActiveCfg = Release|x64
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Release|x64.Build.0 = Release|x64
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Release|x86.ActiveCfg = Release|Win32
+		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

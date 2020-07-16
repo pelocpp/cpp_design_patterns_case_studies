@@ -11,6 +11,5 @@ Themenbereich "C++ Design Patterns".
 
 ## [Simulation einer Verkehrsampel (*TrafficLight*)](TrafficLight/Resources/Readme.md)
 
-
-
+## [Pointer to Implementation (*Pimpl*)](Pimpl/Resources/Readme.md)
 
