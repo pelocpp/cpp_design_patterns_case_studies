@@ -2,70 +2,119 @@
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall des *State* Entwurfsmusters.
-Der Zustand einer Ampel setzt sich im einfachsten Fall aus den drei Phasen Rot, Grün und Geld
-zusammen. Einen Zustand sollte man beschreiben können und man sollte von einem Zustand
-zum nächsten wechseln können. Dies wird in der Schnittstelle `ITrafficLightState` abstrakt beschrieben:
+###### Verfahrensanweisung zur Umstrukturierung von Klasse `Control`
+
+Strukturieren Sie die Klasse `Control` so um, dass sie keinerlei private Instanzvariablen oder -methoden besitzt,
+natürlich mit Ausnahme eines *Pimpl*-Zeigers. Das Ziel soll es sein, dass die interne Realisierung der Klasse `Control` 
+noch Änderungen unterworfen sein kann, man aber alle anderen C++-Dateien, die die  `Control`-Klasse verwenden wollen,
+von (überflüssigen) Neuübersetzungen ausnehmen möchte.
+
+Nehmen Sie die Umstrukturierung in folgenden Schritten vor:
+
+  1. Fügen Sie alle privaten Mitglieder, sowohl Daten als auch Methoden, in eine
+     separate Hilfsklasse ein. Benennen Sie diese Klasse `ControlPimpl`.
+
+  2. Ergänzen Sie in der Header-Datei der Ausgangsklasse eine *Forward*-Deklaration für die `ControlPimpl` wie folgt:
 
 ```cpp
-class ITrafficLightState
-{
-public:
-    virtual void changeState(TrafficLight* light) = 0;
-    virtual void reportState() const = 0;
-};
+    // file Control.h:
+    class ControlPimpl;
 ```
 
-An der Methode `changeState` erkennen wir, dass auf die Ampel selbst (*Context*-Klasse des Patterns)
-eine Art Rückverweis auf das *Context*-Objekt zu übergeben ist - in unserem Beispiel
-die Verkehrsampel, modellieren mit einer Klasse `TrafficLight`:
+  3. Deklarieren Sie in der Ausgangsklasse einen Zeiger auf die
+    `ControlPimpl`-Klasse auf Basis einer `std::unique_ptr`-Variablen. Dies sollte die einzige 
+    private Instanzvariablen der Ausgangsklasse sein:
+
 
 ```cpp
-class TrafficLight
-{
+class Control {
 private:
-    ITrafficLightState* m_state;
+    // single property: opaque pointer / pointer to impl
+    std::unique_ptr<ControlPimpl> m_pimpl;
 
 public:
-    void setState(ITrafficLightState* state);
-    ITrafficLightState* getState();
-
-    void change();
-    void show() const;
+    // public class interface
+    Control();
+    void setText(std::string);
+    void resize(const int width, const int height);
+    void show();
+    void hide();
 };
 ```
 
-<img src="dp_traffic_light.svg" width="800">
-
-Abbildung 1: Schematische Darstellung des *State* Patterns im Anwendungsfall *Traffic Light*.
-
-
-Damit erhalten wir nun die Simulation einer Verkehrsampel auf Basis des *State*-Patterns
-wie folgt:
-
-
-*Beispiel*:
+  4. Fügen Sie die `ControlPimpl`-Klassendefinition in der Quelldatei der Ausgangsklasse ein.
+    Übernehmen Sie alle Instanzvariablen (Eigenschaften und Methoden, sowohl `public` als auch `private`)
+    direkt in die `ControlPimpl`-Klassendefinition__
+    Die öffentliche Schnittstelle (`public`) der Ausgangsklasse *spiegeln* Sie mit entprechenden Aufrufen an der *Pimpl*-Klasse wider,
+    um so gewissermaßen die öffentliche Schnittstelle (`public`) der Ausgangsklasse an die *Pimpl*-Klasse durchzuschleusen.
 
 ```cpp
-std::cout << "TrafficLight: Variant 01" << std::endl;
+class ControlPimpl {
+private:
+    std::string m_text;
+    int m_width;
+    int m_height;
+    bool m_visible;
 
-TrafficLight trafficLight;
-trafficLight.setState(new RedLight());
-trafficLight.show();
-std::this_thread::sleep_for(std::chrono::seconds(1));
+    void draw();
 
-while (true)
+public:
+    ControlPimpl() : m_text(""), m_width(0), m_height(0), m_visible(true) {}
+
+    void setText(std::string text);
+    void resize(const int width, const int height);
+    void show();
+    void hide();
+};
+```
+
+  5. Die öffentliche Schnittstelle (`public`) der Ausgangsklasse *spiegeln* Sie mit entprechenden Aufrufen an der *Pimpl*-Klasse wider,
+    um so gewissermaßen die öffentliche Schnittstelle (`public`) der Ausgangsklasse an die *Pimpl*-Klasse durchzuschleusen.
+
+```cpp
+void Control::setText(std::string text)
 {
-    trafficLight.change();
-    trafficLight.show();
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    m_pimpl->setText(text);
+}
+...
+...
+```
+
+  6. Die private Schnittstelle (`private`) der Ausgangsklasse implementieren Sie wie gewünscht bzw. erforlderlich.
+     Nachträgliche Änderungen haben keine Auswirkungen auf Benutzer der Ausgangsklasse:
+
+```cpp
+void ControlPimpl::draw()
+{
+    std::cout
+        << "control "
+        << std::endl
+        << " visible: "
+        << std::boolalpha
+        << m_visible
+        << std::noboolalpha
+        << std::endl
+        << " size: "
+        << m_width
+        << ", "
+        << m_height
+        << std::endl
+        << " text: "
+        << m_text
+        << std::endl;
 }
 ```
 
+  7. Die *Pimpl*-Klasse wird im Konstruktor der Ausgangsklasse instanziiert:
+
+```cpp
+Control::Control() : m_pimpl(std::make_unique<ControlPimpl>()) {}
+```
+
+
 #### Quellcode
 
-[Siehe hier](../TrafficLight01/Main01.cpp) und weitere Dateien im selben Verzeichnis.
-
+Siehe [Control.h](../Pimpl02/Control.h) und [Control.cpp](../Pimpl02/Control.cpp).
 
 ---
 

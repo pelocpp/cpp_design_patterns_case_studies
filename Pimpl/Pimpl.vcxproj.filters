@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Control01">
+      <UniqueIdentifier>{b7d56940-7516-45bf-a343-4cad33554923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Control02">
+      <UniqueIdentifier>{a8cbcd02-b54b-4207-bf2c-15c70468b680}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Readme.md">
@@ -26,5 +32,19 @@
     <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pimpl01\Control.cpp">
+      <Filter>Source Files\Control01</Filter>
+    </ClCompile>
+    <ClCompile Include="Pimpl02\Control.cpp">
+      <Filter>Source Files\Control02</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Pimpl01\Control.h">
+      <Filter>Source Files\Control01</Filter>
+    </ClInclude>
+    <ClInclude Include="Pimpl02\Control.h">
+      <Filter>Source Files\Control02</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
