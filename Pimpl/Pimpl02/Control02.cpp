@@ -104,32 +104,6 @@ namespace PimplVariant {
     }
 }
 
-//void pimpl_02 ()
-//{
-//    using namespace PimplVariant;
-//
-//    Control ctrl;
-//    ctrl.resize(10, 15);
-//    ctrl.hide();
-//    ctrl.show();
-//}
-//
-//void pimpl_02a()
-//{
-//    using namespace PimplVariant;
-//
-//    Control ctrl;
-//    ctrl.resize(100, 20);
-//    ctrl.setText("sample control");
-//    ctrl.hide();
-//
-//    // Control c2 = ctrl; // doesn't compile: std::unique_ptr !!!
-//    // c2.show();
-//
-//    Control c3 = std::move(ctrl);    // move: compiles
-//    c3.hide();
-//}
-
 // ===========================================================================
 // End-of-File
 // ===========================================================================

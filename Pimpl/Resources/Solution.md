@@ -111,10 +111,21 @@ void ControlPimpl::draw()
 Control::Control() : m_pimpl(std::make_unique<ControlPimpl>()) {}
 ```
 
-
 #### Quellcode
 
-Siehe [Control.h](../Pimpl02/Control.h) und [Control.cpp](../Pimpl02/Control.cpp).
+
+###### Hauptaufgabe:
+
+Siehe [Control.h](../Pimpl02/Control.h) und [Control.cpp](../Pimpl02/Control02.cpp) sowie [Client.cpp](../Pimpl02/Client02.cpp).
+
+###### Zusatzaufgabe 1: Kopier- und Verschiebesemantik
+
+Siehe [Control.h](../Pimpl03/Control.h) und [Control.cpp](../Pimpl03/Control03.cpp) sowie [Client.cpp](../Pimpl03/Client03.cpp).
+
+###### Zusatzaufgabe 2: Aufteilung des Projekts in mehrere Dateien
+
+Siehe [Control.h](../Pimpl04/Control.h), [ControlPimpl.h](../Pimpl04/ControlPimpl.h),
+[Control.cpp](../Pimpl04/Control04.cpp) und [ControlPimpl.cpp](../Pimpl04/ControlPimpl04.cpp) sowie [Client.cpp](../Pimpl04/Client04.cpp).
 
 ---
 

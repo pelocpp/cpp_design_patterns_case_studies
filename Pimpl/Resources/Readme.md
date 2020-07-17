@@ -124,7 +124,7 @@ die Kopier- als auch die Verschiebesemantik unterstützt.
 ###### Zusatzaufgabe 2: Aufteilung des Projekts in mehrere Dateien
 
 Die `ControlPimpl`-Klasse - also die *Pimpl*-Klasse - muss nicht zwingend in der Implementierungsdatei
-der Ausgangsklasse definiert werden. Ergänzen Sie ihr Projekt um zwei weitere Dateien XXX und YYY,
+der Ausgangsklasse definiert werden. Ergänzen Sie ihr Projekt um zwei weitere Dateien `ControlPimpl.h` und `ControlPimpl.cpp`,
 in denen Sie die Klasse `ControlPimpl` deklarieren und definieren.
 
 ---
