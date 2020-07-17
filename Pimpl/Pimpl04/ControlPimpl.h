@@ -1,22 +1,22 @@
 // ===========================================================================
-// Control.h - Pimpl Idiom
+// ControlPimpl.h - Pimpl Idiom with separate header file
 // ===========================================================================
 
-namespace PimplVariant {
+namespace PimplVariantWithSeparateHeaderFile {
 
-    class ControlPimpl;
-
-    class Control {
+    class ControlPimpl {
     private:
-        // single property: opaque pointer / pointer to impl
-        std::unique_ptr<ControlPimpl> m_pimpl;
+        std::string m_text;
+        int m_width;
+        int m_height;
+        bool m_visible;
+
+        void draw();
 
     public:
-        // public class interface
-        Control();
-        ~Control();
+        ControlPimpl() : m_text(""), m_width(0), m_height(0), m_visible(true) {}
 
-        void setText(std::string);
+        void setText(std::string text);
         void resize(const int width, const int height);
         void show();
         void hide();

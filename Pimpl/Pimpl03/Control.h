@@ -14,6 +14,8 @@ namespace PimplVariantWithCopyMoveSemantics {
     public:
         // public class interface
         Control();
+        ~Control();
+
         Control(Control&& op) noexcept;           // move semantics
         Control& operator=(Control&&) noexcept;   // move semantics
         Control(const Control&);                  // copy semantics

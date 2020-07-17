@@ -83,6 +83,8 @@ namespace PimplVariantWithCopyMoveSemantics {
     // default c'tor
     Control::Control() : m_pimpl(std::make_unique<ControlPimpl>()) {}
 
+    Control::~Control() = default;  // due to 'can't delete an incomplete type'
+
     // move semantics - using default behaviour
     Control::Control(Control&&) noexcept = default; 
     Control& Control::operator=(Control&&) noexcept = default;
@@ -118,28 +120,22 @@ namespace PimplVariantWithCopyMoveSemantics {
     }
 }
 
-void pimpl_03 ()
-{
-    using namespace PimplVariantWithCopyMoveSemantics;
+//void pimpl_03 ()
+//{
+//    using namespace PimplVariantWithCopyMoveSemantics;
+//
+//    Control ctrl;
+//    ctrl.resize(100, 20);
+//    ctrl.setText("sample control");
+//    ctrl.hide();
+//
+//    Control c2 = ctrl; // copy: compiles !!!
+//    c2.show();
+//
+//    Control c3 = std::move(ctrl);  // move: compiles
+//    c3.hide();
+//}
 
-    Control ctrl;
-    ctrl.resize(10, 15);
-    ctrl.hide();
-    ctrl.show();
-}
-
-void pimpl_03a()
-{
-    using namespace PimplVariantWithCopyMoveSemantics;
-
-    Control ctrl;
-    ctrl.resize(100, 20);
-    ctrl.setText("sample control");
-    ctrl.hide();
-
-    Control c2 = ctrl; // copy: compiles !!!
-    c2.show();
-
-    Control c3 = std::move(ctrl);  // move: compiles
-    c3.hide();
-}
+// ===========================================================================
+// End-of-File
+// ===========================================================================

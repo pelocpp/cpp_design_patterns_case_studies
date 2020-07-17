@@ -80,7 +80,7 @@ void Control::setText(std::string text)
 ...
 ```
 
-  6. Die private Schnittstelle (`private`) der Ausgangsklasse implementieren Sie wie gewünscht bzw. erforlderlich.
+  6. Die private Schnittstelle (`private`) der Ausgangsklasse implementieren Sie wie gewünscht bzw. erforderlich.
      Nachträgliche Änderungen haben keine Auswirkungen auf Benutzer der Ausgangsklasse:
 
 ```cpp

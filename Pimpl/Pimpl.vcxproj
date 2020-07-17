@@ -143,30 +143,23 @@
     <None Include="Resources\Solution.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Pimpl01\Control.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\pimpl01</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\pimpl01</XMLDocumentationFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\pimpl01</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\pimpl01</XMLDocumentationFileName>
-    </ClCompile>
-    <ClCompile Include="Pimpl02\Control.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\pimpl02</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\pimpl02</XMLDocumentationFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\pimpl02</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\pimpl02</XMLDocumentationFileName>
-    </ClCompile>
-    <ClCompile Include="Pimpl03\Control.cpp">
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\pimpl03</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(IntDir)\pimpl03</XMLDocumentationFileName>
-      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\pimpl03</ObjectFileName>
-      <XMLDocumentationFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(IntDir)\pimpl03</XMLDocumentationFileName>
-    </ClCompile>
+    <ClCompile Include="Pimpl01\Client01.cpp" />
+    <ClCompile Include="Pimpl01\Control01.cpp" />
+    <ClCompile Include="Pimpl02\Client02.cpp" />
+    <ClCompile Include="Pimpl02\Control02.cpp" />
+    <ClCompile Include="Pimpl03\Client03.cpp" />
+    <ClCompile Include="Pimpl03\Control03.cpp" />
+    <ClCompile Include="Pimpl04\Client04.cpp" />
+    <ClCompile Include="Pimpl04\Control04.cpp" />
+    <ClCompile Include="Pimpl04\ControlPimpl04.cpp" />
     <ClCompile Include="Program.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pimpl01\Control.h" />
     <ClInclude Include="Pimpl02\Control.h" />
     <ClInclude Include="Pimpl03\Control.h" />
+    <ClInclude Include="Pimpl04\Control.h" />
+    <ClInclude Include="Pimpl04\ControlPimpl.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -9,18 +9,17 @@ void pimpl_02();
 void pimpl_02a();
 
 void pimpl_03();
-void pimpl_03a();
-
+void pimpl_04();
 
 int main() {
-    //pimpl_01();
-    //pimpl_01a();
+    pimpl_01();
+    pimpl_01a();
 
-    //pimpl_02();
-    //pimpl_02a();
+    pimpl_02();
+    pimpl_02a();
 
-    //pimpl_03();
-    pimpl_03a();
+    pimpl_03();
+    pimpl_04();
 }
 
 // ===========================================================================
