@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Control02">
       <UniqueIdentifier>{a8cbcd02-b54b-4207-bf2c-15c70468b680}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Control03">
+      <UniqueIdentifier>{1ff94079-56d1-420b-8fa5-4b803bb2b9be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Readme.md">
@@ -38,6 +41,9 @@
     <ClCompile Include="Pimpl02\Control.cpp">
       <Filter>Source Files\Control02</Filter>
     </ClCompile>
+    <ClCompile Include="Pimpl03\Control.cpp">
+      <Filter>Source Files\Control03</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Pimpl01\Control.h">
@@ -45,6 +51,9 @@
     </ClInclude>
     <ClInclude Include="Pimpl02\Control.h">
       <Filter>Source Files\Control02</Filter>
+    </ClInclude>
+    <ClInclude Include="Pimpl03\Control.h">
+      <Filter>Source Files\Control03</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

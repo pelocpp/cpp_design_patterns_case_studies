@@ -99,6 +99,29 @@ void Control::hide() {
 Sollten Sie die Umstrukturierung der Klasse `Control`
 nicht ohne Hilfestellung schaffen, so finden Sie im Lösungsteil eine entsprechende Verfahrensanweisung vor.
 
+###### Zusatzaufgabe: Kopier- und Verschiebesemantik
+
+Die ursprüngliche Klasse `Control` war sowohl kopierbar als auch verschiebbar:
+
+```cpp
+Control ctrl;
+ctrl.resize(100, 200);
+
+Control c2 = ctrl; // copy: compiles
+c2.show();
+
+Control c3 = std::move(c2); // move: compiles
+c3.hide();
+```
+
+Die umstrukturierte Klasse `Control` ist nur verschiebbar, nicht kopierbar.
+Dies liegt darin begründet, dass diese Variante der Klasse `Control` eine Instanzvariable
+des Typs `std::unique_ptr<>` besitzt - und `std::unique_ptr<>`-Objekte sind bekanntlich nicht kopierbar.
+
+Erstellen Sie eine weitere Variante der `Control`-Klasse, die sowohl
+die Kopier- als auch die Verschiebesemantik unterstützt.
+
+
 ---
 
 Das *Pimpl*-Idiom ermöglicht das Ausblenden der internen Implementierung einer Klasse

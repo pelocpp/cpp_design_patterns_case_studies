@@ -1,5 +1,5 @@
 // ===========================================================================
-// Control.cpp - Pimpl Idiom
+// Control.cpp - Pimpl Idiom with Copy- & Move-Semantics
 // ===========================================================================
 
 #include <iostream>
@@ -8,7 +8,7 @@
 
 #include "Control.h"
 
-namespace PimplVariant {
+namespace PimplVariantWithCopyMoveSemantics {
 
     // ===========================================================================
     // declaration of pimpl class
@@ -80,8 +80,24 @@ namespace PimplVariant {
     // ===========================================================
     // main class methods
 
+    // default c'tor
     Control::Control() : m_pimpl(std::make_unique<ControlPimpl>()) {}
 
+    // move semantics - using default behaviour
+    Control::Control(Control&&) noexcept = default; 
+    Control& Control::operator=(Control&&) noexcept = default;
+
+    // copy semantics - using (automatically generated) public copy constructor of ControlPimpl 
+    Control::Control(const Control& op) : m_pimpl{ new ControlPimpl(*op.m_pimpl) } {}
+
+    Control& Control::operator=(const Control& op) {
+        if (this != &op) {
+            m_pimpl = std::unique_ptr<ControlPimpl>(new ControlPimpl(*op.m_pimpl));
+        }
+        return *this;
+    }
+
+    // remaining member functions
     void Control::setText(std::string text)
     {
         m_pimpl->setText(text);
@@ -102,9 +118,9 @@ namespace PimplVariant {
     }
 }
 
-void pimpl_02 ()
+void pimpl_03 ()
 {
-    using namespace PimplVariant;
+    using namespace PimplVariantWithCopyMoveSemantics;
 
     Control ctrl;
     ctrl.resize(10, 15);
@@ -112,18 +128,18 @@ void pimpl_02 ()
     ctrl.show();
 }
 
-void pimpl_02a()
+void pimpl_03a()
 {
-    using namespace PimplVariant;
+    using namespace PimplVariantWithCopyMoveSemantics;
 
     Control ctrl;
     ctrl.resize(100, 20);
     ctrl.setText("sample control");
     ctrl.hide();
 
-    // Control c2 = ctrl; // doesn't compile: std::unique_ptr !!!
-    // c2.show();
+    Control c2 = ctrl; // copy: compiles !!!
+    c2.show();
 
-    Control c3 = std::move(ctrl);    // move: compiles
+    Control c3 = std::move(ctrl);  // move: compiles
     c3.hide();
 }

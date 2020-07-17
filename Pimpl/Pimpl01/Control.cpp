@@ -64,17 +64,22 @@ void pimpl_01()
     ctrl.resize(20, 30);
     ctrl.hide();
     ctrl.show();
+}
 
-    //Control c;
-    //c.resize(100, 20); 
-    //c.setText("sample ");
-    //c.hide();
-    //Control c2 = c; // copy
-    //c2.show();
+void pimpl_01a()
+{
+    using namespace NoPimplVariant;
 
-    //Control c3 = std::move(c2); // move
-    //c3.hide();
+    Control ctrl;
+    ctrl.resize(100, 20);
+    ctrl.setText("sample control");
+    ctrl.hide();
 
+    Control c2 = ctrl; // copy: compiles
+    c2.show();
+
+    Control c3 = std::move(c2); // move: compiles
+    c3.hide();
 }
 
 // ===========================================================================
