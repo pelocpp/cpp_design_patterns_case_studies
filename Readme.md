@@ -13,3 +13,5 @@ Themenbereich "C++ Design Patterns".
 
 ## [Pointer to Implementation (*Pimpl*)](Pimpl/Resources/Readme.md)
 
+## [Observable Vector Container](ObservableVectorContainer/Resources/Readme.md)
+
