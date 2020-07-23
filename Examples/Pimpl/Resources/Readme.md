@@ -99,7 +99,7 @@ void Control::hide() {
 Sollten Sie die Umstrukturierung der Klasse `Control`
 nicht ohne Hilfestellung schaffen, so finden Sie im Lösungsteil eine entsprechende Verfahrensanweisung vor.
 
-###### Zusatzaufgabe 1: Kopier- und Verschiebesemantik
+##### Zusatzaufgabe 1: Kopier- und Verschiebesemantik
 
 Die ursprüngliche Klasse `Control` war sowohl kopierbar als auch verschiebbar:
 
@@ -121,7 +121,7 @@ des Typs `std::unique_ptr<>` besitzt - und `std::unique_ptr<>`-Objekte sind beka
 Erstellen Sie eine weitere Variante der `Control`-Klasse, die sowohl
 die Kopier- als auch die Verschiebesemantik unterstützt.
 
-###### Zusatzaufgabe 2: Aufteilung des Projekts in mehrere Dateien
+##### Zusatzaufgabe 2: Aufteilung des Projekts in mehrere Dateien
 
 Die `ControlPimpl`-Klasse - also die *Pimpl*-Klasse - muss nicht zwingend in der Implementierungsdatei
 der Ausgangsklasse definiert werden. Ergänzen Sie ihr Projekt um zwei weitere Dateien `ControlPimpl.h` und `ControlPimpl.cpp`,
@@ -156,14 +156,6 @@ Es gibt aber auch einige Nachteile bei Betrachtung des *Pimpl*-Idioms:
     Methoden, die in der Klasse erscheinen müssen, entweder weil
     sie Methoden einer Basisklasse überschreiben oder weil sie zum Überschreiben in einer abgeleiteten Klasse
     verfügbar sein müssen.
-
-
-###### Zusatzaufgabe 1
-
-
-
-###### Zusatzaufgabe 2
-
 
 
 #### Lösung
