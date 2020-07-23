@@ -27,6 +27,6 @@ aus den Ziffern 1 bis 6 besteht.
 
 ---
 
-[Zurück](../../Readme.md)
+[Zurück](../../../Readme.md)
 
 ---
