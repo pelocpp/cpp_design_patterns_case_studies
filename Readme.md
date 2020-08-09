@@ -15,3 +15,4 @@ Themenbereich "C++ Design Patterns".
 
 ## [Observable Vector Container](Examples/ObservableVectorContainer/Resources/Readme.md)
 
+## [Semigraphisches Videospiel](Examples/Semigraphics/Resources/Readme.md)
