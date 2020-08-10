@@ -10,7 +10,7 @@ Die Details der Lösung entnehmen Sie dem Quellcode.
 
 Die Arbeitsweise des `CharacterFactory`-Objekts lässt sich gut an den Ausgaben beobachten.
 
-1. Variante: 
+##### 1. Variante: 
 
 Der Pool mit intrinsischen `Character`-Objekten ist zu Beginn leer.
 
@@ -49,10 +49,10 @@ CharacterFactory: Reusing existing character.
 Character: Position (600, 400) with shared state [ Color: Blue - Font: Arial]
 ```
 
-Man gut an den Ausgaben erkennen, dass jedes `Character`-Objekt bei erster Verwendung neu angelegt wird.
+Man gut an den Ausgaben erkennen, dass jedes `Character`-Objekt vor seiner ersten Verwendung neu angelegt wird.
 
 
-2. Variante: 
+##### 2. Variante: 
 
 Der Pool mit intrinsischen `Character`-Objekten ist zu Beginn mit einer Reihe von Objekten vorbelegt.
 
@@ -91,8 +91,8 @@ CharacterFactory: Reusing existing character.
 Character: Position (600, 400) with shared state [ Color: Blue - Font: Arial]
 ```
 
-Man gut an den Ausgaben erkennen, dass vorhandene `Character`-Objekte bei erster Verwendung wieder
-verwendet werden.
+Man erkennt an den Ausgaben, dass vorhandene `Character`-Objekte bei erster Verwendung mit vorhandenen Objekten
+belegt werden.
 
 #### Literaturhinweis
 
