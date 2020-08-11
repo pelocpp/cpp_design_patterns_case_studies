@@ -1,4 +1,4 @@
-# Counting Objects
+# Anzahl der Objekte einer baumartigen Struktur bestimmen
 
 #### Lösung
 
