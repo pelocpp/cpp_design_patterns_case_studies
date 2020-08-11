@@ -104,7 +104,7 @@ public:
 
     void leave(class Composite&) {}  // extended variant (empty implementation)
 
-    unsigned int anzahl() const
+    unsigned int count () const
     {
         return m_n;
     }
@@ -157,7 +157,7 @@ void test_CountingObjects_01()
     SimpleCounter counter;
     root.accept(counter);
 
-    std::cout << counter.anzahl() << std::endl;
+    std::cout << counter.count() << std::endl;
 }
 
 void test_CountingObjects_02()
