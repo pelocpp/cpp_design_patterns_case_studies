@@ -1,52 +1,30 @@
 # Counting Objects
 
-#### Motivation
-
-Stellen wir uns vor, dass wir ein retro-basiertes Videospiel auf semigraphischer Basis programmieren,
-in dem tausende von Charakteren auf dem Schlachtfeld kämpfen.
-Jeder Charakter ist ein Objekt, das beispielsweise eine grafische Darstellung, ein Verhalten,
-Waffen und Informationen über seinen Standort und seine Gesundheit enthält.
-Das Erstellen einer solchen Anzahl von Objekten benötigt viel Speicher.
-
-Wir können dies verbessern, indem wir die allgemeinen Informationen wie grafische Darstellung und Verhalten teilen.
-Gesundheit und Standort variieren jedoch.
-
 #### Aufgabe
 
-Schreiben Sie ein Programm,
-das eine Klasse `Character` zur Darstellung einer Spielfigur realisiert.
-Die beiden Informationen "Farbe einer Figur" und "Zeichensatz für Textausgaben"sind zur Vereinfachung des Beispiels 
-durch zwei Variablen des Typs
+##### Teil 1
 
-```cpp
-std::string m_color;
-std::string m_font;
-```
+Implementieren Sie zunächst eine möglichst einfache, baumartige Struktur mit drei Klassen `Composite`, `Leaf1` und `Leaf2`.
 
-von allen Charakteren wiederzuverwenden.
+Die Klasse `Composite` sollte ein `std::list`-Objekt als Instanzvariable haben,
+um Objekte des Typs `Composite`, `Leaf1` und `Leaf2` aufnehmen zu können.
 
-Ein konkreter Charakter - eine Instanz der Klasse `AConcreteCharacter` - besitzt eine Methode
+Welches Entwurfsmuster können Sie hierbei einsetzen?
 
-```cpp
-void render(int x, int y);
-```
+##### Teil 2
 
-Die beiden Variablen `x` und `y` variieren, es können als mehrere konkrete Charaktere existieren, 
-die dieselbe Farbe und denselbe Zeichensatz besitzen, aber an unterschiedlichen Positionen *x* und *y*
-auf dem Spielfeld dargestellt werden. 
+Möglichst einfach sollen Sie im zweiten Schritt dieser Aufgabe die Frage beantworten,
+aus wievielen `Composite`-, `Leaf1`- und `Leaf2`-Objekte die baumartige Struktur insgesamt besteht.
+Wie lässt sich die baumartige Struktur durchlaufen?
 
-Für die Verwaltung der vorhandenen `Character`-Objekte realisieren Sie eine `CharacterFactory` Klasse.
-Ein Objekt des Typs
+Welches weitere Entwurfsmuster können Sie hierbei einsetzen?
 
-```cpp
-std::unordered_map<std::string, Character> m_characterMap;
-```
 
-verwaltet die *intrinsischen* Zustände aller Charaktere.
+##### Zusatzaufgabe:
 
-Schreiben Sie eine Testfunktion, die ein oder mehrere konkrete Charaktere erzeugt und mit `render` 
-auf dem Spielfeld "zeichnet".
-
+An Stelle der Anzahl aller Objekte in der baumartigen Struktur ist nun die Frage 
+nach der Anzahl unter­schied­licher Typen im Objektbaum zu beantworten.
+Also wieviele `Composite`-, wieviele `Leaf1`- und wieviele `Leaf2`-Objekte befinden sich im Baum.
 
 
 #### Lösung

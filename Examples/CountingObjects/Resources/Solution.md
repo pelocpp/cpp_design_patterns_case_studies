@@ -2,108 +2,38 @@
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall des *Flyweight* Entwurfsmusters.
+Das hier beschriebene Problem ist ein typischer Anwendungsfall des *Composite* Entwurfsmusters
+und im weiteren Verlauf des *Visitor* Entwurfsmusters
 
 Die Details der Lösung entnehmen Sie dem Quellcode.
 
+
 #### Hinweis:
 
-Die Arbeitsweise des `CharacterFactory`-Objekts lässt sich gut an den Ausgaben beobachten.
+Im Quellcode finden Sie noch eine weitere Zusatzaufgabe realisiert vor,
+nämlich die Bestimmung der maximalen Verschachtelungs­tiefe des Objektbaums.
 
-##### 1. Variante: 
+Neben den `visit`-Methoden braucht die Visitor­schnitt­stelle noch eine weitere Methode,
+die das Verlassen eines Kompositobjekts anzeigt, wie nennen sie `leave`.
+Diese Methode muss nun auch durch die entsprechede `accept`-Methode in der Objektstruktur aufgerufen werden.
 
-Der Pool mit intrinsischen `Character`-Objekten ist zu Beginn leer.
+Wenn sich nun eine Operation für die Verschachtelungs­tiefe des Objektbaums „interessiert“,
+muss sie nur dement­sprechend die `leave`-Methode implemen­tieren.
+In dieser Methode muss nur eine Instanzvariable,
+die die Ver­schachtelungs­tiefe reprä­sentiert, dekrementiert werden,
+während sie in der dazugehörigen `visit`-Methode inkrementiert wird.
 
-*Ausgabe*:
-
-```cpp
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (100, 0) with shared state [ Color: Green - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 200) with shared state [ Color: Green - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (0, 500) with shared state [ Color: Blue - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (300, 600) with shared state [ Color: Black - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 0) with shared state [ Color: Black - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (300, 600) with shared state [ Color: Red - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (100, 500) with shared state [ Color: Green - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (200, 200) with shared state [ Color: White - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (200, 0) with shared state [ Color: Magenta - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 200) with shared state [ Color: Magenta - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (100, 0) with shared state [ Color: Black - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 100) with shared state [ Color: Blue - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (200, 600) with shared state [ Color: Red - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (200, 0) with shared state [ Color: White - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 400) with shared state [ Color: Blue - Font: Arial]
-```
-
-Man gut an den Ausgaben erkennen, dass jedes `Character`-Objekt vor seiner ersten Verwendung neu angelegt wird.
-
-
-##### 2. Variante: 
-
-Der Pool mit intrinsischen `Character`-Objekten ist zu Beginn mit einer Reihe von Objekten vorbelegt.
-
-*Ausgabe*:
-
-```cpp
-CharacterFactory: Reusing existing character.
-Character: Position (100, 0) with shared state [ Color: Green - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 200) with shared state [ Color: Green - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (0, 500) with shared state [ Color: Blue - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (300, 600) with shared state [ Color: Black - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 0) with shared state [ Color: Black - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (300, 600) with shared state [ Color: Red - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (100, 500) with shared state [ Color: Green - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (200, 200) with shared state [ Color: White - Font: Arial]
-CharacterFactory: Can't find this character, creating new one.
-Character: Position (200, 0) with shared state [ Color: Magenta - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 200) with shared state [ Color: Magenta - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (100, 0) with shared state [ Color: Black - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 100) with shared state [ Color: Blue - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (200, 600) with shared state [ Color: Red - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (200, 0) with shared state [ Color: White - Font: Arial]
-CharacterFactory: Reusing existing character.
-Character: Position (600, 400) with shared state [ Color: Blue - Font: Arial]
-```
-
-Man erkennt an den Ausgaben, dass vorhandene `Character`-Objekte bei erster Verwendung mit vorhandenen Objekten
-belegt werden.
 
 #### Literaturhinweis
 
 Die Anregung zum diesem Beispiel finden Sie unter
 
-[The Flyweight Pattern](https://medium.com/@mlbors/the-flyweight-pattern-ff4ef2a8f377)
+[Das Besucher-Muster (Visitor Pattern) in C++](http://www.oop-trainer.de/Themen/Visitor.html)
 
 
 #### Quellcode
 
-[Siehe hier](../Semigraphics.cpp)
+[Siehe hier](../CountingObjects.cpp)
 
 ---
 
