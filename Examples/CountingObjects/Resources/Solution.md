@@ -7,6 +7,10 @@ und im weiteren Verlauf des *Visitor* Entwurfsmusters.
 
 Die Details der Lösung entnehmen Sie dem Quellcode.
 
+Das folgende Klassendiagramm hilft, die Zusammenhänge aller beteiligten Klassen darzustellen:
+
+<img src="dp_counting_objects.svg" width="800">
+
 
 #### Hinweis:
 

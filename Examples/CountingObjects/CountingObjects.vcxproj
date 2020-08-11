@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="Resources\dp_counting_objects.svg" />
     <None Include="Resources\Readme.md" />
     <None Include="Resources\Solution.md" />
   </ItemGroup>

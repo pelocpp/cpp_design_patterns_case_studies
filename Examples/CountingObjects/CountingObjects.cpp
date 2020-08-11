@@ -110,6 +110,8 @@ public:
     }
 };
 
+// ===========================================================================
+
 class DetailedCounter : public Visitor {
 private:
     unsigned int m_nc;
@@ -129,7 +131,6 @@ public:
         }
     }
 
-
     void visit(Leaf1&) { m_n1++; }
     void visit(Leaf2&) { m_n2++; }
 
@@ -141,6 +142,8 @@ public:
     unsigned int countLeaf2() const { return m_n2; }
     unsigned int countDepth() const { return m_maxDepth; }
 };
+
+// ===========================================================================
 
 void test_CountingObjects_01()
 {
