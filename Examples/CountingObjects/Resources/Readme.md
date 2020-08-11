@@ -2,22 +2,22 @@
 
 #### Aufgabe
 
-##### Teil 1
+##### Teil 1:
 
 Implementieren Sie zunächst eine möglichst einfache, baumartige Struktur mit drei Klassen `Composite`, `Leaf1` und `Leaf2`.
 
 Die Klasse `Composite` sollte ein `std::list`-Objekt als Instanzvariable haben,
-um Objekte des Typs `Composite`, `Leaf1` und `Leaf2` aufnehmen zu können.
+um Objekte (Zeiger) des Typs `Composite`, `Leaf1` und `Leaf2` aufnehmen zu können.
 
 Welches Entwurfsmuster können Sie hierbei einsetzen?
 
-##### Teil 2
+##### Teil 2:
 
 Möglichst einfach sollen Sie im zweiten Schritt dieser Aufgabe die Frage beantworten,
-aus wievielen `Composite`-, `Leaf1`- und `Leaf2`-Objekte die baumartige Struktur insgesamt besteht.
-Wie lässt sich die baumartige Struktur durchlaufen?
+aus wievielen `Composite`-, `Leaf1`- und `Leaf2`-Objekten die baumartige Struktur insgesamt besteht.
+Wie lässt sich eine baumartige Struktur prinzipiell durchlaufen?
 
-Welches weitere Entwurfsmuster können Sie hierbei einsetzen?
+Welches weitere Entwurfsmuster könnte hier zum Einsatz kommen?
 
 
 ##### Zusatzaufgabe:
