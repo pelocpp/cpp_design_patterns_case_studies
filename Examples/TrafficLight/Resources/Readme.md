@@ -2,7 +2,7 @@
 
 #### Aufgabe
 
-Schreiben Sie ein C++-Programm, dass die drei Phasen eine Verkehrsampel (Rot, Grün, Gelb)
+Schreiben Sie ein C++-Programm, dass die drei Phasen einer Verkehrsampel (Rot, Grün, Gelb)
 in einer Konsolen-Anwendung simuliert. Nach jedem Phasenwechsel soll in der Konsole
 eine entsprechende Ausgabe erscheinen:
 

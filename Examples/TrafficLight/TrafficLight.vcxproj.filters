@@ -27,49 +27,49 @@
     <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TrafficLight01\GreenLight.cpp">
-      <Filter>Source Files\TrafficLight01</Filter>
-    </ClCompile>
-    <ClCompile Include="TrafficLight01\RedLight.cpp">
-      <Filter>Source Files\TrafficLight01</Filter>
-    </ClCompile>
-    <ClCompile Include="TrafficLight01\TrafficLight.cpp">
-      <Filter>Source Files\TrafficLight01</Filter>
-    </ClCompile>
-    <ClCompile Include="TrafficLight01\YellowLight.cpp">
-      <Filter>Source Files\TrafficLight01</Filter>
-    </ClCompile>
     <ClCompile Include="TrafficLight01\Main01.cpp">
       <Filter>Source Files\TrafficLight01</Filter>
-    </ClCompile>
-    <ClCompile Include="TrafficLight02\GreenLight.cpp">
-      <Filter>Source Files\TrafficLight02</Filter>
-    </ClCompile>
-    <ClCompile Include="TrafficLight02\RedLight.cpp">
-      <Filter>Source Files\TrafficLight02</Filter>
-    </ClCompile>
-    <ClCompile Include="TrafficLight02\TrafficLight.cpp">
-      <Filter>Source Files\TrafficLight02</Filter>
-    </ClCompile>
-    <ClCompile Include="TrafficLight02\YellowLight.cpp">
-      <Filter>Source Files\TrafficLight02</Filter>
     </ClCompile>
     <ClCompile Include="TrafficLight02\Main02.cpp">
       <Filter>Source Files\TrafficLight02</Filter>
     </ClCompile>
-    <ClCompile Include="TrafficLight03\GreenLight.cpp">
-      <Filter>Source Files\TrafficLight03</Filter>
-    </ClCompile>
     <ClCompile Include="TrafficLight03\Main03.cpp">
       <Filter>Source Files\TrafficLight03</Filter>
     </ClCompile>
-    <ClCompile Include="TrafficLight03\RedLight.cpp">
+    <ClCompile Include="TrafficLight01\GreenLight01.cpp">
+      <Filter>Source Files\TrafficLight01</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight01\RedLight01.cpp">
+      <Filter>Source Files\TrafficLight01</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight01\TrafficLight01.cpp">
+      <Filter>Source Files\TrafficLight01</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight01\YellowLight01.cpp">
+      <Filter>Source Files\TrafficLight01</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight02\GreenLight02.cpp">
+      <Filter>Source Files\TrafficLight02</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight02\RedLight02.cpp">
+      <Filter>Source Files\TrafficLight02</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight02\TrafficLight02.cpp">
+      <Filter>Source Files\TrafficLight02</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight02\YellowLight02.cpp">
+      <Filter>Source Files\TrafficLight02</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\GreenLight03.cpp">
       <Filter>Source Files\TrafficLight03</Filter>
     </ClCompile>
-    <ClCompile Include="TrafficLight03\TrafficLight.cpp">
+    <ClCompile Include="TrafficLight03\RedLight03.cpp">
       <Filter>Source Files\TrafficLight03</Filter>
     </ClCompile>
-    <ClCompile Include="TrafficLight03\YellowLight.cpp">
+    <ClCompile Include="TrafficLight03\TrafficLight03.cpp">
+      <Filter>Source Files\TrafficLight03</Filter>
+    </ClCompile>
+    <ClCompile Include="TrafficLight03\YellowLight03.cpp">
       <Filter>Source Files\TrafficLight03</Filter>
     </ClCompile>
   </ItemGroup>

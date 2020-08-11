@@ -117,8 +117,8 @@ private:
     std::array<std::string, 7> m_colors;
     std::array<std::string, 3> m_fonts;
     std::default_random_engine m_engine{};
-    std::uniform_int_distribution<int> m_colorsDistribution{ 0, m_colors.size() - 1 };
-    std::uniform_int_distribution<int> m_fontsDistribution{ 0, m_fonts.size() - 1 };
+    std::uniform_int_distribution<int> m_colorsDistribution{ 0, static_cast<int>(m_colors.size()) - 1 };
+    std::uniform_int_distribution<int> m_fontsDistribution{ 0, static_cast<int>(m_fonts.size()) - 1 };
 
 public:
     CharacterClient();
@@ -148,12 +148,12 @@ CharacterClient::CharacterClient() {
 }
 
 std::string CharacterClient::getRandomColor() {
-    int index = m_colorsDistribution(m_engine);
+    long long int index = m_colorsDistribution(m_engine);
     return m_colors[index];
 }
 
 std::string CharacterClient::getRandomFont() {
-    int index = m_fontsDistribution(m_engine);
+    long long int index = m_fontsDistribution(m_engine);
     return m_fonts[index];
 }
 

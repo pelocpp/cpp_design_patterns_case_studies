@@ -18,7 +18,7 @@ public:
 
 An der Methode `changeState` erkennen wir, dass auf die Ampel selbst (*Context*-Klasse des Patterns)
 eine Art Rückverweis auf das *Context*-Objekt zu übergeben ist - in unserem Beispiel
-die Verkehrsampel, modellieren mit einer Klasse `TrafficLight`:
+die Verkehrsampel, modelliert mit einer Klasse `TrafficLight`:
 
 ```cpp
 class TrafficLight
