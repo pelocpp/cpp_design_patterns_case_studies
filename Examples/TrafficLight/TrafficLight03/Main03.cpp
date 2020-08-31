@@ -17,7 +17,7 @@ void test_trafficlight_03()
 {
     using namespace TrafficLight03;
 
-    std::cout << "TrafficLight: Variant 02 (Shared-Pointer & Singleton)" << std::endl;
+    std::cout << "TrafficLight: Variant 03 (Shared-Pointer & Singleton)" << std::endl;
 
     TrafficLight trafficLight;
     trafficLight.setState(RedLight::getInstance());
