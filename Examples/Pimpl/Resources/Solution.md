@@ -44,9 +44,7 @@ public:
 
   4. Fügen Sie die `ControlPimpl`-Klassendefinition in der Quelldatei der Ausgangsklasse ein.
     Übernehmen Sie alle Instanzvariablen (Eigenschaften und Methoden, sowohl `public` als auch `private`)
-    direkt in die `ControlPimpl`-Klassendefinition__
-    Die öffentliche Schnittstelle (`public`) der Ausgangsklasse *spiegeln* Sie mit entprechenden Aufrufen an der *Pimpl*-Klasse wider,
-    um so gewissermaßen die öffentliche Schnittstelle (`public`) der Ausgangsklasse an die *Pimpl*-Klasse durchzuschleusen.
+    direkt in die `ControlPimpl`-Klassendefinition:
 
 ```cpp
 class ControlPimpl {

@@ -7,7 +7,7 @@ die Implementierungsdetails von der Definition einer Schnittstelle zu trennen.
 Dies hat den Vorteil, dass es das Ändern der Implementierung ermöglicht,
 ohne dabei Änderungen an der Schnittstelle vorzunehmen.
 Der größte Vorteil aber liegt darin, dass es die Notwendigkeit vermeidet,
-in einem solchen Fall den betroffenen Quellcode neu zu kompilieren
+in einem solchen Fall den betroffenen Quellcode neu zu kompilieren.
 Bibliotheken, die das *Pimpl*-Idiom beherzigen, können auf einfache Weise ausgetauscht werden,
 wenn sich nur die Implementierungsdetails ändern.
 
