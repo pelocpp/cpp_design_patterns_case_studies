@@ -21,6 +21,11 @@ Eigenschaften für Text, Größe und Sichtbarkeit besitzt. Jedes Mal,
 wenn diese Eigenschaften geändert werden, wird das Steuerelement neu gezeichnet.
 In unserem Fall bedeutet "neu zeichnen", dass die entsprechenden Werte in der Konsole ausgegeben werden.
 
+Unter *Umstellen auf Pimpl* verstehen wir dabei, dass alle privat deklarierten Instanzvariablen der Klasse `Control` 
+in einer Hilfsklasse zu "verstecken" sind - nennen wir diese Klasse `ControlPimpl`.
+Die öffentliche Schnittstelle der `Control`-Klasse ist geeignet
+auf Methoden der Hilfsklasse umzulenken.
+
 *Klasse* `Control` - Headerdatei:
 
 ```cpp
