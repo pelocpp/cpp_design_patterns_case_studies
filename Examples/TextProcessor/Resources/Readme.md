@@ -1,9 +1,9 @@
-# Ein Text-Prozessor
+# Ein Textprozessor
 
 #### Aufgabe
 
-Wir betrachten in dieser Aufgabe einen Text-Prozessor,
-zumindest in Ansätzen. Aufgabe dieses Text-Prozessor ist es,
+Wir betrachten in dieser Aufgabe einen Textprozessor,
+zumindest in Ansätzen. Aufgabe dieses Textprozessor ist es,
 unformatierten Text, also Zeichenketten entgegenzunehmen,
 und diese formatiert auszugeben. Handelt es sich dabei um
 eine Aufzählung, also mehrere Zeichenketten (Liste von Zeichenketten),

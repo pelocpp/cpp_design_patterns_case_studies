@@ -18,3 +18,5 @@ Themenbereich "C++ Design Patterns".
 ## [Semigraphisches Videospiel](Examples/Semigraphics/Resources/Readme.md)
 
 ## [Anzahl der Objekte einer baumartigen Struktur bestimmen](Examples/CountingObjects/Resources/Readme.md)
+
+## [Ein Textprozessor mit mehreren Formaten](Examples/TextProcessor/Resources/Readme.md)
