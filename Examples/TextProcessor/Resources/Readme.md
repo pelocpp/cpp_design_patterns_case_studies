@@ -2,12 +2,12 @@
 
 #### Aufgabe
 
-Wir betrachten in dieser Aufgabe einen Textprozessor,
+Wir betrachten in dieser Aufgabe die Implementierung eines Textprozessors,
 zumindest in Ansätzen. Aufgabe dieses Textprozessor ist es,
 unformatierten Text, also Zeichenketten entgegenzunehmen,
 und diese formatiert auszugeben. Handelt es sich dabei um
-eine Aufzählung, also mehrere Zeichenketten (Liste von Zeichenketten),
-dann sollten diese nach der Ausgabe so in Erscheinung treten:
+eine Aufzählung mehrerer Zeichenketten (Liste von Zeichenketten),
+dann sollten diese bei der Ausgabe so in Erscheinung treten:
 
   * just
   * like
@@ -18,18 +18,17 @@ wissen Sie wahrscheinlich, dass
 Sie jedes Element einzeln mit einem zusätzlichen Markup ausgeben müssen.
 Bei Textformaten wie HTML oder LaTeX muss die Liste zusätzlich
 mit einem Anfangs-Tag gestartet und einem Ende-Tag beendet werden.
-Man kann folglich Beobachtung machen, dass die Verarbeitung von Listen - 
+Man kann folglich die Beobachtung machen, dass die Verarbeitung von Listen - 
 in welchem Format auch immer - ähnlich erfolgt,
 die Art und Weise in der konkreten Ausgabe aber unterschiedlich ist.
-Jedes Ausgabeformat kann mit einer separaten Strategie behandelt werden.
 
 #### Hinweise
 
 ##### Klasse `ListStrategy`:
 
-Zur Strategie gehören drei Methoden `start`, `add` und `end`,
-wie die eingangs gemachten Überlegungen nahe legen.
-Definieren Sie eine Strategieklasse `ListStrategy`,
+Zur Abstrahierung einer konkreten Ausgabe einer Liste definieren wir drei Methoden `start`, `add` und `end`,
+wie die eingangs gemachten Überlegungen nahelegen.
+Definieren Sie eine Klasse `ListStrategy`,
 die diese drei Methoden mit den folgenden Schnittstellen beschreibt:
 
 ```cpp
@@ -45,7 +44,7 @@ Die Ausgabe des Textprozessors soll dabei in ein Objekt des Typs
 
 Realisieren Sie eine Klasse `HtmlListStrategy`, die die Schnittstelle
 `ListStrategy` implementiert. Beachten Sie dabei:
-In HTML wird eine Liste mit dem Tag `<ul>` eingeleitet,
+In HTML wird eine Liste mit dem Tag `<ul>` eingeleitet
 und mit dem Tag `</ul>` abgeschlossen.
 Die einzelnen Elemente der Aufzählung sind in `<li>` bzw. `</li>` einzuschließen.
 
@@ -53,8 +52,8 @@ Die einzelnen Elemente der Aufzählung sind in `<li>` bzw. `</li>` einzuschließen
 
 Realisieren Sie eine Klasse `MarkdownListStrategy`, die die Schnittstelle
 `ListStrategy` implementiert. Beachten Sie dabei:
-In Markdown kennen Listen keine Anfangs- und Endetag.
-Die einzelnen Elemente der Aufzählung sind mit `__*` einzuleiten (2 führende Blanks).
+In Markdown kennen Listen kein Anfangs- und Endetag.
+Die einzelnen Elemente der Aufzählung sind mit zwei führenden Blanks und einem Stern `*` einzuleiten.
 
 ##### Klasse `TextProzessor`:
 
@@ -72,14 +71,14 @@ enum class OutputFormat
 Mindestens drei öffentliche Methoden muss die Klasse `TextProzessor` besitzen:
 
 ```cpp
-void setOutputFormat(const OutputFormat);
-void appendList(const std::vector<std::string>&);
+void setOutputFormat(std::unique_ptr<ListStrategy>&&)
+void outputList(const std::vector<std::string>&);
 void print();
 ```
 
 Mit `setOutputFormat` vermerkt sich das `TextProzessor`-Objekt intern,
 in welchem Format die Textverarbeitung zu erfolgen hat.
-Die Methoden `appendList` nimmt eine Liste von Zeichenketten entgegen,
+Die Methode `outputList` nimmt eine Liste von Zeichenketten entgegen,
 die eine Aufzählung bilden. `print` schließlich gibt den Text
 auf der Konsole aus. 
 
