@@ -28,6 +28,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CountingObjects", "Examples
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextProcessor", "Examples\TextProcessor\TextProcessor.vcxproj", "{BB524CB9-305E-422F-B198-EC635BFE702D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NotificationSender", "Examples\NotificationSender\NotificationSender.vcxproj", "{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -116,6 +118,14 @@ Global
 		{BB524CB9-305E-422F-B198-EC635BFE702D}.Release|x64.Build.0 = Release|x64
 		{BB524CB9-305E-422F-B198-EC635BFE702D}.Release|x86.ActiveCfg = Release|Win32
 		{BB524CB9-305E-422F-B198-EC635BFE702D}.Release|x86.Build.0 = Release|Win32
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Debug|x64.ActiveCfg = Debug|x64
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Debug|x64.Build.0 = Debug|x64
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Debug|x86.ActiveCfg = Debug|Win32
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Debug|x86.Build.0 = Debug|Win32
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Release|x64.ActiveCfg = Release|x64
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Release|x64.Build.0 = Release|x64
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Release|x86.ActiveCfg = Release|Win32
+		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
