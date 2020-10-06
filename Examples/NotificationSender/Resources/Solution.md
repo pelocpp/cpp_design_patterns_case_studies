@@ -27,10 +27,10 @@ void notify(std::string text)
 }
 ```
 
-Wesentlich hierbei ist, das bei den konkreten Realisierungen der abgeleiteten Klassen
+Wesentlich hierbei ist, dass bei den konkreten Realisierungen der abgeleiteten Klassen
 diese Methode nicht mehr verändert wird.
 
-Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmuster für dieses Problem:
+Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmusters für dieses Problem:
 
 <img src="dp_notification_sender.svg" width="800">
 
