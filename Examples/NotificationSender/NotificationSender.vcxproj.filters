@@ -21,6 +21,9 @@
     <None Include="Resources\Solution.md">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Resources\dp_notification_sender.svg">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="NotificationSender.cpp">

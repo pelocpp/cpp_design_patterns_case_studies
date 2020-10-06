@@ -35,7 +35,7 @@ Schreiben Sie eine Testfunktion, die Ihre Realisierung testet.
 
 ##### Zusatzaufgabe:
 
-Im Lösungsteil dieser Aufgabe finden Sie den Quelltext der `MailNotificationSender` vor.
+Im Lösungsteil dieser Aufgabe finden Sie den Quelltext der `MailNotificationSender`-Klasse vor.
 Benutzen Sie diese Klasse als Anregung, um davon ausgehend eine zweite Klasse `SmsNotificationSender` 
 zu realisieren.
 

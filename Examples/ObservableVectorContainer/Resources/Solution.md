@@ -2,7 +2,7 @@
 
 #### Lösung
 
-Wir haben es offensichtlich mit einem Anwendungsfall des  *Observer* Patterns zu tun.
+Wir haben es offensichtlich mit einem Anwendungsfall des *Observer* Patterns zu tun.
 Dieses Muster beschreibt ein Objekt, in der Regel als *Subject* bezeichnet,
 das eine Liste abhängiger Objekte verwaltet, die als *Observer* bezeichnet werden,
 und benachrichtigt diese über jegliche Zustandsänderung,
