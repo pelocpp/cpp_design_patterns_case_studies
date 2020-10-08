@@ -6,7 +6,7 @@
 #include <string>
 #include <cassert>
 
-// resembles 'Component'
+// corresponds to 'Component'
 class PasswordValidator
 {
 public:
@@ -14,7 +14,7 @@ public:
     virtual ~PasswordValidator() {}
 };
 
-// resembles 'ConcreteComponent'
+// corresponds to 'ConcreteComponent'
 class LengthValidator final : public PasswordValidator
 {
 private:
@@ -28,7 +28,7 @@ public:
     }
 };
 
-// resembles 'DecoratorBase'
+// corresponds to 'DecoratorBase'
 class PasswordValidatorDecorator : public PasswordValidator
 {
 private:
@@ -43,7 +43,7 @@ public:
     }
 };
 
-// resembles 'ConcreteDecorator'
+// corresponds to 'ConcreteDecorator'
 class DigitPasswordValidator final : public PasswordValidatorDecorator
 {
 public:
@@ -58,7 +58,7 @@ public:
     }
 };
 
-// resembles 'ConcreteDecorator'
+// corresponds to 'ConcreteDecorator'
 class CasePasswordValidator final : public PasswordValidatorDecorator
 {
 public:
@@ -81,7 +81,7 @@ public:
     }
 };
 
-// resembles 'ConcreteDecorator'
+// corresponds to 'ConcreteDecorator'
 class SymbolPasswordValidator final : public PasswordValidatorDecorator
 {
 public:
