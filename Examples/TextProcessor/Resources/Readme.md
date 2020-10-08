@@ -82,6 +82,11 @@ Die Methode `outputList` nimmt eine Liste von Zeichenketten entgegen,
 die eine Aufzählung bilden. `print` schließlich gibt den Text
 auf der Konsole aus. 
 
+
+#### Lösung
+
+[Siehe hier](Solution.md)
+
 ---
 
 [Zurück](../../../Readme.md)
