@@ -2,13 +2,13 @@
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall für das *Decorator Pattern* Entwurfsmuster.
+Das hier beschriebene Problem ist ein typischer Anwendungsfall für das &ldquo;Decorator Pattern&rdquo; Entwurfsmuster.
 Dieses Entwurfsmuster ermöglicht das Hinzufügen von Verhalten zu einem Objekt, ohne andere Objekte desselben Typs zu beeinflussen.
 Das wird erreicht durch das Einhüllen eines Objekts in ein anderes Objekt.
-Mehrere dieser so genannten *Decorator* Objekte lassen sich miteinander verknüpfen
-(aufeinander stapeln), wobei jedes Mal eine neue Funkionalität hinzugefügt wird.
+Mehrere dieser so genannten *Decorator*-Objekte lassen sich miteinander verknüpfen
+(aufeinander stapeln), wobei jedes Mal eine neue Funktionalität hinzugefügt wird.
 In unserem  Beispiel besteht die Funktionalität darin,
-dass ein bestimmtes Passwort eine oder mehrere bestimmte Anforderung(en) erfüllt.
+dass ein bestimmtes Passwort eine oder mehrere bestimmte Anforderung(en) erfüllen muss.
 
 Das folgende Klassendiagramm beschreibt das *Decorator Pattern* Entwurfsmuster
 zum Überprüfen von Kennwörtern:
@@ -35,13 +35,14 @@ Auf diese Weise können Sie ein `LengthValidator`-Objekt (Minimalanforderung)
 wie folgt "*dekorieren*":
 
 ```cpp
-std::unique_ptr<SymbolPasswordValidator> validator =
+std::unique_ptr<SymbolPasswordValidator> validator {
     std::make_unique<SymbolPasswordValidator>(
         std::make_unique<CasePasswordValidator>(
             std::make_unique<DigitPasswordValidator>(
-                std::make_unique<LengthValidator>(8))));
+                std::make_unique<LengthValidator>(8))))
+};
 
-boolvalid = validator->validate("IchBinEinPasswort");
+bool valid = validator->validate("IchBinEinPasswort");
 ```
 
 

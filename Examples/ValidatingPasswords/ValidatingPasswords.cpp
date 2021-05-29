@@ -21,9 +21,10 @@ private:
     unsigned int m_length; 
 
 public:
-    LengthValidator(unsigned int minLength) : m_length(minLength) {}
+    LengthValidator(unsigned int minLength) : m_length{ minLength } {}
 
-    bool validate(std::string password) const override {
+    bool validate(std::string password) const override 
+    {
         return password.length() >= m_length;
     }
 };
@@ -36,9 +37,10 @@ private:
 
 public:
     explicit PasswordValidatorDecorator(std::unique_ptr<PasswordValidator> validator)
-        : m_inner(std::move(validator)) {}
+        : m_inner{ std::move(validator) } {}
 
-    bool validate(std::string password) const override {
+    bool validate(std::string password) const override
+    {
         return m_inner->validate(password);
     }
 };
@@ -48,7 +50,7 @@ class DigitPasswordValidator final : public PasswordValidatorDecorator
 {
 public:
     explicit DigitPasswordValidator(std::unique_ptr<PasswordValidator> validator) 
-        : PasswordValidatorDecorator(std::move(validator)) {}
+        : PasswordValidatorDecorator{ std::move(validator) } {}
 
     bool validate(std::string password) const override {
         if (!PasswordValidatorDecorator::validate(password))
@@ -63,7 +65,7 @@ class CasePasswordValidator final : public PasswordValidatorDecorator
 {
 public:
     explicit CasePasswordValidator(std::unique_ptr<PasswordValidator> validator)
-        : PasswordValidatorDecorator(std::move(validator)) {}
+        : PasswordValidatorDecorator{ std::move(validator) } {}
 
     bool validate(std::string password) const override {
         if (!PasswordValidatorDecorator::validate(password))
@@ -71,11 +73,14 @@ public:
 
         bool haslower = false;
         bool hasupper = false;
-        for (size_t i = 0; i < password.length() && !(hasupper && haslower);
-            ++i)
+        for (size_t i = 0; i < password.length() && !(hasupper && haslower); ++i)
         {
-            if (islower(password[i])) haslower = true;
-            else if (isupper(password[i])) hasupper = true;
+            if (islower(password[i])) {
+                haslower = true;
+            }
+            else if (isupper(password[i])) {
+                hasupper = true;
+            }
         }
         return haslower && hasupper;
     }
@@ -86,11 +91,12 @@ class SymbolPasswordValidator final : public PasswordValidatorDecorator
 {
 public:
     explicit SymbolPasswordValidator(std::unique_ptr<PasswordValidator> validator)
-        : PasswordValidatorDecorator(std::move(validator)) {}
+        : PasswordValidatorDecorator{ std::move(validator) } {}
 
     bool validate(std::string password) const override {
-        if (!PasswordValidatorDecorator::validate(password))
+        if (!PasswordValidatorDecorator::validate(password)) {
             return false;
+        }
 
         return password.find_first_of("!@#$%^&*(){}[]?<>") != std::string::npos;
     }
@@ -98,21 +104,22 @@ public:
 
 void validating_passwords() {
 
-    std::unique_ptr<DigitPasswordValidator> validator1 =
-        std::make_unique<DigitPasswordValidator>(
-            std::make_unique<LengthValidator>(8));
+    std::unique_ptr<DigitPasswordValidator> validator1 { 
+        std::make_unique<DigitPasswordValidator>(std::make_unique<LengthValidator>(8))
+    };
 
-    bool valid = validator1->validate("abc123!@#");
+    bool valid{ validator1->validate("abc123!@#") };
     assert(valid == true);
 
     valid = validator1->validate("abcde!@#");
     assert(valid == false);
 
-    std::unique_ptr<SymbolPasswordValidator> validator2 =
+    std::unique_ptr<SymbolPasswordValidator> validator2 {
         std::make_unique<SymbolPasswordValidator>(
             std::make_unique<CasePasswordValidator>(
                 std::make_unique<DigitPasswordValidator>(
-                    std::make_unique<LengthValidator>(8))));
+                    std::make_unique<LengthValidator>(8))))
+    };
 
     valid = validator2->validate("Abc123!@#");
     assert(valid == true);

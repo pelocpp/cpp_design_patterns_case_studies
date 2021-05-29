@@ -1,7 +1,7 @@
 # Beispiele zu C++ Design Patterns
 
-In diesem Repository befinden sich einige kleinere Aufgaben (samt Musterlösungen) zum
-Themenbereich "C++ Design Patterns".
+In diesem Repository befinden sich einige kleinere Aufgaben &ndash; samt Musterlösungen &ndash; zum
+Themenbereich &ldquo;C++ Design Patterns&rdquo;.
 
 ### [Passwort Validierer](Examples/ValidatingPasswords/Resources/Readme.md)
 
