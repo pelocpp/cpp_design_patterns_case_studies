@@ -8,6 +8,8 @@
 #include <unordered_map>
 #include <random>
 
+// ===========================================================================
+
 class Character
 {
 private:
@@ -15,9 +17,11 @@ private:
     std::string m_font;
 
 public:
+    // c'tor(s), d'tor
     Character() = default;
-    Character(const std::string& color, const std::string& font) : m_color(color), m_font(font) {}
     virtual ~Character() = default;
+    Character(const std::string& color, const std::string& font)
+        : m_color{ color }, m_font{ font } {}
 
     // getter
     std::string getColor() const { return m_color; }
@@ -40,7 +44,8 @@ private:
 
 public:
     ConcreteCharacter() = default;
-    explicit ConcreteCharacter(const std::shared_ptr<Character>& state) : m_sharedState(state) {}
+    explicit ConcreteCharacter(const std::shared_ptr<Character>& state) 
+        : m_sharedState{ state } {}
     ~ConcreteCharacter() = default;
 
     void render(int x, int y) const noexcept;
@@ -48,7 +53,9 @@ public:
 };
 
 void ConcreteCharacter::render(int x, int y) const noexcept {
-    std::cout << "Character: Position (" << x << ", " << y << ") with shared state " << *m_sharedState << std::endl;
+    std::cout 
+        << "Character: Position (" << x << ", " << y <<
+        ") with shared state " << *m_sharedState << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& os, const ConcreteCharacter& cc)
@@ -121,6 +128,7 @@ private:
     std::uniform_int_distribution<int> m_fontsDistribution{ 0, static_cast<int>(m_fonts.size()) - 1 };
 
 public:
+    // c'tor
     CharacterClient();
 
     std::string getRandomColor();
@@ -131,19 +139,19 @@ public:
 
 CharacterClient::CharacterClient() {
     m_colors = {
-        std::string("Red"),
-        std::string("Green"),
-        std::string("Blue"),
-        std::string("White"),
-        std::string("Black"),
-        std::string("Yellow"),
-        std::string("Magenta")
+        std::string{ "Red" },
+        std::string{ "Green" },
+        std::string{ "Blue" },
+        std::string{ "White" },
+        std::string{ "Black" },
+        std::string{ "Yellow" },
+        std::string{ "Magenta" }
     };
 
     m_fonts = {
-        std::string("Arial"),
-        std::string("Verdana"),
-        std::string("Roboto")
+        std::string{ "Arial" },
+        std::string{ "Verdana" },
+        std::string{ "Roboto" }
     };
 }
 
@@ -167,22 +175,33 @@ int CharacterClient::getRandomY() {
 
 // ===========================================================================
 
-void testSemigraphics01() {
-
-    CharacterFactory factory;
-
+void initSmallFactory(CharacterFactory& factory)
+{
     std::array<std::string, 5> colors = {
-        std::string("Red"),
-        std::string("Green"),
-        std::string("Blue"),
-        std::string("White"),
-        std::string("Black") 
+        std::string{ "Red" },
+        std::string{ "Green" },
+        std::string{ "Blue" }
+    };
+
+    for (std::string color : colors) {
+        factory.addCharacter(color, std::string{ "Arial" });
+    }
+}
+
+void initLargeFactory(CharacterFactory& factory)
+{
+    std::array<std::string, 5> colors = {
+    std::string{ "Red" },
+    std::string{ "Green" },
+    std::string{ "Blue" },
+    std::string{ "White" },
+    std::string{ "Black" }
     };
 
     std::array<std::string, 3> fonts = {
-        std::string("Arial"),
-        std::string("Fixedsys"),
-        std::string("Helvetica")
+        std::string{ "Arial" },
+        std::string{ "Fixedsys" },
+        std::string{ "Roboto" }
     };
 
     for (std::string color : colors) {
@@ -190,6 +209,13 @@ void testSemigraphics01() {
             factory.addCharacter(color, font);
         }
     }
+}
+
+void testSemigraphics01() {
+
+    CharacterFactory factory;
+
+    initLargeFactory(factory);
 
     std::cout << factory << std::endl;
 }
@@ -197,23 +223,18 @@ void testSemigraphics01() {
 void testSemigraphics02() {
 
     CharacterClient client;
+
     CharacterFactory factory;
 
-    std::array<std::string, 5> colors = {
-        std::string("Red"),
-        std::string("Green"),
-        std::string("Blue")
-    };
-
-    for (std::string color : colors) {
-        factory.addCharacter(color, std::string("Arial"));
-    }
+    initSmallFactory(factory);
+    // or
+    // initLargeFactory(factory);
 
     for (int i = 0; i < 15; i++) {
 
-        std::string color = client.getRandomColor();
-        std::string font = client.getRandomFont();
-        ConcreteCharacter cc = factory.getConcreteCharacter(color, font);
+        std::string color{ client.getRandomColor() };
+        std::string font{ client.getRandomFont() };
+        ConcreteCharacter cc{ factory.getConcreteCharacter(color, font) };
         cc.render(client.getRandomX(), client.getRandomY());
     }
 }

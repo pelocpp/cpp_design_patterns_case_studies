@@ -2,9 +2,16 @@
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall des *Flyweight* Entwurfsmusters.
+Das hier beschriebene Problem ist ein typischer Anwendungsfall für das *Flyweight* Entwurfsmuster.
 
-Die Details der Lösung entnehmen Sie dem Quellcode.
+Beachten Sie die folgende Zuordnung der Klassen aus dem theoretischen Teil und aus dem Beispiel:
+
+  * `Flyweight` &ndash; `Character`
+  * `UnsharedFlyweight` &ndash; `ConcreteCharacter`
+  * `FlyweightFactory` &ndash; `CharacterFactory`
+  * `Client` &ndash; `CharacterClient`
+
+Weitere Details zur Lösung entnehmen Sie bitte dem Quellcode.
 
 #### Hinweis:
 
@@ -49,7 +56,7 @@ CharacterFactory: Reusing existing character.
 Character: Position (600, 400) with shared state [ Color: Blue - Font: Arial]
 ```
 
-Man gut an den Ausgaben erkennen, dass jedes `Character`-Objekt vor seiner ersten Verwendung neu angelegt wird.
+Man kann gut an den Ausgaben erkennen, dass jedes `Character`-Objekt vor seiner ersten Verwendung neu angelegt wird.
 
 
 ##### 2. Variante: 
@@ -91,7 +98,7 @@ CharacterFactory: Reusing existing character.
 Character: Position (600, 400) with shared state [ Color: Blue - Font: Arial]
 ```
 
-Man erkennt an den Ausgaben, dass vorhandene `Character`-Objekte bei erster Verwendung mit vorhandenen Objekten
+Man erkennt an den Ausgaben, dass `Character`-Objekte bei erster Verwendung durch vorhandene Objekten
 belegt werden.
 
 #### Literaturhinweis
