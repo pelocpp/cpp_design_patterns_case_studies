@@ -6,7 +6,7 @@ Schreiben Sie ein C++-Programm für die Einkaufsabteilung eines Unternehmens,
 das es den Mitarbeitern ermöglicht, Neueinkäufe (oder Ausgaben) zu genehmigen.
 Je nach Position des Mitarbeiters
 darf dieser nur Ausgaben bis zu einem vordefinierten Maximalbetrag genehmigen.
-Zum Beispiel können Sachbearbieter Ausgaben bis zu 1.000€ genehmigen,
+Zum Beispiel können Sachbearbeiter Ausgaben bis zu 1.000€ genehmigen,
 Teamleiter bis zu 10.000€ und ein Abteilungsleiter bis zu 100.000€.
 Jeder noch höhere Betrag muss explizit
 von der Firmenleitung bewilligt werden.

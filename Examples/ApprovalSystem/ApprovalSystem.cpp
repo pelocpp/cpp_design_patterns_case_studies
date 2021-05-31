@@ -16,7 +16,7 @@ public:
 class EmployeeRole : public Role
 {
 public:
-    double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const override
     {
         return 1000;
     }
@@ -25,7 +25,7 @@ public:
 class TeamManagerRole : public Role
 {
 public:
-    double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const override
     {
         return 10000;
     }
@@ -34,7 +34,7 @@ public:
 class DepartmentManagerRole : public Role
 {
 public:
-    double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const override
     {
         return 100000;
     }
@@ -43,7 +43,7 @@ public:
 class CEORole : public Role
 {
 public:
-    double getApprovalLimit() const noexcept override
+    double getApprovalLimit() const override
     {
         return std::numeric_limits<double>::max();
     }
@@ -57,7 +57,7 @@ private:
 
 public:
     Expense(double const amount, std::string_view desc)
-        : m_amount(amount), m_description(desc) {}
+        : m_amount{ amount }, m_description{ desc } {}
 
     double getAmount() const noexcept { return m_amount; }
     std::string getDescription() const noexcept { return m_description; }
@@ -72,7 +72,7 @@ private:
 
 public:
     explicit Employee(std::string_view name, std::unique_ptr<Role> ownrole)
-        : m_name(name), m_ownRole(std::move(ownrole)) {}
+        : m_name{ name }, m_ownRole{ std::move(ownrole) }, m_directManager{ nullptr } {}
 
     void setDirectManager(std::shared_ptr<Employee> manager)
     {
@@ -108,16 +108,17 @@ void approval_system()
 
     std::unique_ptr<Role> role4 = std::make_unique<CEORole>();
     std::shared_ptr<Employee> marvin = 
-        std::make_shared<Employee>("Marvin Shwarz", std::move(role4));
+        std::make_shared<Employee>("Marvin Swartz", std::move(role4));
 
     cliff->setDirectManager(rick);
     rick->setDirectManager(randy);
     randy->setDirectManager(marvin);
 
+    // employee 'cliff' gets all bills
     cliff->approve(Expense{ 500, "Magazins" });
-    rick->approve(Expense{ 5000, "Hotel Accomodation" });
-    randy->approve(Expense{ 50000, "Conference costs" });
-    marvin->approve(Expense{ 200000, "New Truck" });
+    cliff->approve(Expense{ 5000, "Hotel Accomodation" });
+    cliff->approve(Expense{ 50000, "Conference costs" });
+    cliff->approve(Expense{ 200000, "New Truck" });
 }
 
 // ===========================================================================

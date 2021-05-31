@@ -22,7 +22,7 @@ Jeder Mitarbeiter hat einen Namen und eine Rolle, die seine Verantwortlichkeiten
 `Role` ist eine abstrakte Basisklasse für mögliche Rollen und hat eine rein virtuelle (*pure virtual*)
 Methode `getApprovalLimit`, die Klassen wie `EmployeeRole`,
 `TeamManagerRole`, `DepartmentManagerRole` und `CEORole` überschreiben, um auf diese Weise
-zum Ausdruck zu bringen, bis zu welchen Betrag ein Mitarbeiter Ausgaben genehmigen darf.
+zum Ausdruck zu bringen, bis zu welchem Betrag ein Mitarbeiter Ausgaben genehmigen darf.
 Die `approve`-Methode aus der Klasse `Employee` dient dem Zweck, einen Mitarbeiter eine Ausgabe genehmigen zu lassen.
 Wenn die Rolle des Mitarbeiters dies ihm ermöglicht, gibt er die Ausgabe frei.
 Andernfalls wird die Anforderung an den direkten Manager weitergeleitet, sofern dieser vorhanden ist.
