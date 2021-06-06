@@ -1,5 +1,5 @@
 // ===========================================================================
-// ObservableVectorContainer.cpp
+// ObservableVector.cpp
 // ===========================================================================
 
 #include <iostream>
@@ -14,7 +14,7 @@ enum class CollectionAction
     Assign
 };
 
-std::string to_string(CollectionAction const action)
+std::string to_string(CollectionAction action)
 {
     switch (action)
     {
@@ -84,7 +84,7 @@ public:
                     o->collectionChanged({
                         CollectionAction::Assign,
                         std::vector<size_t> {}
-                        });
+                    });
                 }
             }
         }
@@ -170,11 +170,10 @@ public:
         m_observers.push_back(o);
     }
 
-    void removeObserver(ICollectionObserver const* const o)  // TODO : Wie ist das zu lesen ??? 
+    void removeObserver(const ICollectionObserver* o)
     {
         m_observers.erase(
-            std::remove(std::begin(m_observers),
-            std::end(m_observers), o),
+            std::remove(std::begin(m_observers), std::end(m_observers), o),
             std::end(m_observers)
         );
     }
@@ -199,7 +198,8 @@ public:
     }
 };
 
-void observableVectorContainer() {
+void testObservableVector() 
+{
     ObservableVector<int> v;
     Observer o;
     v.addObserver(&o);

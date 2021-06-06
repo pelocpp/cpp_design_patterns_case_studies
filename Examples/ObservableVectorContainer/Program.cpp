@@ -3,10 +3,10 @@
 // ===========================================================================
 
 // function prototypes
-void observableVectorContainer();
+void testObservableVector();
 
 int main() {
-    observableVectorContainer();
+    testObservableVector();
     return 0;
 }
 
