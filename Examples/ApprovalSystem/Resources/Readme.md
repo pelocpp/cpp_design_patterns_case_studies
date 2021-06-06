@@ -8,8 +8,7 @@ Je nach Position des Mitarbeiters
 darf dieser nur Ausgaben bis zu einem vordefinierten Maximalbetrag genehmigen.
 Zum Beispiel können Sachbearbeiter Ausgaben bis zu 1.000€ genehmigen,
 Teamleiter bis zu 10.000€ und ein Abteilungsleiter bis zu 100.000€.
-Jeder noch höhere Betrag muss explizit
-von der Firmenleitung bewilligt werden.
+Jeder noch höhere Betrag muss explizit von der Firmenleitung bewilligt werden.
 
 Welches klassische Entwurfsmuster bietet sich zur Realisierung an?
 

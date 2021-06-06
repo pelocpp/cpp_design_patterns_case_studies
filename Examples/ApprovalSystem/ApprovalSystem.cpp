@@ -9,14 +9,14 @@
 class Role
 {
 public:
-    virtual double getApprovalLimit() const noexcept = 0;
+    virtual double getApprovalLimit() const = 0;
     virtual ~Role() {}
 };
 
 class EmployeeRole : public Role
 {
 public:
-    double getApprovalLimit() const override
+    virtual double getApprovalLimit() const override
     {
         return 1000;
     }
@@ -25,7 +25,7 @@ public:
 class TeamManagerRole : public Role
 {
 public:
-    double getApprovalLimit() const override
+    virtual double getApprovalLimit() const override
     {
         return 10000;
     }
@@ -34,7 +34,7 @@ public:
 class DepartmentManagerRole : public Role
 {
 public:
-    double getApprovalLimit() const override
+    virtual double getApprovalLimit() const override
     {
         return 100000;
     }
@@ -43,7 +43,7 @@ public:
 class CEORole : public Role
 {
 public:
-    double getApprovalLimit() const override
+    virtual double getApprovalLimit() const override
     {
         return std::numeric_limits<double>::max();
     }

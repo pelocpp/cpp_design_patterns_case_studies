@@ -42,7 +42,7 @@ std::unique_ptr<SymbolPasswordValidator> validator {
                 std::make_unique<LengthValidator>(8))))
 };
 
-bool valid = validator->validate("IchBinEinPasswort");
+bool valid { validator->validate("IchBinEinPasswort") };
 ```
 
 

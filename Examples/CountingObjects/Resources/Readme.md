@@ -24,7 +24,7 @@ Welches weitere Entwurfsmuster könnte hier zum Einsatz kommen?
 
 An Stelle der Anzahl aller Objekte in der baumartigen Struktur ist nun die Frage 
 nach der Anzahl unter­schied­licher Typen im Objektbaum zu beantworten.
-Also wieviele `Composite`-, wieviele `Leaf1`- und wieviele `Leaf2`-Objekte befinden sich im Baum.
+Also wieviele `Composite`-, wieviele `Leaf1`- und wieviele `Leaf2`-Objekte befinden sich im Baum?
 
 
 #### Lösung
