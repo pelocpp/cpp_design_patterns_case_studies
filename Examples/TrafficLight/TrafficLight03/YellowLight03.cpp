@@ -17,7 +17,7 @@ namespace TrafficLight03
 
     std::shared_ptr<YellowLight> YellowLight::getInstance() {
         if (m_instance == nullptr) {
-            m_instance = std::shared_ptr<YellowLight>(new YellowLight{  });
+            m_instance = std::shared_ptr<YellowLight>(new YellowLight{ });
         }
 
         return m_instance;

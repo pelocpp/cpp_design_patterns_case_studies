@@ -64,6 +64,18 @@ while (true)
 
 #### Quellcode
 
+Der Quellcode liegt in drei Varianten vor:
+
+  * Variante mit *Raw* Pointer
+
+  * Variante mit *Smart* Pointer
+
+  * Variante mit *Smart* Pointer und *Singleton* Entwurfsmuster
+
+In der dritten Variante wird das Problem gelöst, das pro Zustandswechsel
+immer ein neues Zustandsobjekt benötigt wird. 
+Dies lässt sich mit dem *Singleton* Entwurfsmuster besser lösen.
+
 [Siehe hier](../TrafficLight01/Main01.cpp) und weitere Dateien im selben Verzeichnis.
 
 

@@ -17,7 +17,7 @@ namespace TrafficLight03
 
     std::shared_ptr<RedLight> RedLight::getInstance() {
         if (m_instance == nullptr) {
-            m_instance = std::shared_ptr<RedLight>(new RedLight{  });
+            m_instance = std::shared_ptr<RedLight>(new RedLight{ });
         }
 
         return m_instance;

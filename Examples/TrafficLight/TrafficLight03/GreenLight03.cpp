@@ -17,7 +17,7 @@ namespace TrafficLight03
 
     std::shared_ptr<GreenLight> GreenLight::getInstance() {
         if (m_instance == nullptr) {
-            m_instance = std::shared_ptr<GreenLight>(new GreenLight{  });
+            m_instance = std::shared_ptr<GreenLight>(new GreenLight{ });
         }
 
         return m_instance;
