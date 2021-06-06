@@ -7,24 +7,24 @@ Die `notify`-Methode ist einer Basisklasse zuzuordnen, wir nennen sie `Notificat
 Die einzelnen Schritte könnten in dieser Methode so abgehandelt werden:
 
 ```cpp
-void notify(std::string text)
-{
-    std::string header = getNotificationHeader();
-    sendText(header);
-
-    sendText(text);
-
-    std::string trailer = getNotificationTrailer();
-    sendText(trailer);
-
-    std::string tmp = getProtocolDetails();
-    std::string details = 
-        tmp + 
-        std::string(" - Length of message: ") + 
-        std::to_string(text.length());
-
-    sendText(details);
-}
+01: void notify(std::string text)
+02: {
+03:     std::string header = getNotificationHeader();
+04:     sendText(header);
+05: 
+06:     sendText(text);
+07: 
+08:     std::string trailer = getNotificationTrailer();
+09:     sendText(trailer);
+10: 
+11:     std::string tmp = getProtocolDetails();
+12:     std::string details = 
+13:         tmp + 
+14:         std::string(" - Length of message: ") + 
+15:         std::to_string(text.length());
+16: 
+17:     sendText(details);
+18: }
 ```
 
 Wesentlich hierbei ist, dass bei den konkreten Realisierungen der abgeleiteten Klassen
