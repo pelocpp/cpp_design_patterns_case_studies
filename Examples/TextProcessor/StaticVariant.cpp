@@ -1,5 +1,5 @@
 // ===========================================================================
-// ProgramTemplates.cpp // class StaticTextProcessor
+// StaticVariant.cpp // class StaticTextProcessor
 // ===========================================================================
 
 #include <iostream>

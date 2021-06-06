@@ -12,8 +12,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ApprovalSystem", "Examples\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeneratingPasswords", "Examples\GeneratingPasswords\GeneratingPasswords.vcxproj", "{D207243E-4834-41A2-AEBC-7A2E1383E10B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObservableVectorContainer", "Examples\ObservableVectorContainer\ObservableVectorContainer.vcxproj", "{8225E500-1860-462A-8844-33006394D0AE}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pimpl", "Examples\Pimpl\Pimpl.vcxproj", "{8D948E51-5CFF-4647-8FD8-CDCD32197E51}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StorageExplorer", "Examples\StorageExplorer\StorageExplorer.vcxproj", "{3F96724F-AED9-42CD-97AD-0C503F03D227}"
@@ -29,6 +27,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TextProcessor", "Examples\TextProcessor\TextProcessor.vcxproj", "{BB524CB9-305E-422F-B198-EC635BFE702D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "NotificationSender", "Examples\NotificationSender\NotificationSender.vcxproj", "{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ObservableVector", "Examples\ObservableVector\ObservableVectorContainer.vcxproj", "{8225E500-1860-462A-8844-33006394D0AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,14 +54,6 @@ Global
 		{D207243E-4834-41A2-AEBC-7A2E1383E10B}.Release|x64.Build.0 = Release|x64
 		{D207243E-4834-41A2-AEBC-7A2E1383E10B}.Release|x86.ActiveCfg = Release|Win32
 		{D207243E-4834-41A2-AEBC-7A2E1383E10B}.Release|x86.Build.0 = Release|Win32
-		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x64.ActiveCfg = Debug|x64
-		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x64.Build.0 = Debug|x64
-		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x86.ActiveCfg = Debug|Win32
-		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x86.Build.0 = Debug|Win32
-		{8225E500-1860-462A-8844-33006394D0AE}.Release|x64.ActiveCfg = Release|x64
-		{8225E500-1860-462A-8844-33006394D0AE}.Release|x64.Build.0 = Release|x64
-		{8225E500-1860-462A-8844-33006394D0AE}.Release|x86.ActiveCfg = Release|Win32
-		{8225E500-1860-462A-8844-33006394D0AE}.Release|x86.Build.0 = Release|Win32
 		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Debug|x64.ActiveCfg = Debug|x64
 		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Debug|x64.Build.0 = Debug|x64
 		{8D948E51-5CFF-4647-8FD8-CDCD32197E51}.Debug|x86.ActiveCfg = Debug|Win32
@@ -126,6 +118,14 @@ Global
 		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Release|x64.Build.0 = Release|x64
 		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Release|x86.ActiveCfg = Release|Win32
 		{FFDEB854-DC4E-4A30-B626-61B07B7B5B5A}.Release|x86.Build.0 = Release|Win32
+		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x64.ActiveCfg = Debug|x64
+		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x64.Build.0 = Debug|x64
+		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x86.ActiveCfg = Debug|Win32
+		{8225E500-1860-462A-8844-33006394D0AE}.Debug|x86.Build.0 = Debug|Win32
+		{8225E500-1860-462A-8844-33006394D0AE}.Release|x64.ActiveCfg = Release|x64
+		{8225E500-1860-462A-8844-33006394D0AE}.Release|x64.Build.0 = Release|x64
+		{8225E500-1860-462A-8844-33006394D0AE}.Release|x86.ActiveCfg = Release|Win32
+		{8225E500-1860-462A-8844-33006394D0AE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

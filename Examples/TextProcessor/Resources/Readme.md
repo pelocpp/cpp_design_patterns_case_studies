@@ -3,7 +3,7 @@
 #### Aufgabe
 
 Wir betrachten in dieser Aufgabe die Implementierung eines Textprozessors,
-zumindest in Ansätzen. Aufgabe dieses Textprozessor ist es,
+zumindest in Ansätzen. Aufgabe dieses Textprozessors ist es,
 unformatierten Text, also Zeichenketten entgegenzunehmen,
 und diese formatiert auszugeben. Handelt es sich dabei um
 eine Aufzählung mehrerer Zeichenketten (Liste von Zeichenketten),

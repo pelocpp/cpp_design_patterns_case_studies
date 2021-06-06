@@ -143,10 +143,11 @@
     <None Include="Resources\Solution.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DynamicVariant.cpp" />
     <ClCompile Include="RenderHtmlListStrategy.cpp" />
     <ClCompile Include="RenderMarkdownListStrategy.cpp" />
     <ClCompile Include="Program.cpp" />
-    <ClCompile Include="ProgramTemplates.cpp" />
+    <ClCompile Include="StaticVariant.cpp" />
     <ClCompile Include="RenderTextProcessor.cpp" />
   </ItemGroup>
   <ItemGroup>

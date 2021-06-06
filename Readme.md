@@ -15,7 +15,7 @@ Themenbereich &ldquo;C++ Design Patterns&rdquo;.
 
 ### [Pointer to Implementation (*Pimpl*)](Examples/Pimpl/Resources/Readme.md)
 
-### [Observable Vector Container](Examples/ObservableVectorContainer/Resources/Readme.md)
+### [Observable Vector](Examples/ObservableVector/Resources/Readme.md)
 
 ### [Semigraphisches Videospiel](Examples/Semigraphics/Resources/Readme.md)
 

@@ -35,7 +35,10 @@
     <ClCompile Include="Program.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ProgramTemplates.cpp">
+    <ClCompile Include="StaticVariant.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DynamicVariant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
