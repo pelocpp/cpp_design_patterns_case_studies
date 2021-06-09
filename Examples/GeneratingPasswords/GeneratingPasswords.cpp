@@ -10,30 +10,32 @@
 class PasswordGenerator
 {
 public:
-    virtual std::string generate(std::default_random_engine&) = 0;
+    virtual ~PasswordGenerator() {}
+
+    virtual std::string generate(std::default_random_engine&) const = 0;
     virtual std::string allowedChars() const = 0;
     virtual size_t length() const = 0;
     virtual void add(std::unique_ptr<PasswordGenerator>) = 0;
     virtual void clear() = 0;
-    virtual ~PasswordGenerator() {}
 };
 
 class BasicPasswordGenerator : public PasswordGenerator
 {
 private:
-    size_t len;
+    size_t m_len;
 
 public:
-    explicit BasicPasswordGenerator(size_t const len) noexcept : len(len)
-    {}
+    explicit BasicPasswordGenerator(size_t len) noexcept : m_len{ len } {}
 
-    virtual std::string generate(std::default_random_engine& engine) override
+    virtual std::string generate(std::default_random_engine& engine) const override
     {
         std::string chars = allowedChars();
-        std::uniform_int_distribution<> ud(0, static_cast<int>(chars.length() - 1));
 
-        std::string password;
-        for (size_t i = 0; i < length(); ++i)
+        std::uniform_int_distribution<> ud{ 0, static_cast<int>(chars.length() - 1) };
+
+        std::string password{};
+
+        for (size_t i{}; i != length(); ++i)
             password += chars[ud(engine)];
 
         return password;
@@ -53,15 +55,15 @@ public:
 
     virtual size_t length() const override final
     {
-        return len;
+        return m_len;
     }
 };
 
 class DigitGenerator : public BasicPasswordGenerator
 {
 public:
-    explicit DigitGenerator(size_t const len) noexcept
-        : BasicPasswordGenerator(len) {}
+    explicit DigitGenerator(size_t len) noexcept
+        : BasicPasswordGenerator{ len } {}
 
     virtual std::string allowedChars() const override
     {
@@ -72,8 +74,8 @@ public:
 class SymbolGenerator : public BasicPasswordGenerator
 {
 public:
-    explicit SymbolGenerator(size_t const len) noexcept
-        : BasicPasswordGenerator(len) {}
+    explicit SymbolGenerator(size_t len) noexcept
+        : BasicPasswordGenerator{ len } {}
 
     virtual std::string allowedChars() const override
     {
@@ -84,8 +86,8 @@ public:
 class UpperLetterGenerator : public BasicPasswordGenerator
 {
 public:
-    explicit UpperLetterGenerator(size_t const len) noexcept
-        : BasicPasswordGenerator(len) {}
+    explicit UpperLetterGenerator(size_t len) noexcept
+        : BasicPasswordGenerator{ len } {}
 
     virtual std::string allowedChars() const override
     {
@@ -96,8 +98,8 @@ public:
 class LowerLetterGenerator : public BasicPasswordGenerator
 {
 public:
-    explicit LowerLetterGenerator(size_t const len) noexcept
-        : BasicPasswordGenerator(len) {}
+    explicit LowerLetterGenerator(size_t len) noexcept
+        : BasicPasswordGenerator{ len } {}
 
     virtual std::string allowedChars() const override
     {
@@ -108,7 +110,7 @@ public:
 class CompositePasswordGenerator : public PasswordGenerator
 {
 private:
-    std::vector<std::unique_ptr<PasswordGenerator>> generators;
+    std::vector<std::unique_ptr<PasswordGenerator>> m_generators;
 
 private:
     virtual std::string allowedChars() const override
@@ -124,24 +126,27 @@ private:
 public:
     CompositePasswordGenerator() {}
 
-    virtual std::string generate(std::default_random_engine& engine) override
+    virtual std::string generate(std::default_random_engine& engine) const override
     {
-        std::string password;
-        for (auto& generator : generators) {
+        std::string password{};
+
+        for (const auto& generator : m_generators) {
             password += generator->generate(engine);
         }
+
         std::shuffle(std::begin(password), std::end(password), engine);
+
         return password;
     }
 
     virtual void add(std::unique_ptr<PasswordGenerator> generator) override
     {
-        generators.push_back(std::move(generator));
+        m_generators.push_back(std::move(generator));
     }
 
     virtual void clear() override
     {
-        generators.clear();
+        m_generators.clear();
     }
 };
 
@@ -157,8 +162,8 @@ void generating_passwords() {
     // engine.seed(seq);
 
     // using 'leaf' components directly
-    std::unique_ptr<PasswordGenerator> digiGen = std::make_unique<DigitGenerator>(4);
-    password = digiGen->generate(engine);
+    std::unique_ptr<PasswordGenerator> digitGen = std::make_unique<DigitGenerator>(4);
+    password = digitGen->generate(engine);
     std::cout << "DigitGenerator:       " << password << std::endl;
 
     std::unique_ptr<PasswordGenerator> symbolGen = std::make_unique<SymbolGenerator>(6);

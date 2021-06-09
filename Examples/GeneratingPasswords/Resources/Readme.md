@@ -5,11 +5,11 @@
 Schreiben Sie ein Programm,
 das zufällige Passwörter an Hand von vordefinierten Regeln generieren kann.
 
-Regeln für den Aufbau könnten sein "nur Ziffern", "nur Sonderzeichen",
-"nur Großbuchstaben", "nur Kleinbuchstaben" oder beliebige Kombinationen dieser Regeln.
+Regeln für den Aufbau könnten sein &ldquo;nur Ziffern&rdquo;, &ldquo;nur Sonderzeichen&rdquo;,
+&ldquo;nur Großbuchstaben&rdquo;, &ldquo;nur Kleinbuchstaben&rdquo; oder beliebige Kombinationen dieser Regeln.
 
 Jede Implementierung einer Regel besitzt eine Längenangabe,
-die die Länge der zu erzeugenden Passworts festlegt.
+die die Länge des zu erzeugenden Passworts festlegt.
 
 Welches klassische Entwurfsmuster bietet sich zur Realisierung an?
 
