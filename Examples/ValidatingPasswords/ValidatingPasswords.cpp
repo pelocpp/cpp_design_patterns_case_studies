@@ -104,7 +104,7 @@ public:
 
 void validating_passwords() {
 
-    std::unique_ptr<DigitPasswordValidator> validator1 { 
+    std::unique_ptr<PasswordValidator> validator1 {
         std::make_unique<DigitPasswordValidator>(std::make_unique<LengthValidator>(8))
     };
 
@@ -114,7 +114,7 @@ void validating_passwords() {
     valid = validator1->validate("abcde!@#");
     assert(valid == false);
 
-    std::unique_ptr<SymbolPasswordValidator> validator2 {
+    std::unique_ptr<PasswordValidator> validator2 {
         std::make_unique<SymbolPasswordValidator>(
             std::make_unique<CasePasswordValidator>(
                 std::make_unique<DigitPasswordValidator>(

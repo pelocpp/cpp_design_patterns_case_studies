@@ -31,7 +31,7 @@ ein Passwort zu generieren.
 *Beispiel*:
 
 ```cpp
-std::unique_ptr<DigitGenerator> digiGen = std::make_unique<DigitGenerator>(4);
+std::unique_ptr<PasswordGenerator> digiGen = std::make_unique<DigitGenerator>(4);
 password = digiGen->generate(engine);
 std::cout << "DigitGenerator:       " << password << std::endl;
 ```

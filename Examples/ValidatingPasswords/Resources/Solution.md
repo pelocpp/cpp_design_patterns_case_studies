@@ -35,7 +35,7 @@ Auf diese Weise können Sie ein `LengthValidator`-Objekt (Minimalanforderung)
 wie folgt "*dekorieren*":
 
 ```cpp
-std::unique_ptr<SymbolPasswordValidator> validator {
+std::unique_ptr<PasswordValidator> validator {
     std::make_unique<SymbolPasswordValidator>(
         std::make_unique<CasePasswordValidator>(
             std::make_unique<DigitPasswordValidator>(
