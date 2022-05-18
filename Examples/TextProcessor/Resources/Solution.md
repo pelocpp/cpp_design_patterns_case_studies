@@ -11,7 +11,7 @@ Die Details der Lösung entnehmen Sie dem Quellcode.
 Es wurden zwei Lösungsansätze betrachtet:
 
   * Die klassische dynamische Vorgehensweise
-  * Eine zweite Vorgehensweise mit der C++ Template Technik
+  * Eine zweite (statische) Vorgehensweise mit der C++ Template Technik
 
 
 #### Quellcode
