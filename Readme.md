@@ -23,6 +23,8 @@ Themenbereich &ldquo;C++ Design Patterns&rdquo;.
 
 ### [Ein Textprozessor mit mehreren Formaten](Examples/TextProcessor/Resources/Readme.md)
 
+### [Ein Bankkonto](Examples/BankAccount/Resources/Readme.md)
+
 ---
 
 *Hinweis*:
@@ -32,6 +34,7 @@ die in den Aufgaben zur Anwendung kommen:
 
   * *Chain of Responsibility* Entwurfsmuster
   * *Composite* Entwurfsmuster
+  * *Command* Entwurfsmuster
   * *Decorator Pattern* Entwurfsmuster
   * *Flyweight* Entwurfsmuster
   * *Observer Pattern* Entwurfsmuster
