@@ -17,7 +17,7 @@ public:
 
     void deposit(int amount) { m_balance += amount; }
     void withdraw(int amount) { m_balance -= amount; }
-    int geBalance() const { return m_balance; }
+    int getBalance() const { return m_balance; }
 };
 
 class Command
@@ -84,8 +84,8 @@ void testBankAccounts_01()
 
     transactions.execute();
 
-    std::cout << ba1.geBalance() << std::endl;
-    std::cout << ba2.geBalance() << std::endl;
+    std::cout << ba1.getBalance() << std::endl;
+    std::cout << ba2.getBalance() << std::endl;
 }
 
 // or without class 'Transactions' a.k.a. 'Invoker'
@@ -105,8 +105,8 @@ void testBankAccounts_02()
         transaction.execute();
     }
 
-    std::cout << ba1.geBalance() << std::endl;
-    std::cout << ba2.geBalance() << std::endl;
+    std::cout << ba1.getBalance() << std::endl;
+    std::cout << ba2.getBalance() << std::endl;
 }
 
 void testBankAccounts()

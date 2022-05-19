@@ -9,18 +9,18 @@ eine minimalistische Implementierung mit einem gewissen Startguthaben.
 
 Es gibt in dieser Klasse die beiden Methoden `deposit` und `withdraw`,
 aber anstatt diese Methoden direkt zu verwenden,
-erstellen wir eine separate Klasse `BankAccountCommand`, die als Backup von der abstrakten Klasse `Command`
+erstellen wir eine separate Klasse `BankAccountCommand`, die sich als Backup von der abstrakten Klasse `Command`
 ableitet.
 
 In der Anwendung werden zwei `BankAccount`-Objekte angelegt
-und simulieren die Überweisung von 300€ von einem Bankkonto auf das andere.
+und simulieren die Überweisung von 300€ von einem Bankkonto auf ein anderes.
 
 Jedes Kommando (`Command`) &ndash; sprich jedes `BankAccountCommand`-Objekt &ndash; bezieht sich auf ein bestimmtes Bankkonto,
-sodass es weiß, auf welchem Konto es arbeiten soll.
+so dass es weiß, auf welchem Konto es arbeiten soll.
 
 Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmuster für dieses Problem:
 
-<img src="dp_bank_accounts.svg" width="800">
+<img src="dp_bank_accounts.svg" width="700">
 
 *Abbildung* 1: Schematische Darstellung des *Command* Patterns im Anwendungsfall &ldquo;*Bankkonten eines Bankinstituts*&rdquo;.
 

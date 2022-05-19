@@ -7,11 +7,12 @@ Es sollen Geldbeträge einbezahlt und abgehoben werden können.
 Realisieren Sie zu diesem Zweck eine Klasse `BankAccount` mit den zwei Methoden `deposit` und `withdraw`.
 
 Etwaige Unterdeckungen des Kontos sind hier nicht zu berücksichtigen.
-Mit der Methode `geBalance` kann man einen Kontostand abfragen.
+Mit der Methode `getBalance` kann man einen Kontostand abfragen.
 
-Da die einzelnen Konto-Transaktionen im Rechenzentrum des Bankinstituts ausgeführt werden sollen,
+Da die einzelnen Konto-Transaktionen im Rechenzentrum des Bankinstituts
+zu einem späteren Zeitpunkt ausgeführt werden sollen,
 benötigen wir eine Möglichkeit, mit der sich entsprechende Aufträge an das Bankinstitut
-zwischenspeichern und damit zu einem späteren Zeitpunkt ausführen lassen.
+zwischenspeichern und damit verzögert ausführen lassen.
 
 Welches klassische Entwurfsmuster bietet sich zur Realisierung an?
 
