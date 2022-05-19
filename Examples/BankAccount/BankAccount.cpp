@@ -27,6 +27,7 @@ protected:
 
 public:
     Command(BankAccount& account) : m_account{ account } {}
+
     virtual void execute() const = 0;
 };
 
@@ -36,8 +37,8 @@ public:
     enum class Action { deposit, withdraw };
 
 private:
-    Action       m_action;
-    int          m_amount;
+    Action  m_action;
+    int     m_amount;
 
 public:
     BankAccountCommand(BankAccount& account, Action action, int amount)
@@ -71,7 +72,7 @@ public:
     }
 };
 
-void testBankAccounts()
+void testBankAccounts_01()
 {
     BankAccount ba1{ 1000 };
     BankAccount ba2{ 1000 };
@@ -85,6 +86,33 @@ void testBankAccounts()
 
     std::cout << ba1.geBalance() << std::endl;
     std::cout << ba2.geBalance() << std::endl;
+}
+
+// or without class 'Transactions' a.k.a. 'Invoker'
+
+void testBankAccounts_02()
+{
+    BankAccount ba1{ 1000 };
+    BankAccount ba2{ 1000 };
+
+    std::vector<BankAccountCommand> transactions
+    {
+        BankAccountCommand{ba1, BankAccountCommand::Action::withdraw, 300},
+        BankAccountCommand{ba2, BankAccountCommand::Action::deposit, 300}
+    };
+
+    for (const auto& transaction : transactions) {
+        transaction.execute();
+    }
+
+    std::cout << ba1.geBalance() << std::endl;
+    std::cout << ba2.geBalance() << std::endl;
+}
+
+void testBankAccounts()
+{
+    testBankAccounts_01();
+    testBankAccounts_02();
 }
 
 // ===========================================================================

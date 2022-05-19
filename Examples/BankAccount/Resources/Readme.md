@@ -1,4 +1,4 @@
-# Ein Bankkonto
+# Bankkonten eines Bankinstituts
 
 #### Aufgabe
 

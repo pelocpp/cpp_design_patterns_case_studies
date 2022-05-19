@@ -1,76 +1,84 @@
-# Genehmigungssystem
+# Bankkonten eines Bankinstituts
 
 #### Lösung
 
-Das hier beschriebene Problem ist ein typischer Anwendungsfall des *Chain of Responsibility* Entwurfsmusters.
+Das hier beschriebene Problem ist ein typischer Anwendungsfall des *Command Pattern* Entwurfsmusters.
 
-Die Aufgabenstellung könnte man in einer Kaskade von `if… else if… else… endif` Bedingungsanweisungen umsetzen.
-Eine objektorientierte Version dieser Anweisungsfolge ist das *Chain of Responsibility* Entwurfsmuster.
-Dieses Muster definiert eine Kette von Empfängerobjekten, die die Verantwortung haben,
-eine Anfrage zu bearbeiten oder an den nächsten Empfänger in der Kette weiterzuleiten, falls einer vorhanden ist.
+Aus Grund von Demonstrationszwecken hat die `BankAccount`-Klasse
+eine minimalistische Implementierung mit einem gewissen Startguthaben. 
+
+Es gibt in dieser Klasse die beiden Methoden `deposit` und `withdraw`,
+aber anstatt diese Methoden direkt zu verwenden,
+erstellen wir eine separate Klasse `BankAccountCommand`, die als Backup von der abstrakten Klasse `Command`
+ableitet.
+
+In der Anwendung werden zwei `BankAccount`-Objekte angelegt
+und simulieren die Überweisung von 300€ von einem Bankkonto auf das andere.
+
+Jedes Kommando (`Command`) &ndash; sprich jedes `BankAccountCommand`-Objekt &ndash; bezieht sich auf ein bestimmtes Bankkonto,
+sodass es weiß, auf welchem Konto es arbeiten soll.
+
 Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmuster für dieses Problem:
 
-<img src="dp_chain_of_responsibility_pattern.svg" width="800">
+<img src="dp_bank_accounts.svg" width="800">
 
-Abbildung 1: Schematische Darstellung des *Chain of Responsibility* Patterns im Anwendungsfall *Approval System*.
+*Abbildung* 1: Schematische Darstellung des *Command* Patterns im Anwendungsfall &ldquo;*Bankkonten eines Bankinstituts*&rdquo;.
 
+*Zusatzaufgabe*:
 
-`Employee` ist eine Klasse, die einen Mitarbeiter im Unternehmen repräsentiert.
-Ein Mitarbeiter kann einen direkten Vorgesetzten haben,
-der mit einem Aufruf der Methode `setDirectManager` festgelegt wird.
-Jeder Mitarbeiter hat einen Namen und eine Rolle, die seine Verantwortlichkeiten und Berechtigungen definieren.
-`Role` ist eine abstrakte Basisklasse für mögliche Rollen und hat eine rein virtuelle (*pure virtual*)
-Methode `getApprovalLimit`, die Klassen wie `EmployeeRole`,
-`TeamManagerRole`, `DepartmentManagerRole` und `CEORole` überschreiben, um auf diese Weise
-zum Ausdruck zu bringen, bis zu welchem Betrag ein Mitarbeiter Ausgaben genehmigen darf.
-Die `approve`-Methode aus der Klasse `Employee` dient dem Zweck, einen Mitarbeiter eine Ausgabe genehmigen zu lassen.
-Wenn die Rolle des Mitarbeiters dies ihm ermöglicht, gibt er die Ausgabe frei.
-Andernfalls wird die Anforderung an den direkten Manager weitergeleitet, sofern dieser vorhanden ist.
+Betrachten Sie *Abbildung* 1 genau: Welches Manko erkennen Sie in der Klasse `Transactions`?
+Wie könnten Sie dieses Manko beheben?
 
+---
+
+Im Quellcode finden Sie eine Umsetzung des Beispiels mit und ohne `Invoker`-Klasse vor.
+Die etwas einachere Variante (also ohne `Invoker`-Klasse) sieht so aus:
 
 *Beispiel*:
 
 ```cpp
-std::unique_ptr<Role> role1 = std::make_unique<EmployeeRole>();
-std::shared_ptr<Employee> cliff = 
-    std::make_shared<Employee>("Cliff Booth", std::move(role1));
+BankAccount ba1{ 1000 };
+BankAccount ba2{ 1000 };
 
-std::unique_ptr<Role> role2 = std::make_unique<TeamManagerRole>();
-std::shared_ptr<Employee> rick = 
-    std::make_shared<Employee>("Rick Dalton", std::move(role2));
+std::vector<BankAccountCommand> transactions
+{
+    BankAccountCommand{ba1, BankAccountCommand::Action::withdraw, 300},
+    BankAccountCommand{ba2, BankAccountCommand::Action::deposit, 300}
+};
 
-std::unique_ptr<Role> role3 = std::make_unique<DepartmentManagerRole>();
-std::shared_ptr<Employee> randy =
-    std::make_shared<Employee>("Randy Miller", std::move(role3));
+for (const auto& transaction : transactions) {
+    transaction.execute();
+}
 
-std::unique_ptr<Role> role4 = std::make_unique<CEORole>();
-std::shared_ptr<Employee> marvin = 
-    std::make_shared<Employee>("Marvin Shwarz", std::move(role4));
-
-cliff->setDirectManager(rick);
-rick->setDirectManager(randy);
-randy->setDirectManager(marvin);
-
-cliff->approve(Expense{ 500, "Magazins" });
-rick->approve(Expense{ 5000, "Hotel Accomodation" });
-randy->approve(Expense{ 50000, "Conference costs" });
-marvin->approve(Expense{ 200000, "New Truck" });
+std::cout << ba1.geBalance() << std::endl;
+std::cout << ba2.geBalance() << std::endl;
 ```
-
 
 *Ausgabe*:
 
-```cpp
-Cliff Booth approved expense 'Magazins', cost=500
-Rick Dalton approved expense 'Hotel Accomodation', cost=5000
-Randy Miller approved expense 'Conference costs', cost=50000
-Marvin Shwarz approved expense 'New Truck', cost=200000
+```
+700
+1300
 ```
 
+---
+
+*Zusatzaufgabe*:
+
+In der Klasse `Transactions` sollte der Vektor 
+
+```cpp
+std::vector<BankAccountCommand> m_transactions;
+```
+
+Elemente des Typs `Command` haben, also keine `BankAccountCommand`-Objekte.
+Da die Klasse  `Command` abstrakt ist, müsste der Vektor Zeiger (Raw-Zeiger oder Smart Pointer) enthalten.
+
+---
 
 #### Quellcode
 
-[Siehe hier](../ApprovalSystem.cpp)
+[Siehe hier](../BankAccount.cpp)
 
 ---
 
