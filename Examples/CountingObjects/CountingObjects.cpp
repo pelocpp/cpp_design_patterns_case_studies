@@ -37,6 +37,7 @@ public:
     void remove(Component*);
 
     void accept(Visitor&);
+
 private:
     std::list<Component*> m_container;
 };
@@ -93,10 +94,10 @@ void Leaf2::accept(Visitor& v) {
 
 class SimpleCounter : public Visitor {
 private:
-    unsigned int m_n; 
+    size_t m_n; 
 
 public:
-    SimpleCounter() : m_n(0) {}
+    SimpleCounter() : m_n{ 0 } {}
 
     void visit(Composite&) { m_n++; }
     void visit(Leaf1&) { m_n++; }
@@ -104,7 +105,7 @@ public:
 
     void leave(class Composite&) {}  // extended variant (empty implementation)
 
-    unsigned int count () const
+    size_t count () const
     {
         return m_n;
     }
@@ -112,16 +113,17 @@ public:
 
 // ===========================================================================
 
-class DetailedCounter : public Visitor {
+class DetailedCounter : public Visitor
+{
 private:
-    unsigned int m_nc;
-    unsigned int m_n1;
-    unsigned int m_n2;
-    unsigned int m_currentDepth;
-    unsigned int m_maxDepth;
+    size_t m_nc;
+    size_t m_n1;
+    size_t m_n2;
+    size_t m_currentDepth;
+    size_t m_maxDepth;
 
 public:
-    DetailedCounter() : m_nc(0), m_n1(0), m_n2(0), m_currentDepth(0), m_maxDepth(0) {}
+    DetailedCounter() : m_nc{ 0 }, m_n1{ 0 }, m_n2{ 0 }, m_currentDepth{ 0 }, m_maxDepth{0 } {}
 
     void visit(Composite&) { 
         m_nc++;
@@ -136,11 +138,11 @@ public:
 
     void leave(class Composite&) { m_currentDepth--; }  // extended variant
 
-    unsigned int countObjects() const { return m_nc + m_n1 + m_n2; }
-    unsigned int countComposite() const { return m_nc; }
-    unsigned int countLeaf1() const { return m_n1; }
-    unsigned int countLeaf2() const { return m_n2; }
-    unsigned int countDepth() const { return m_maxDepth; }
+    size_t countObjects() const { return m_nc + m_n1 + m_n2; }
+    size_t countComposite() const { return m_nc; }
+    size_t countLeaf1() const { return m_n1; }
+    size_t countLeaf2() const { return m_n2; }
+    size_t countDepth() const { return m_maxDepth; }
 };
 
 // ===========================================================================
