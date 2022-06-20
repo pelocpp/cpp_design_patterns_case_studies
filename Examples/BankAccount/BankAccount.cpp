@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <memory>
 
 class BankAccount
 {
@@ -58,16 +59,16 @@ public:
 class Transactions
 {
 private:
-    std::vector<BankAccountCommand> m_transactions;
+    std::vector<std::shared_ptr<Command>> m_transactions;
 
 public:
-    Transactions (std::initializer_list<BankAccountCommand> transactions)
+    Transactions (std::initializer_list<std::shared_ptr<Command>> transactions)
         : m_transactions { transactions } {}
 
     void execute() 
     {
         for (const auto& transaction : m_transactions) {
-            transaction.execute();
+            transaction->execute();
         }
     }
 };
@@ -78,8 +79,8 @@ void testBankAccounts_01()
     BankAccount ba2{ 1000 };
 
     Transactions transactions {
-        BankAccountCommand{ba1, BankAccountCommand::Action::withdraw, 300},
-        BankAccountCommand{ba2, BankAccountCommand::Action::deposit, 300} 
+        std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300),
+        std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300)
     };
 
     transactions.execute();
