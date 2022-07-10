@@ -25,6 +25,8 @@ Themenbereich &ldquo;C++ Design Patterns&rdquo;.
 
 ### [Bankkonten eines Bankinstituts](Examples/BankAccount/Resources/Readme.md)
 
+### [Das &ldquo;Dependency Inversion Principle&rdquo;](Examples/DependencyInversionPrinciple/Resources/Readme.md)
+
 ---
 
 *Hinweis*:
@@ -43,5 +45,9 @@ die in den Aufgaben zur Anwendung kommen:
   * *State* Entwurfsmuster
   * *Template Method* Entwurfsmuster
   * *Visitor* Entwurfsmuster
+
+Zu den Entwurfsprinzipien (Design Principles):
+
+  * *Dependency Inversion Principle* Idiom
 
 ---
