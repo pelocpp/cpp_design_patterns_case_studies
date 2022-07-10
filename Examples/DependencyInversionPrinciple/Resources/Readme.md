@@ -2,12 +2,12 @@
 
 #### Motivation
 
-Das &ldquo;Dependency Inversion Principle&rdquo; ist ein Prinzip, das zum Entkoppeln nützlich ist.
+Das &ldquo;Dependency Inversion Principle&rdquo; beschreibt ein Idiom, das zum Entkoppeln von Abhängigkeiten nützlich ist.
 Im Wesentlichen bedeutet es, dass auf einem höheren Level angesiedelte
 Module nicht von untergeordneten Modulen abhängen sollten.
 Stattdessen sollten beide von Abstraktionen abhängen.
 
-C++ bietet zwei Möglichkeiten, die Abhängigkeiten zwischen Ihren Klassen umzukehren. Der erste ist der
+C++ bietet zwei Möglichkeiten, die Abhängigkeiten zwischen Klassen umzukehren. Die erste ist der
 klassische, polymorphe Ansatz und der zweite verwendet Templates.
 
 
@@ -56,7 +56,7 @@ Betrachten Sie zu diesem Zweck das folgende Code-Fragment:
 
   * Welchen Verstoß gegen das &ldquo;Dependency Inversion Principle&rdquo; können Sie erkennen?
 
-  * Wie können Sie eine Umkehr der Abhängigkeiten erzielen?
+  * Wie könnten Sie eine Umkehr der Abhängigkeiten erzielen?
 
 
 #### Zusatzaufgabe:
@@ -64,7 +64,7 @@ Betrachten Sie zu diesem Zweck das folgende Code-Fragment:
 Der Einsatz des &ldquo;Dependency Inversion Principles&rdquo;
 mit dem virtuellen Methodenaufrufmechnismus ist zur Laufzeit mit Kosten verbunden.
 
-Es gibt eine andere, zweite Möglichkeit, Abhängigkeiten umzukehren, die diese Nachteile nicht hat.
+Es gibt eine andere Möglichkeit, Abhängigkeiten umzukehren, die diese Nachteile nicht hat.
 Diese Variante verwendet variadische Templates, generische Lambdas (oder Funktoren) sowie `std::variant` und `std::visit`.
 
 
