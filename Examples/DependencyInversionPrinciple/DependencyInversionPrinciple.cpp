@@ -48,6 +48,8 @@ namespace Dependency_Inversion_Principle_Violating {
 
 namespace Dependency_Inversion_Principle_Respecting_01 {
 
+    // solution uses inheritance / polymorphism
+
     class Developer {
     public:
         virtual ~Developer() = default;
@@ -98,10 +100,9 @@ namespace Dependency_Inversion_Principle_Respecting_01 {
         Developers m_developers;
     };
 
-
     void test_02() {
 
-        std::vector<std::unique_ptr<Developer>> developers;
+        Developers developers;
         developers.push_back(std::make_unique<FrontEndDeveloper>());
         developers.push_back(std::make_unique<BackEndDeveloper>());
 
@@ -112,16 +113,12 @@ namespace Dependency_Inversion_Principle_Respecting_01 {
 
 namespace Dependency_Inversion_Principle_Respecting_02 {
 
-    class Developer {
-    public:
-        virtual ~Developer() = default;
-        virtual void develop() = 0;
-    };
+    // solution uses template techniques / no inheritance / no polymorphism
 
-    class FrontEndDeveloper : public Developer
+    class FrontEndDeveloper
     {
     public:
-        virtual void develop() override {
+        void develop() {
             developFrontEnd();
         }
 
@@ -131,10 +128,10 @@ namespace Dependency_Inversion_Principle_Respecting_02 {
         }
     };
 
-    class BackEndDeveloper : public Developer
+    class BackEndDeveloper
     {
     public:
-        virtual void develop() override {
+        void develop() {
             developBackEnd();
         }
 
@@ -177,16 +174,12 @@ namespace Dependency_Inversion_Principle_Respecting_02 {
 
 namespace Dependency_Inversion_Principle_Respecting_03 {
 
-    class Developer {
-    public:
-        virtual ~Developer() = default;
-        virtual void develop() = 0;
-    };
+    // same as last solution / several using declarations used
 
-    class FrontEndDeveloper : public Developer
+    class FrontEndDeveloper
     {
     public:
-        virtual void develop() override {
+        void develop() {
             developFrontEnd();
         }
 
@@ -196,10 +189,10 @@ namespace Dependency_Inversion_Principle_Respecting_03 {
         }
     };
 
-    class BackEndDeveloper : public Developer
+    class BackEndDeveloper
     {
     public:
-        virtual void develop() override {
+        void develop() {
             developBackEnd();
         }
 
@@ -211,7 +204,6 @@ namespace Dependency_Inversion_Principle_Respecting_03 {
 
     template <typename... TDevelopers>
     using Developers = std::vector<std::variant<TDevelopers ...>>;
-
 
     template <typename... TDevelopers>
     class Project
@@ -230,7 +222,7 @@ namespace Dependency_Inversion_Principle_Respecting_03 {
         Developers<TDevelopers ...> m_developers;
     };
 
-    void test__04() {
+    void test_04() {
 
         using MyProject = Project<FrontEndDeveloper, BackEndDeveloper>;
 
@@ -254,8 +246,9 @@ void testDependencyInversionPrinciple()
     test_03();
 
     using namespace Dependency_Inversion_Principle_Respecting_03;
-    test__04();
+    test_04();
 }
+
 // ===========================================================================
 // End-of-File
 // ===========================================================================

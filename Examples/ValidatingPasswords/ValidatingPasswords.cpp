@@ -10,18 +10,18 @@
 class PasswordValidator
 {
 public:
-    virtual bool validate(std::string password) const = 0;
     virtual ~PasswordValidator() {}
+    virtual bool validate(std::string password) const = 0;
 };
 
 // corresponds to 'ConcreteComponent'
 class LengthValidator final : public PasswordValidator
 {
 private:
-    unsigned int m_length; 
+    size_t m_length; 
 
 public:
-    LengthValidator(unsigned int minLength) : m_length{ minLength } {}
+    LengthValidator(size_t minLength) : m_length{ minLength } {}
 
     bool validate(std::string password) const override 
     {
@@ -33,15 +33,15 @@ public:
 class PasswordValidatorDecorator : public PasswordValidator
 {
 private:
-    std::unique_ptr<PasswordValidator> m_inner;
+    std::unique_ptr<PasswordValidator> m_component;
 
 public:
     explicit PasswordValidatorDecorator(std::unique_ptr<PasswordValidator> validator)
-        : m_inner{ std::move(validator) } {}
+        : m_component{ std::move(validator) } {}
 
     bool validate(std::string password) const override
     {
-        return m_inner->validate(password);
+        return m_component->validate(password);
     }
 };
 
