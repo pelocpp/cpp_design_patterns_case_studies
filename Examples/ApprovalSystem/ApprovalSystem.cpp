@@ -4,13 +4,12 @@
 
 #include <iostream>
 #include <string>
-#include <string_view>
 
 class Role
 {
 public:
-    virtual double getApprovalLimit() const = 0;
     virtual ~Role() {}
+    virtual double getApprovalLimit() const = 0;
 };
 
 class EmployeeRole : public Role
@@ -56,8 +55,8 @@ private:
     std::string m_description;
 
 public:
-    Expense(double const amount, std::string_view desc)
-        : m_amount{ amount }, m_description{ desc } {}
+    Expense(double const amount, std::string description)
+        : m_amount{ amount }, m_description{ description } {}
 
     double getAmount() const noexcept { return m_amount; }
     std::string getDescription() const noexcept { return m_description; }
@@ -68,11 +67,11 @@ class Employee
 private:
     std::string m_name;
     std::unique_ptr<Role> m_ownRole;
-    std::shared_ptr<Employee> m_directManager;
+    std::weak_ptr<Employee> m_directManager;
 
 public:
-    explicit Employee(std::string_view name, std::unique_ptr<Role> ownrole)
-        : m_name{ name }, m_ownRole{ std::move(ownrole) }, m_directManager{ nullptr } {}
+    explicit Employee(std::string name, std::unique_ptr<Role> ownrole)
+        : m_name{ name }, m_ownRole{ std::move(ownrole) } {}
 
     void setDirectManager(std::shared_ptr<Employee> manager)
     {
@@ -82,12 +81,12 @@ public:
     void approve(const Expense& e)
     {
         if (e.getAmount() <= m_ownRole->getApprovalLimit()) {
-            std::cout 
+            std::cout
                 << m_name << " approved expense '" << e.getDescription()
                 << "', cost=" << e.getAmount() << std::endl;
         }
-        else if (m_directManager != nullptr) {
-            m_directManager->approve(e);
+        else if (std::shared_ptr<Employee> manager; (manager = m_directManager.lock()) != nullptr) {
+            manager->approve(e);
         }
     }
 };

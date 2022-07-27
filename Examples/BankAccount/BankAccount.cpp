@@ -62,10 +62,10 @@ private:
     std::vector<std::shared_ptr<Command>> m_transactions;
 
 public:
-    Transactions (std::initializer_list<std::shared_ptr<Command>> transactions)
-        : m_transactions { transactions } {}
+    Transactions(std::initializer_list<std::shared_ptr<Command>> transactions)
+        : m_transactions{ transactions } {}
 
-    void execute() 
+    void execute()
     {
         for (const auto& transaction : m_transactions) {
             transaction->execute();
@@ -78,7 +78,7 @@ void testBankAccounts_01()
     BankAccount ba1{ 1000 };
     BankAccount ba2{ 1000 };
 
-    Transactions transactions {
+    Transactions transactions{
         std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300),
         std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300)
     };
