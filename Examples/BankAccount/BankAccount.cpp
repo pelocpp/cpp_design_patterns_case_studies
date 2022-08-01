@@ -78,7 +78,8 @@ void testBankAccounts_01()
     BankAccount ba1{ 1000 };
     BankAccount ba2{ 1000 };
 
-    Transactions transactions{
+    Transactions transactions
+    {
         std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300),
         std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300)
     };
@@ -98,8 +99,8 @@ void testBankAccounts_02()
 
     std::vector<BankAccountCommand> transactions
     {
-        BankAccountCommand{ba1, BankAccountCommand::Action::withdraw, 300},
-        BankAccountCommand{ba2, BankAccountCommand::Action::deposit, 300}
+        BankAccountCommand{ ba1, BankAccountCommand::Action::withdraw, 300 },
+        BankAccountCommand{ ba2, BankAccountCommand::Action::deposit, 300 }
     };
 
     for (const auto& transaction : transactions) {

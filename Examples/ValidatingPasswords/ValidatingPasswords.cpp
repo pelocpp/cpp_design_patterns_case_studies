@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 #include <cassert>
 
 // corresponds to 'Component'
