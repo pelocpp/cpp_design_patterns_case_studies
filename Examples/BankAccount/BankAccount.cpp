@@ -32,27 +32,33 @@ public:
     virtual void execute() const = 0;
 };
 
-class BankAccountCommand : public Command
+class BankAccountDepositCommand : public Command
 {
-public:
-    enum class Action { deposit, withdraw };
-
 private:
-    Action  m_action;
-    int     m_amount;
+    int m_amount;
 
 public:
-    BankAccountCommand(BankAccount& account, Action action, int amount)
-        : Command{ account }, m_action{ action }, m_amount{ amount } {}
+    BankAccountDepositCommand(BankAccount& account, int amount)
+        : Command{ account }, m_amount{ amount } {}
 
     virtual void execute() const override
     {
-        if (m_action == Action::deposit) {
-            m_account.deposit(m_amount);
-        }
-        else if (m_action == Action::withdraw) {
-            m_account.withdraw(m_amount);
-        }
+        m_account.deposit(m_amount);
+    }
+};
+
+class BankAccountWithdrawCommand : public Command
+{
+private:
+    int m_amount;
+
+public:
+    BankAccountWithdrawCommand(BankAccount& account, int amount)
+        : Command{ account }, m_amount{ amount } {}
+
+    virtual void execute() const override
+    {
+        m_account.withdraw(m_amount);
     }
 };
 
@@ -80,8 +86,8 @@ void testBankAccounts_01()
 
     Transactions transactions
     {
-        std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300),
-        std::make_shared<BankAccountCommand>(ba1, BankAccountCommand::Action::withdraw, 300)
+        std::make_shared<BankAccountWithdrawCommand>(ba1, 300),
+        std::make_shared<BankAccountWithdrawCommand>(ba1, 300)
     };
 
     transactions.execute();
@@ -97,14 +103,14 @@ void testBankAccounts_02()
     BankAccount ba1{ 1000 };
     BankAccount ba2{ 1000 };
 
-    std::vector<BankAccountCommand> transactions
+    std::vector<std::shared_ptr<Command>> transactions
     {
-        BankAccountCommand{ ba1, BankAccountCommand::Action::withdraw, 300 },
-        BankAccountCommand{ ba2, BankAccountCommand::Action::deposit, 300 }
+        std::make_shared<BankAccountWithdrawCommand>(ba1, 300),
+        std::make_shared<BankAccountDepositCommand>(ba2, 300),
     };
 
     for (const auto& transaction : transactions) {
-        transaction.execute();
+        transaction->execute();
     }
 
     std::cout << ba1.getBalance() << std::endl;

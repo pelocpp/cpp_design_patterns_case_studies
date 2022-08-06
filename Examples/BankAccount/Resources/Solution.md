@@ -40,18 +40,18 @@ Die etwas einachere Variante (also ohne `Invoker`-Klasse) sieht so aus:
 BankAccount ba1{ 1000 };
 BankAccount ba2{ 1000 };
 
-std::vector<BankAccountCommand> transactions
+std::vector<std::shared_ptr<Command>> transactions
 {
-    BankAccountCommand{ba1, BankAccountCommand::Action::withdraw, 300},
-    BankAccountCommand{ba2, BankAccountCommand::Action::deposit, 300}
+    std::make_shared<BankAccountWithdrawCommand>(ba1, 300),
+    std::make_shared<BankAccountDepositCommand>(ba2, 300),
 };
 
 for (const auto& transaction : transactions) {
-    transaction.execute();
+    transaction->execute();
 }
 
-std::cout << ba1.geBalance() << std::endl;
-std::cout << ba2.geBalance() << std::endl;
+std::cout << ba1.getBalance() << std::endl;
+std::cout << ba2.getBalance() << std::endl;
 ```
 
 *Ausgabe*:
