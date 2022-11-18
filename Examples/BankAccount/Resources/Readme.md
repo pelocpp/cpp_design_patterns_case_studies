@@ -16,7 +16,7 @@ zwischenspeichern und damit verzögert ausführen lassen.
 
 Welches klassische Entwurfsmuster bietet sich zur Realisierung an?
 
-Schreiben Sie eine Testfunktion, die ein ensprechendes Szenario verifiziert.
+Schreiben Sie eine Testfunktion, die ein entsprechendes Szenario verifiziert.
 
 #### Lösung
 
