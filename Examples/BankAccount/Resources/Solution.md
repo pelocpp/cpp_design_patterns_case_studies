@@ -27,12 +27,12 @@ Das folgende Klassendiagramm zeigt eine mögliche Implementierung des Entwurfsmus
 *Zusatzaufgabe*:
 
 Betrachten Sie *Abbildung* 1 genau: Welches Manko erkennen Sie in der Klasse `Transactions`?
-Wie könnten Sie dieses Manko beheben?
+Wie könnten Sie dieses Manko beheben? Siehe dazu auch die Zusatzaufgabe weiter unten.
 
 ---
 
 Im Quellcode finden Sie eine Umsetzung des Beispiels mit und ohne `Invoker`-Klasse vor.
-Die etwas einachere Variante (also ohne `Invoker`-Klasse) sieht so aus:
+Die etwas einfachere Variante (also ohne `Invoker`-Klasse) sieht so aus:
 
 *Beispiel*:
 
