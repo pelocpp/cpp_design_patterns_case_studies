@@ -87,7 +87,7 @@ void testBankAccounts_01()
     Transactions transactions
     {
         std::make_shared<BankAccountWithdrawCommand>(ba1, 300),
-        std::make_shared<BankAccountWithdrawCommand>(ba1, 300)
+        std::make_shared<BankAccountDepositCommand>(ba2, 300)
     };
 
     transactions.execute();
